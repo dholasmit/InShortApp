@@ -68,15 +68,15 @@ class _SettingScreenState extends State<SettingScreen> {
         builder: (SettingController settingController) {
           return Column(
             children: [
-              settingSell(
-                icon: Icons.notifications,
-                text: "Notification",
-                onTap: () {},
-                value: settingController.languageBtn,
-                onChanged: (value) {
-                  settingController.languageBtn = value;
-                },
-              ),
+              // settingSell(
+              //   icon: Icons.notifications,
+              //   text: "Notification",
+              //   onTap: () {},
+              //   value: settingController.languageBtn,
+              //   onChanged: (value) {
+              //     settingController.languageBtn = value;
+              //   },
+              // ),
               settingSell(
                 icon: settingController.nightModeBtn == true
                     ? Icons.nightlight
@@ -174,23 +174,21 @@ class _SettingScreenState extends State<SettingScreen> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: DropdownButton(
           isExpanded: true,
           focusColor: Colors.white,
-          underline: const Divider(color: Colors.grey),
+          underline: const Divider(color: Colors.transparent),
           value: settingController.chosenValue,
           style: const TextStyle(color: Colors.white),
 
           /// iconEnabledColor: Colors.black,
+  
           icon: const Padding(
-            padding: EdgeInsets.only(bottom: 20),
+            padding: EdgeInsets.only(bottom: 0),
             child: Icon(
               Icons.arrow_drop_down,
               size: 35,
-              //color: Colors.red,
-
-              ///  color: AppColors.appColor,
             ),
           ),
           items: settingController.languageSelectList
@@ -198,13 +196,14 @@ class _SettingScreenState extends State<SettingScreen> {
             return DropdownMenuItem(
               value: value,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   value,
-                  style: const TextStyle(
-                    color: Colors.black,
-
-                    /// fontFamily: kAppFont,
+                  style: TextStyle(
+                    color: settingController.nightModeBtn == true
+                        ? Colors.white
+                        : Colors.black,
+                    fontWeight: FontWeight.w500,
                     fontSize: 18,
                   ),
                 ),

@@ -33,7 +33,7 @@ class SettingController extends GetxController {
     "Gujarati",
     "Hindi",
   ];
-  String? chosenValue;
+  String? chosenValue = "English";
 
 // bool _nightModeBtn = false;
 //
