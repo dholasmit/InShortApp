@@ -44,7 +44,10 @@ dependencies:
   url_launcher: ^6.1.10
   shared_preferences: ^2.0.20
   dropdown_button2: ^2.0.0
-
+  mime_type: ^1.0.0
+  http: ^0.13.5
+  fluttertoast: ^8.2.1
+  connectivity_plus: ^3.0.4
 
 
 

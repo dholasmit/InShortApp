@@ -183,7 +183,7 @@ class _SettingScreenState extends State<SettingScreen> {
           style: const TextStyle(color: Colors.white),
 
           /// iconEnabledColor: Colors.black,
-  
+
           icon: const Padding(
             padding: EdgeInsets.only(bottom: 0),
             child: Icon(
