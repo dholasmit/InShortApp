@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 
+import '../../setting_screen/controller/setting_controller.dart';
 import '../../setting_screen/view/setting_Screen.dart';
 
 class MenuScreen extends StatefulWidget {
+  static const String routeName = "/MenuScreen";
+
   const MenuScreen({Key? key}) : super(key: key);
 
   @override
@@ -12,11 +15,14 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  SettingController settingController = Get.find<SettingController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
         title: const Text(
           "Menu",
@@ -37,7 +43,7 @@ class _MenuScreenState extends State<MenuScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(const SettingScreen());
+              Get.toNamed(SettingScreen.routeName);
             },
             icon: const Icon(
               Icons.settings,

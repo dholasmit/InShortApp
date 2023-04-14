@@ -6,6 +6,8 @@ import '../../../shared/bottam_seet.dart';
 import '../controller/setting_controller.dart';
 
 class SettingScreen extends StatefulWidget {
+  static const String routeName = "/SettingScreen";
+
   const SettingScreen({Key? key}) : super(key: key);
 
   @override
@@ -13,14 +15,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  // bool languageBtn = false;
-
-  // bool nightModeBtn = false;
-  // bool hdImageBtn = false;
-  bool sd = false;
-
-  // SampleItem? selectedMenu;
-
   SettingController settingController = Get.find<SettingController>();
 
   @override
@@ -83,11 +77,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     : Icons.mode_night_outlined,
                 text: "NightMode",
                 onTap: () {},
-                value:
-                    // settingController.
-                    settingController.nightModeBtn,
+                value: settingController.nightModeBtn,
                 onChanged: (value) {
-                  // settingController.
                   setState(() {
                     settingController.nightModeBtn = value;
                     Get.isDarkMode

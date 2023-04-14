@@ -19,6 +19,8 @@ class API {
   static Future<Map<String, dynamic>?> apiHandler({
     required String url,
     RequestType requestType = RequestType.Post,
+
+    ///Map<String, String>? header,
     bool showLoader = true,
     bool showToast = false,
     dynamic body,
@@ -62,7 +64,7 @@ class API {
           return null;
         }
       } else {
-        flutterToast('check_your_connection'.tr);
+        flutterToast('Check Your Connection'.tr);
         return null;
       }
     } catch (e) {
@@ -142,7 +144,7 @@ class API {
           return null;
         }
       } else {
-        flutterToast('check_your_connection'.tr);
+        flutterToast('Check Your Connection'.tr);
         return null;
       }
     } catch (e) {

@@ -46,19 +46,19 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       //backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         elevation: 0,
         title: const Text(
           "E-News",
           style: TextStyle(
-            color: Colors.black,
+            //   color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
           onPressed: () {
-            Get.to(const MenuScreen());
+            Get.toNamed(MenuScreen.routeName);
           },
           icon: const Icon(
             Icons.menu,

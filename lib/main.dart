@@ -29,11 +29,9 @@ class _MyAppState extends State<MyApp> {
       translations: LocalizationService(context),
       locale: LocalizationService.locale,
       themeMode: ThemeMode.system,
-      darkTheme: ThemeData.dark(),
+      //darkTheme: ThemeData.dark(),
       fallbackLocale: LocalizationService.fallbackLocale,
       initialRoute: initialRoute,
-
-      //initialRoute: initialRoute,
       getPages: routes,
 
       ///  theme: ThemeData.light()
