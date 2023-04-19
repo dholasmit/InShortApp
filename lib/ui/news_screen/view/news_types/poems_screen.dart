@@ -24,12 +24,39 @@ class _Poems2ScreenState extends State<Poems2Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 20),
+      //   child: Container(
+      //     //  color: Colors.grey,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         IconButton(
+      //           onPressed: () {},
+      //           icon: const Icon(
+      //             Icons.bookmark_border,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         IconButton(
+      //           onPressed: () {},
+      //           icon: const Icon(
+      //             Icons.share,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AppImages.poemsBackGroundImage), fit: BoxFit.fill
+                image: AssetImage(AppImages.poemsBackGroundImage),
+                fit: BoxFit.fill
                 // NetworkImage(
                 //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Gg_QYj5RAGQ8M0e3JDMOM1RkgW7077TrT-KeYx0Qms5d0j-osyzAaTetbGgc6Yq0YjM&usqp=CAU",
                 // ),

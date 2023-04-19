@@ -45,14 +45,42 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.white,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 20),
+      //   child: Container(
+      //     color: Colors.grey,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         IconButton(
+      //           onPressed: () {
+      //
+      //           },
+      //           icon: const Icon(
+      //             Icons.bookmark_border,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         IconButton(
+      //           onPressed: () {},
+      //           icon: const Icon(
+      //             Icons.share,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
         title: const Text(
           "E-News",
           style: TextStyle(
-            //   color: Colors.black,
+            color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -65,6 +93,7 @@ class _NewsScreenState extends State<NewsScreen> {
             color: Colors.black,
           ),
         ),
+
         // actions: [
         //   IconButton(
         //       icon: const Icon(
