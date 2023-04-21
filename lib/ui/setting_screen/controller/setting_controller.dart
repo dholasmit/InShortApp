@@ -1,4 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../models/setting_screen_model/language_model.dart';
+import '../../../services/api_routes.dart';
 
 class SettingController extends GetxController {
   bool _languageBtn = false;
@@ -28,19 +33,30 @@ class SettingController extends GetxController {
     update();
   }
 
-  List<String> languageSelectList = [
-    "English",
-    "Gujarati",
-    "Hindi",
-  ];
-  String? chosenValue = "English";
+  /// language model
 
-// bool _nightModeBtn = false;
-//
-// bool get nightModeBtn => _nightModeBtn;
-//
-// set nightModeBtn(bool value) {
-//   _nightModeBtn = value;
-//   update();
-// }
+  LanguageModel? languageModel;
+
+  String? chosenValue;
+
+  /// onInit
+  @override
+  void onInit() {
+    languageListData();
+    super.onInit();
+  }
+
+  Future<void> languageListData() async {
+    String url = APIRoutes.languages;
+    final response = await http.get(Uri.parse(url));
+    debugPrint("url=========>$url");
+    if (response.statusCode == 200) {
+      languageModel = languageModelFromJson(response.body);
+      print("RESPONSE ==========>  ${response.body}");
+      chosenValue = languageModel!.languages.first.name;
+      update(["Languages"]);
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
 }
