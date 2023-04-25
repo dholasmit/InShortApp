@@ -1,7 +1,11 @@
-import 'package:get/get.dart';
+import 'dart:convert';
 
-import '../../../models/menu_screen_model/proudctcategories_model.dart';
-import '../../../services/menu_screen_repo/product_categories_repo.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../models/menu_screen_model/categories_model.dart';
+import '../../../services/api_routes.dart';
 
 class MenuScreenController extends GetxController {
   /// comment for my side
@@ -13,21 +17,43 @@ class MenuScreenController extends GetxController {
   //   _productData = value;
   //   update();
   // }
-  List<Product> _product = [];
+  // List<Product> _product = [];
+  //
+  // List<Product> get product => _product;
+  //
+  // set product(List<Product> value) {
+  //   _product = value;
+  //   update();
+  // }
+  //
+  // Future<void> categories() async {
+  //   ProductCategoriesModel? productCategoriesModel =
+  //       await ProductCategoriesRepo.productCategoriesScreen();
+  //
+  //   if (productCategoriesModel != null) {
+  //     product = productCategoriesModel.products;
+  //   }
+  // }
 
-  List<Product> get product => _product;
+  CategoriesModel? categoriesModel;
 
-  set product(List<Product> value) {
-    _product = value;
-    update();
+  @override
+  void onInit() {
+    categoriesData();
+    super.onInit();
   }
 
-  Future<void> categories() async {
-    ProductCategoriesModel? productCategoriesModel =
-        await ProductCategoriesRepo.productCategoriesScreen();
+  Future<void> categoriesData() async {
+    String url = APIRoutes.categories;
+    final response = await http.get(Uri.parse(url));
+    debugPrint("url=========>$url");
 
-    if (productCategoriesModel != null) {
-      product = productCategoriesModel.products;
+    if (response.statusCode == 200) {
+      categoriesModel = CategoriesModel.fromJson(jsonDecode(response.body));
+      update();
+      print("RESPONSE ==========>  ${response.body}");
+    } else {
+      throw Exception('Failed to load album');
     }
   }
 }

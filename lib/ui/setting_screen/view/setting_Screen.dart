@@ -225,7 +225,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   },
                 ),
               )
-            : SizedBox(),
+            : const Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
     );
   }

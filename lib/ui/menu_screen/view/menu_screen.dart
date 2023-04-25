@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 import 'package:inshorts_newj/services/api_routes.dart';
 
-import '../../../models/menu_screen_model/categories_model.dart';
 import '../../../models/menu_screen_model/proudctcategories_model.dart';
 import '../../setting_screen/view/setting_Screen.dart';
 import '../controller/menuscreen_controller.dart';
@@ -40,33 +39,6 @@ class _MenuScreenState extends State<MenuScreen> {
     } else {
       throw Exception('Failed to load album');
     }
-  }
-
-  ///  ctCategories API
-  CategoriesModel? categoriesModel;
-
-  Future<void> categoriesData() async {
-    String url = APIRoutes.categories;
-    final response = await http.get(Uri.parse(url));
-    debugPrint("url=========>$url");
-
-    if (response.statusCode == 200) {
-      categoriesModel = CategoriesModel.fromJson(jsonDecode(response.body));
-
-      setState(() {});
-      print("RESPONSE ==========>  ${response.body}");
-    } else {
-      throw Exception('Failed to load album');
-    }
-  }
-
-  @override
-  void initState() {
-    /// productCategoriesData();
-    categoriesData();
-
-    /// menuScreenController.categories();
-    super.initState();
   }
 
   @override
@@ -156,34 +128,36 @@ class _MenuScreenState extends State<MenuScreen> {
               Container(
                 height: 130,
                 color: Colors.transparent,
-                child: ListView.builder(
-
-                    ///itemCount: menuScreenController.product.length,
-
-                    itemCount: categoriesModel?.categories.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      print(
-                          "DATA LENGTH ======> ${categoriesModel?.categories.length}");
-
-                      return Column(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                            size: 100,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              "${categoriesModel?.categories[index].name}",
-
-                              /// menuScreenController.product[index].name,
-                            ),
-                          )
-                        ],
-                      );
-                    }),
+                child: GetBuilder(
+                  builder: (MenuScreenController controller) {
+                    return controller.categoriesModel != null
+                        ? ListView.builder(
+                            itemCount: menuScreenController
+                                .categoriesModel?.categories.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                    size: 100,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Text(
+                                      "${menuScreenController.categoriesModel?.categories[index].name}",
+                                    ),
+                                  )
+                                ],
+                              );
+                            })
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  },
+                ),
               ),
               const SizedBox(height: 25),
               const Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inshorts_newj/custem_class/constant/app_settings.dart';
 import 'package:inshorts_newj/custem_class/utils/globle.dart';
 
 import 'custem_class/utils/bindinges.dart';
@@ -33,6 +34,9 @@ class _MyAppState extends State<MyApp> {
       fallbackLocale: LocalizationService.fallbackLocale,
       initialRoute: initialRoute,
       getPages: routes,
+      theme: ThemeData(
+        fontFamily: kAppFont,
+      ),
 
       ///  theme: ThemeData.light()
       //  ThemeData.dark(),
