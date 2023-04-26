@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 import 'package:inshorts_newj/ui/login_screen/view/login_screen.dart';
+import 'package:inshorts_newj/ui/login_screen/view/signup_screen.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../shared/material_button.dart';
@@ -80,7 +81,10 @@ class WelComeScreen extends StatelessWidget {
                         const SizedBox(width: 30),
                         Expanded(
                           child: materialButton(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(SignUpScreen.routeName);
+                            },
+                            color: AppColors.signupBTNColor,
                             btnText: "Sign up",
                           ),
                         ),

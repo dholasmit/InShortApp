@@ -4,7 +4,11 @@ import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 
 import '../custem_class/constant/app_settings.dart';
 
-materialButton({required void Function() onTap, required String btnText}) {
+materialButton({
+  required void Function() onTap,
+  required String btnText,
+  required Color color,
+}) {
   return GestureDetector(
     onTap: onTap,
     child: SizedBox(
@@ -13,7 +17,7 @@ materialButton({required void Function() onTap, required String btnText}) {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: AppColors.signupBTNColor,
+          color: color,
         ),
         child: Center(
           child: Text(
@@ -53,5 +57,43 @@ materialBorderButton(
       ),
     ),
     // color: AppColors.appColor,
+  );
+}
+
+iconTextMaterialButton({
+  required void Function() onTap,
+  required String btnText,
+  required String img,
+  required Color color,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: SizedBox(
+      height: 50,
+      width: double.infinity,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: color,
+        ),
+        child: Row(
+          children: [
+            const Spacer(),
+            Image.asset(img),
+            const SizedBox(width: 10),
+            Text(
+              btnText.tr,
+              style: const TextStyle(
+                fontFamily: kAppFont,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ),
+    ),
   );
 }

@@ -20,4 +20,16 @@ class AppImages {
       "asseat/images/login_screen_images/bgwith_container.png";
   static const String dividerImage =
       "asseat/images/login_screen_images/divider.png";
+  static const String loginScreenAvatar =
+      "asseat/images/login_screen_images/loginscreen_avtar_.png";
+  static const String emailIcon =
+      "asseat/images/login_screen_images/email_icon.png";
+  static const String lockIcon =
+      "asseat/images/login_screen_images/lock_icon.png";
+  static const String userIcon =
+      "asseat/images/login_screen_images/user_icon.png";
+  static const String googleIcon =
+      "asseat/images/login_screen_images/google_icon.png";
+  static const String appleIcon =
+      "asseat/images/login_screen_images/apple_icon.png";
 }
