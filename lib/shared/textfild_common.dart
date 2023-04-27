@@ -15,6 +15,8 @@ enum RequestFormFieldType {
   userName,
   confirmPassword,
   emailIdForgotPassword,
+  newPassword,
+  confirmNewPassword,
 }
 
 class RequestFormTextfield extends StatefulWidget {

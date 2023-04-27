@@ -7,18 +7,18 @@ import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../controller/forgotpassword_controller.dart';
-import 'otp_screen.dart';
+import 'congress_screen.dart';
 
-class ForGotPasswordScreen extends StatefulWidget {
-  static const String routeName = "/ForGotPasswordScreen";
+class ResetPasswordScreen extends StatefulWidget {
+  static const String routeName = "/ResetPasswordScreen";
 
-  const ForGotPasswordScreen({Key? key}) : super(key: key);
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<ForGotPasswordScreen> createState() => _ForGotPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   ForgotPasswordController forgotPasswordController =
       Get.find<ForgotPasswordController>();
 
@@ -48,7 +48,7 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
             child: GetBuilder(
               builder: (ForgotPasswordController forgotPasswordController) {
                 return Form(
-                  key: forgotPasswordController.forgotFormKey,
+                  key: forgotPasswordController.resetPasswordFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,14 +58,14 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                         },
                         child: const Icon(Icons.arrow_back_ios_new),
                       ),
+                      const SizedBox(height: 10),
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 10),
                               const Text(
-                                "Forgot Password ?",
+                                "Reset",
                                 maxLines: 2,
                                 style: TextStyle(
                                   color: AppColors.blueColor,
@@ -74,31 +74,56 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                                 ),
                               ),
                               const Text(
-                                "Don’t worry! it happens. Please enter the address associated with your account.",
+                                "Password",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: AppColors.blueColor,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const Text(
+                                "Enter the Your New Password!",
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 70),
-                              const Text(
-                                "Email ID:",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: AppColors.signupBTNColor,
-                                ),
-                              ),
+                              const SizedBox(height: 40),
+                              header(title: "New Password"),
+                              const SizedBox(height: 5),
                               RequestFormTextfield(
-                                formFieldType:
-                                    RequestFormFieldType.emailIdForgotPassword,
+                                formFieldType: RequestFormFieldType.newPassword,
                                 textCapitalization: TextCapitalization.none,
                                 textInputAction: TextInputAction.next,
-                                controller:
-                                    forgotPasswordController.emailController,
-                                validator: (val) => validateEmail(val?.trim()),
+                                controller: forgotPasswordController
+                                    .newPasswordController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Password';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 25),
+                              header(title: "Confirm new password"),
+                              const SizedBox(height: 5),
+                              RequestFormTextfield(
+                                formFieldType:
+                                    RequestFormFieldType.confirmNewPassword,
+                                textCapitalization: TextCapitalization.none,
+                                textInputAction: TextInputAction.done,
+                                controller: forgotPasswordController
+                                    .newConfirmPasswordController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Password';
+                                  }
+                                  return null;
+                                },
                               ),
                               const SizedBox(height: 200),
-                              submitBtn(),
+                              signUpBtnReset(),
                             ],
                           ),
                         ),
@@ -114,21 +139,43 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
     );
   }
 
-  submitBtn() {
+  signUpBtnReset() {
     return materialButton(
       onTap: () {
         disposeKeyboard();
 
         /// remove this line after API
-        Get.toNamed(OtpScreen.routeName);
+        Get.toNamed(CongressScreen.routeName);
 
         ///
-        if (forgotPasswordController.forgotFormKey.currentState!.validate()) {
-          Get.back();
-        }
+        // if (forgotPasswordController.resetPasswordFormKey.currentState!
+        //     .validate()) {
+        //   Get.back();
+        // }
       },
       color: AppColors.blueColor,
       btnText: "Submit",
+    );
+  }
+
+  header({required String title}) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Text(
+          "*",
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 15,
+          ),
+        ),
+      ],
     );
   }
 }

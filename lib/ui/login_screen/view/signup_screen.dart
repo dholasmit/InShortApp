@@ -47,117 +47,191 @@ class _SignUpScreenState extends State<SignUpScreen> {
               builder: (SignUpController signUpController) {
                 return Form(
                   key: signUpController.signFormKey,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: const Icon(Icons.arrow_back_ios_new),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "Sign up to get started!",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 100),
-                        RequestFormTextfield(
-                          formFieldType: RequestFormFieldType.userName,
-                          textCapitalization: TextCapitalization.words,
-                          textInputAction: TextInputAction.next,
-                          controller: signUpController.userNameController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter Your UserName';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 15),
-                        RequestFormTextfield(
-                          formFieldType: RequestFormFieldType.email,
-                          textCapitalization: TextCapitalization.none,
-                          textInputAction: TextInputAction.next,
-                          controller: signUpController.emailController,
-                          validator: (val) => validateEmail(val?.trim()),
-                        ),
-                        const SizedBox(height: 15),
-                        RequestFormTextfield(
-                          formFieldType: RequestFormFieldType.password,
-                          textCapitalization: TextCapitalization.none,
-                          textInputAction: TextInputAction.next,
-                          controller: signUpController.passwordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter Your Password';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 15),
-                        RequestFormTextfield(
-                          formFieldType: RequestFormFieldType.confirmPassword,
-                          textCapitalization: TextCapitalization.none,
-                          textInputAction: TextInputAction.done,
-                          controller:
-                              signUpController.confirmPasswordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Enter Your Password';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 80),
-                        signUpBtn(),
-                        const SizedBox(height: 80),
-                        Row(
-                          children: [
-                            const Spacer(),
-                            RichText(
-                              text: TextSpan(
-                                text: "Already have an account ?".tr,
-                                style: const TextStyle(
-                                  //  fontFamily: kAppFont,
-                                  fontSize: 14,
-                                  color: Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(Icons.arrow_back_ios_new),
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Sign Up",
+                                style: TextStyle(
+                                  color: AppColors.blueColor,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: " Sign In ".tr,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Get.back();
-                                      },
-                                    style: const TextStyle(
-                                      //   fontFamily: kAppFont,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.blueColor,
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Sign up to get started!",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 100),
+                              RequestFormTextfield(
+                                formFieldType: RequestFormFieldType.userName,
+                                textCapitalization: TextCapitalization.words,
+                                textInputAction: TextInputAction.next,
+                                controller: signUpController.userNameController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your UserName';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 15),
+                              RequestFormTextfield(
+                                formFieldType: RequestFormFieldType.email,
+                                textCapitalization: TextCapitalization.none,
+                                textInputAction: TextInputAction.next,
+                                controller: signUpController.emailController,
+                                validator: (val) => validateEmail(val?.trim()),
+                              ),
+                              const SizedBox(height: 15),
+                              RequestFormTextfield(
+                                formFieldType: RequestFormFieldType.password,
+                                textCapitalization: TextCapitalization.none,
+                                textInputAction: TextInputAction.next,
+                                controller: signUpController.passwordController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Password';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 15),
+                              RequestFormTextfield(
+                                formFieldType:
+                                    RequestFormFieldType.confirmPassword,
+                                textCapitalization: TextCapitalization.none,
+                                textInputAction: TextInputAction.done,
+                                controller:
+                                    signUpController.confirmPasswordController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your Password';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                      value: signUpController.isChecked,
+                                      onChanged: (bool? value) {
+                                        signUpController.isChecked = value!;
+                                      }),
+                                  Expanded(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text: "I agree to ".tr,
+                                        style: const TextStyle(
+                                            fontSize: 12, color: Colors.black),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Terms & Agreement".tr,
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () async {
+                                                // var url = aboutScreenController
+                                                //     .appDetailDataModel!
+                                                //     .termsAndConditions;
+                                                // if (await canLaunch(url)) {
+                                                //   await launch(url);
+                                                // } else {
+                                                //   throw "Failed to open LinkedIn";
+                                                // }
+                                              },
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: AppColors.blueColor,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                              text: " and ".tr,
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.black,
+                                              )),
+                                          TextSpan(
+                                            text: "Privacy Policy".tr,
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () async {
+                                                // var url = aboutScreenController
+                                                //     .appDetailDataModel!
+                                                //     .privacyPolicy;
+                                                // if (await canLaunch(url)) {
+                                                //   await launch(url);
+                                                // } else {
+                                                //   throw "Failed to open LinkedIn";
+                                                // }
+                                              },
+                                            style: const TextStyle(
+                                              height: 1.2,
+                                              fontSize: 12,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: AppColors.blueColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                            const Spacer(),
-                          ],
+                              const SizedBox(height: 60),
+                              signUpBtn(),
+                              const SizedBox(height: 60),
+                              Row(
+                                children: [
+                                  const Spacer(),
+                                  RichText(
+                                    text: TextSpan(
+                                      text: "Already have an account ?".tr,
+                                      style: const TextStyle(
+                                        //  fontFamily: kAppFont,
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: " Sign In ".tr,
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Get.back();
+                                            },
+                                          style: const TextStyle(
+                                            //   fontFamily: kAppFont,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColors.blueColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -185,4 +259,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       btnText: "Sign Up",
     );
   }
+}
+
+class AlwaysActiveBorderSide extends MaterialStateBorderSide {
+  @override
+  BorderSide? resolve(_) =>
+      const BorderSide(color: AppColors.signupBTNColor, width: 1.3);
 }

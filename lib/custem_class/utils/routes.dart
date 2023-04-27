@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../ui/login_screen/view/congress_screen.dart';
 import '../../ui/login_screen/view/forgotpassword_screen.dart';
 import '../../ui/login_screen/view/login_screen.dart';
+import '../../ui/login_screen/view/otp_screen.dart';
+import '../../ui/login_screen/view/reset_password_screen.dart';
 import '../../ui/login_screen/view/signup_screen.dart';
 import '../../ui/login_screen/view/splash_screen.dart';
 import '../../ui/login_screen/view/welcome_screen.dart';
@@ -20,4 +23,9 @@ final List<GetPage<dynamic>> routes = [
       name: ForGotPasswordScreen.routeName,
       page: () => const ForGotPasswordScreen()),
   GetPage(name: WelComeScreen.routeName, page: () => const WelComeScreen()),
+  GetPage(name: OtpScreen.routeName, page: () => const OtpScreen()),
+  GetPage(name: CongressScreen.routeName, page: () => const CongressScreen()),
+  GetPage(
+      name: ResetPasswordScreen.routeName,
+      page: () => const ResetPasswordScreen()),
 ];
