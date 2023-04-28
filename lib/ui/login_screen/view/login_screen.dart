@@ -10,6 +10,7 @@ import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
+import '../../base_screen/view/base_screen.dart';
 import 'forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -251,7 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
         disposeKeyboard();
 
         /// remove this line after API
-        Get.toNamed(SignUpScreen.routeName);
+        //Get.toNamed(ChooseTopicScreen.routeName);
+        Get.toNamed(BaseScreen.routeName);
 
         ///
 
@@ -259,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (!loginController.checkValue) {
             flutterToast("Please agree Terms and conditions");
           } else {
-            Get.toNamed(SignUpScreen.routeName);
+            loginController.userLogin();
           }
         }
       },

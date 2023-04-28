@@ -1,6 +1,11 @@
 class AppIcons {
   //base screen
-  static const String appHomeIcons =
-      "assets/images/base_screen_image/ic_home-icon_active@3x.png";
-
+  static const String homeIcons =
+      "asseat/images/base_screen_images/home_icon.png";
+  static const String profileIcons =
+      "asseat/images/base_screen_images/profile_icon.png";
+  static const String exploreIcons =
+      "asseat/images/base_screen_images/explore_icon.png";
+  static const String bookmarkIcons =
+      "asseat/images/base_screen_images/bookmark_icon.png";
 }

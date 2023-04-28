@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../ui/base_screen/view/base_screen.dart';
+import '../../ui/choose_news_screen/view/choose_topic_screen.dart';
 import '../../ui/login_screen/view/congress_screen.dart';
 import '../../ui/login_screen/view/forgotpassword_screen.dart';
 import '../../ui/login_screen/view/login_screen.dart';
@@ -26,6 +28,9 @@ final List<GetPage<dynamic>> routes = [
   GetPage(name: OtpScreen.routeName, page: () => const OtpScreen()),
   GetPage(name: CongressScreen.routeName, page: () => const CongressScreen()),
   GetPage(
+      name: ChooseTopicScreen.routeName, page: () => const ChooseTopicScreen()),
+  GetPage(
       name: ResetPasswordScreen.routeName,
       page: () => const ResetPasswordScreen()),
+  GetPage(name: BaseScreen.routeName, page: () => const BaseScreen()),
 ];

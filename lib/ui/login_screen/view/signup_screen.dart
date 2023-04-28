@@ -244,15 +244,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   signUpBtn() {
     return materialButton(
-      onTap: () {
+      onTap: () async {
         disposeKeyboard();
-
-        /// remove this line after API
-        Get.back();
-
-        ///
         if (signUpController.signFormKey.currentState!.validate()) {
-          Get.back();
+          if (!signUpController.isChecked) {
+            flutterToast("Please agree Terms and conditions");
+          } else {
+            Map<String, dynamic>? response =
+                await signUpController.userSignUp();
+            if (response != null) {
+              Get.back();
+            }
+          }
         }
       },
       color: AppColors.blueColor,
@@ -260,6 +263,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+//signUpController.userSignUp();
 
 class AlwaysActiveBorderSide extends MaterialStateBorderSide {
   @override

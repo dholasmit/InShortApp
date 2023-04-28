@@ -81,6 +81,7 @@ flutter:
     - asseat/images/
     - asseat/images/splash_screen_image/
     - asseat/images/login_screen_images/
+    - asseat/images/base_screen_images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -101,6 +102,8 @@ flutter:
           weight: 700
         - asset: asseat/jost_fonts/Jost-ExtraBold.ttf
           weight: 500
+        - asset: asseat/jost_fonts/Jost-SemiBold.ttf
+          weight: 600
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -5,4 +5,8 @@ class APIRoutes {
       "http://heric6086-001-site1.ftempurl.com/api/getAllCategories?langaugeId=2";
   static const String languages =
       "http://heric6086-001-site1.ftempurl.com/api/getLanguages";
+  static const String signUp =
+      "http://heric6086-001-site1.ftempurl.com/api/register";
+  static const String login =
+      "http://heric6086-001-site1.ftempurl.com/api/login";
 }
