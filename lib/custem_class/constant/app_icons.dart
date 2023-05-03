@@ -8,4 +8,6 @@ class AppIcons {
       "asseat/images/base_screen_images/explore_icon.png";
   static const String bookmarkIcons =
       "asseat/images/base_screen_images/bookmark_icon.png";
+  static const String settingIcons =
+      "asseat/images/base_screen_images/setting_icon.png";
 }

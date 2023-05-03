@@ -17,6 +17,7 @@ enum RequestFormFieldType {
   emailIdForgotPassword,
   newPassword,
   confirmNewPassword,
+  search
 }
 
 class RequestFormTextfield extends StatefulWidget {
@@ -171,6 +172,8 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
         return "User Name".tr;
       case RequestFormFieldType.confirmPassword:
         return "Confirm Password".tr;
+      case RequestFormFieldType.search:
+        return "Search.....".tr;
 
       default:
         break;

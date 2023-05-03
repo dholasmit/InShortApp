@@ -14,13 +14,13 @@ final List<NavigationTabContainModel> navigationTabList = [
   NavigationTabContainModel(icon: AppIcons.homeIcons, name: "Home"),
   NavigationTabContainModel(icon: AppIcons.exploreIcons, name: "Explore"),
   NavigationTabContainModel(icon: AppIcons.bookmarkIcons, name: "Bookmark"),
-  NavigationTabContainModel(icon: AppIcons.profileIcons, name: "Profile"),
+  NavigationTabContainModel(icon: AppIcons.settingIcons, name: "Settings"),
 ];
 List<Widget> navigationScreensWithHome = const [
   HomeScreen(),
   ExploreScreen(),
   BookmarkScreen(),
-  ProfileScreen(),
+  SettingScreen(),
 ];
 
 class NavigationTabContainModel {
