@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../api_handler.dart';
 import '../api_routes.dart';
@@ -11,7 +12,7 @@ class SignUpRepo {
     required String confirmPassword,
     required bool newsletter,
     required bool acceptPrivacyPolicyPopup,
-    String? fcmToken,
+    // String? fcmToken,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.signUp,
@@ -23,14 +24,13 @@ class SignUpRepo {
           "confirmPassword": confirmPassword,
           "newsletter": newsletter,
           "acceptPrivacyPolicyPopup": acceptPrivacyPolicyPopup,
-          "fcmToken": fcmToken,
+          //    "fcmToken": fcmToken,
         },
       ),
     );
+    log("dharmik     " + responseBody.toString());
     if (responseBody != null) {
       return responseBody;
-    } else {
-      return null;
     }
   }
 }

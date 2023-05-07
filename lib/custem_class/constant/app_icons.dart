@@ -10,4 +10,28 @@ class AppIcons {
       "asseat/images/base_screen_images/bookmark_icon.png";
   static const String settingIcons =
       "asseat/images/base_screen_images/setting_icon.png";
+
+//setting Screen
+  static const String languageIcons =
+      "asseat/images/setting_screen_images/langusge_icon.png";
+  static const String notificationIcons =
+      "asseat/images/setting_screen_images/notification_icon.png";
+  static const String nightMOdeIcons =
+      "asseat/images/setting_screen_images/nightmode_icon.png";
+  static const String textSizeIcons =
+      "asseat/images/setting_screen_images/text_size_icon.png";
+  static const String shareIcons =
+      "asseat/images/setting_screen_images/share_icon.png";
+  static const String rateIcons =
+      "asseat/images/setting_screen_images/rete_icon.png";
+  static const String feedBackIcons =
+      "asseat/images/setting_screen_images/feedback_icon.png";
+  static const String tremsIcons =
+      "asseat/images/setting_screen_images/terms_icon.png";
+  static const String policyIcons =
+      "asseat/images/setting_screen_images/policy_icon.png";
+  static const String logOutIcons =
+      "asseat/images/setting_screen_images/logout_icon.png";
+  static const String removeIcons =
+      "asseat/images/setting_screen_images/remove_icon.png";
 }

@@ -36,8 +36,7 @@ class SignUpController extends GetxController {
       password: passwordController.text.trim(),
       confirmPassword: confirmPasswordController.text.trim(),
       newsletter: singnUpModel?.newsletter ?? false,
-      acceptPrivacyPolicyPopup:
-          singnUpModel?.acceptPrivacyPolicyEnabled ?? false,
+      acceptPrivacyPolicyPopup: singnUpModel?.acceptPrivacyPolicyPopup ?? false,
     );
   }
 }

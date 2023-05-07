@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -252,6 +254,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           } else {
             Map<String, dynamic>? response =
                 await signUpController.userSignUp();
+            log(response.toString());
             if (response != null) {
               Get.back();
             }

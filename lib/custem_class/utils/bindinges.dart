@@ -7,6 +7,7 @@ import '../../ui/login_screen/controller/forgotpassword_controller.dart';
 import '../../ui/login_screen/controller/login_controller.dart';
 import '../../ui/login_screen/controller/signup_controller.dart';
 import '../../ui/menu_screen/controller/menuscreen_controller.dart';
+import '../../ui/profile/controller/base_setting_controller.dart';
 
 class BaseBinding extends Bindings {
   @override
@@ -21,5 +22,7 @@ class BaseBinding extends Bindings {
     Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController(),
         fenix: true);
     Get.lazyPut<BookMarkController>(() => BookMarkController(), fenix: true);
+    Get.lazyPut<BaseSettingController>(() => BaseSettingController(),
+        fenix: true);
   }
 }

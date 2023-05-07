@@ -4,7 +4,7 @@ import 'package:inshorts_newj/ui/bookmark/view/bookmark_screen.dart';
 import '../../ui/explore/view/explore_screen.dart';
 import '../../ui/home/view/home_screen.dart';
 import '../../ui/login_screen/view/splash_screen.dart';
-import '../../ui/profile/view/profile_screen.dart';
+import '../../ui/profile/view/base_setting_screen.dart';
 import '../constant/app_icons.dart';
 
 // String initialRoute = NewsScreen.routeName;
