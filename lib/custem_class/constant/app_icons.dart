@@ -34,4 +34,10 @@ class AppIcons {
       "asseat/images/setting_screen_images/logout_icon.png";
   static const String removeIcons =
       "asseat/images/setting_screen_images/remove_icon.png";
+  static const String editProfileIcons =
+      "asseat/images/setting_screen_images/edit_profile_icon.png";
+  static const String cameraIcons =
+      "asseat/images/login_screen_images/camera_icon.png";
+  static const String editIcons =
+      "asseat/images/login_screen_images/edit_icon.png";
 }

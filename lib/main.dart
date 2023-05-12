@@ -8,6 +8,7 @@ import 'custem_class/utils/localization_serivce.dart';
 import 'custem_class/utils/routes.dart';
 
 void main() {
+  globalVerbInit();
   runApp(const MyApp());
 }
 

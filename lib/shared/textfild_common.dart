@@ -17,7 +17,11 @@ enum RequestFormFieldType {
   emailIdForgotPassword,
   newPassword,
   confirmNewPassword,
-  search
+  search,
+  profileUserName,
+  profileFullName,
+  profileEmail,
+  profilePhoneNumber,
 }
 
 class RequestFormTextfield extends StatefulWidget {
@@ -174,6 +178,14 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
         return "Confirm Password".tr;
       case RequestFormFieldType.search:
         return "Search.....".tr;
+      case RequestFormFieldType.profileUserName:
+        return "User Name".tr;
+      case RequestFormFieldType.profileFullName:
+        return "Full Name".tr;
+      case RequestFormFieldType.profileEmail:
+        return "E-mail".tr;
+      case RequestFormFieldType.profilePhoneNumber:
+        return "Phone Number".tr;
 
       default:
         break;
@@ -196,6 +208,14 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
           return prefixIcon(ic: AppImages.userIcon);
         case RequestFormFieldType.confirmPassword:
           return prefixIcon(ic: AppImages.lockIcon);
+        case RequestFormFieldType.profileUserName:
+          return prefixIcon(ic: AppImages.userIcon);
+        case RequestFormFieldType.profileFullName:
+          return prefixIcon(ic: AppImages.userIcon);
+        case RequestFormFieldType.profileEmail:
+          return prefixIcon(ic: AppImages.emailIcon);
+        case RequestFormFieldType.profilePhoneNumber:
+          return prefixIcon(ic: AppImages.phoneIcon);
       }
     }
     return null;
@@ -222,6 +242,10 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
     switch (widget.formFieldType) {
       case RequestFormFieldType.email:
         return TextInputType.emailAddress;
+      case RequestFormFieldType.profileEmail:
+        return TextInputType.emailAddress;
+      case RequestFormFieldType.profilePhoneNumber:
+        return TextInputType.number;
 
       default:
         break;

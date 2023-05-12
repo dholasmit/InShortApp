@@ -32,4 +32,6 @@ class AppImages {
       "asseat/images/login_screen_images/google_icon.png";
   static const String appleIcon =
       "asseat/images/login_screen_images/apple_icon.png";
+  static const String phoneIcon =
+      "asseat/images/login_screen_images/pnone_icon.png";
 }
