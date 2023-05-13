@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:inshorts_newj/shared/dilog_box.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../custem_class/constant/app_icons.dart';
 import '../custem_class/constant/app_settings.dart';
 
 class ImagePickerController extends GetxController {
@@ -179,5 +181,38 @@ class AppImagePicker {
         barrierColor: Colors.black.withOpacity(0.3),
       );
     }
+  }
+
+  Future<void> openDialog() async {
+    cameraDialog(
+      Get.context as BuildContext,
+      ic: AppIcons.profileIcons,
+      title: "Images",
+      txt: "Choose Options for a profile pikchur",
+      onPressedCamera: () async {
+        final cameraPermissionStatus = await Permission.camera.status;
+        if (cameraPermissionStatus.isDenied) {
+          Permission.camera.request().then((value) async {
+            if (value.isPermanentlyDenied) {
+              await openAppSettings();
+            } else if (value.isDenied) {
+              Permission.camera.request();
+            } else if (value.isGranted) {
+              await browseImage(ImageSource.camera);
+            }
+          });
+        } else if (cameraPermissionStatus.isRestricted) {
+          await openAppSettings();
+        } else if (cameraPermissionStatus.isGranted) {
+          await browseImage(ImageSource.camera);
+        }
+
+        Get.back();
+      },
+      onPressedGallery: () async {
+        await browseImage(ImageSource.gallery);
+        Get.back();
+      },
+    );
   }
 }

@@ -243,3 +243,114 @@ logOutDialog(
     },
   );
 }
+
+cameraDialog(
+  BuildContext context, {
+  required String ic,
+  required String title,
+  required String txt,
+  required void Function() onPressedCamera,
+  required void Function() onPressedGallery,
+}) {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return GetBuilder(
+        builder: (BaseSettingController baseSettingController) {
+          return Dialog(
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+            ), //this right herea
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+              child: FittedBox(
+                child: SizedBox(
+                  width: Get.width,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: AppColors.blueColor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(
+                                ic,
+                                //height: 40,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Image.asset(AppIcons.removeIcons),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 50),
+                      Text(
+                        txt,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 50),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: materialButton(
+                                onTap: onPressedCamera,
+                                btnText: "Camera",
+                                color: AppColors.blueColor,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: materialBorderButton(
+                                context,
+                                onPressed: onPressedGallery,
+                                txt: "Gallery",
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+}

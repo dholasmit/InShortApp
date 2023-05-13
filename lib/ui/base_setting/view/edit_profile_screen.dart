@@ -8,7 +8,6 @@ import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
-import '../../../custem_class/utils/globle.dart';
 import '../../../shared/image_picker_controller.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
@@ -76,7 +75,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         const Spacer(),
                         InkWell(
                           onTap: () {
-                            appImagePicker.openBottomSheet();
+                            ///    appImagePicker.openBottomSheet();
+                            // appImagePicker.openDialog();
                           },
                           child: Image.asset(
                             AppIcons.editIcons,
@@ -100,27 +100,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           child: Column(
                             children: [
                               const SizedBox(height: 30),
-                              InkWell(
-                                onTap: () {
-                                  profileDetails(context);
-                                },
-                                child: Stack(
-                                  alignment: Alignment.bottomRight,
-                                  children: [
-                                    Image.asset(
-                                      AppIcons.editProfileIcons,
-                                      color: AppColors.blueColor,
-                                      height: 120,
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Image.asset(
-                                        AppIcons.cameraIcons,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              profileDetails(context),
+                              // InkWell(
+                              //   onTap: () {
+                              //     // profileDetails(context);
+                              //   },
+                              //   child: Stack(
+                              //     alignment: Alignment.bottomRight,
+                              //     children: [
+                              //       Image.asset(
+                              //         AppIcons.editProfileIcons,
+                              //         color: AppColors.blueColor,
+                              //         height: 120,
+                              //       ),
+                              //       InkWell(
+                              //         onTap: () {},
+                              //         child: Image.asset(
+                              //           AppIcons.cameraIcons,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               const SizedBox(height: 30),
                               RequestFormTextfield(
                                 formFieldType:
@@ -184,13 +185,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         children: [
           GestureDetector(
             onTap: () {
-              appImagePicker.openBottomSheet();
+              //appImagePicker.openDialog();
+
+              /// appImagePicker.openBottomSheet();
             },
             child: imagePickerController.image.isEmpty
-                ? Image.asset(
-                    AppIcons.profileIcons,
-                    height: 111,
-                    width: 111,
+                ? Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Image.asset(
+                        AppIcons.editProfileIcons,
+                        color: AppColors.blueColor,
+                        height: 120,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Image.asset(
+                          AppIcons.cameraIcons,
+                        ),
+                      ),
+                    ],
                   )
                 : CircleAvatar(
                     radius: 60,
