@@ -40,4 +40,6 @@ class AppIcons {
       "asseat/images/login_screen_images/camera_icon.png";
   static const String editIcons =
       "asseat/images/login_screen_images/edit_icon.png";
+  static const String notificationSettingsIcons =
+      "asseat/images/setting_screen_images/notification_settings.png";
 }

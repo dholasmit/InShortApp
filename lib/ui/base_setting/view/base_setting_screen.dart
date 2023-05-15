@@ -7,6 +7,7 @@ import 'package:inshorts_newj/ui/base_setting/view/profile_screen.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../controller/base_setting_controller.dart';
+import 'notification_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -83,7 +84,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             index == 0
                                 ? languageDialog()
                                 : index == 1
-                                    ? const SizedBox()
+                                    ? Get.toNamed(NotificationScreen.routeName)
                                     : index == 2
                                         ? nightModeDialog()
                                         : index == 3

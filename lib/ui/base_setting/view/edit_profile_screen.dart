@@ -8,6 +8,7 @@ import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/globle.dart';
 import '../../../shared/image_picker_controller.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
@@ -76,7 +77,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         InkWell(
                           onTap: () {
                             ///    appImagePicker.openBottomSheet();
-                            // appImagePicker.openDialog();
+                            appImagePicker.openDialog();
                           },
                           child: Image.asset(
                             AppIcons.editIcons,
@@ -185,7 +186,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         children: [
           GestureDetector(
             onTap: () {
-              //appImagePicker.openDialog();
+              appImagePicker.openDialog();
 
               /// appImagePicker.openBottomSheet();
             },
