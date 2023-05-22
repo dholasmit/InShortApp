@@ -42,4 +42,8 @@ class AppIcons {
       "asseat/images/login_screen_images/edit_icon.png";
   static const String notificationSettingsIcons =
       "asseat/images/setting_screen_images/notification_settings.png";
+
+  //Explore Screen
+  static const String exploreNotificationIcons =
+      "asseat/images/setting_screen_images/explore_notification_icon.png";
 }

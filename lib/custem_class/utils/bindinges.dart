@@ -7,6 +7,7 @@ import '../../ui/base_setting/controller/base_setting_controller.dart';
 import '../../ui/base_setting/controller/edit_profile_controller.dart';
 import '../../ui/base_setting/controller/profile _controller.dart';
 import '../../ui/bookmark/controller/book_mark_controller.dart';
+import '../../ui/explore/controller/explore_controller.dart';
 import '../../ui/login_screen/controller/forgotpassword_controller.dart';
 import '../../ui/login_screen/controller/login_controller.dart';
 import '../../ui/login_screen/controller/signup_controller.dart';
@@ -33,5 +34,6 @@ class BaseBinding extends Bindings {
         fenix: true);
     Get.lazyPut<EditProfileController>(() => EditProfileController(),
         fenix: true);
+    Get.lazyPut<ExploreController>(() => ExploreController(), fenix: true);
   }
 }

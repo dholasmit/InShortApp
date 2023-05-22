@@ -53,6 +53,7 @@ dependencies:
   image_picker: ^0.8.7+4
   image_cropper: ^3.0.3
   permission_handler: ^10.2.0
+  flutter_swipe_action_cell: ^3.1.0
 
 
 
