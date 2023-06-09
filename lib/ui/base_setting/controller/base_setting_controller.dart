@@ -8,7 +8,7 @@ class BaseSettingController extends GetxController {
     AppIcons.notificationIcons,
     AppIcons.nightMOdeIcons,
     AppIcons.textSizeIcons,
-    AppIcons.shareIcons,
+    AppIcons.settingShareIcons,
     AppIcons.rateIcons,
     AppIcons.feedBackIcons,
     AppIcons.tremsIcons,
@@ -29,7 +29,7 @@ class BaseSettingController extends GetxController {
     "Logout",
   ];
 
-  int _selectedIndex = 0;
+  int _selectedIndex = -1;
 
   int get selectedIndex => _selectedIndex;
 

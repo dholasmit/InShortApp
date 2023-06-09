@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               print("share");
             },
-            icon: const Icon(Icons.share),
+            icon: Image.asset(AppIcons.shareIcons),
           ),
           ActionButton(
             onPressed: () {
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               print("liked");
             },
-            icon: const Icon(Icons.linked_camera_outlined),
+            icon: Image.asset(AppIcons.likeIcons),
           ),
         ],
       ),

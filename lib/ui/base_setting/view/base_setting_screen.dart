@@ -36,7 +36,7 @@ class _SettingScreenState extends State<SettingScreen> {
             builder: (BaseSettingController baseSettingController) {
               return Column(
                 children: [
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 40),
                   Row(
                     children: [
                       const SizedBox(width: 20),
@@ -54,6 +54,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           color: AppColors.blueColor,
                         ),
                       ),
+                      const SizedBox(width: 25),
                       const Spacer(),
                       InkWell(
                         onTap: () {
@@ -206,12 +207,16 @@ class _SettingScreenState extends State<SettingScreen> {
       groupValue1: baseSettingController.nightModeGroup,
       onChanged1: (val) {
         baseSettingController.nightModeGroup = baseSettingController.light;
+
+        /// Get.changeTheme(ThemeData.light());
       },
       txt2: "Dark",
       value2: baseSettingController.dark,
       groupValue2: baseSettingController.nightModeGroup,
       onChanged2: (val) {
         baseSettingController.nightModeGroup = baseSettingController.dark;
+
+        /// Get.changeTheme(ThemeData.dark());
       },
       txt3: "System",
       value3: baseSettingController.system,

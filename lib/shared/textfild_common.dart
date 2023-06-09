@@ -12,7 +12,8 @@ final RegExp emailValidatorRegExp =
 enum RequestFormFieldType {
   email,
   password,
-  userName,
+  firstName,
+  lastName,
   confirmPassword,
   emailIdForgotPassword,
   newPassword,
@@ -172,8 +173,10 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
         return "E-mail".tr;
       case RequestFormFieldType.password:
         return "Password".tr;
-      case RequestFormFieldType.userName:
-        return "User Name".tr;
+      case RequestFormFieldType.firstName:
+        return "First Name".tr;
+      case RequestFormFieldType.lastName:
+        return "Last Name".tr;
       case RequestFormFieldType.confirmPassword:
         return "Confirm Password".tr;
       case RequestFormFieldType.search:
@@ -204,7 +207,9 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
           return prefixIcon(ic: AppImages.emailIcon);
         case RequestFormFieldType.password:
           return prefixIcon(ic: AppImages.lockIcon);
-        case RequestFormFieldType.userName:
+        case RequestFormFieldType.firstName:
+          return prefixIcon(ic: AppImages.userIcon);
+        case RequestFormFieldType.lastName:
           return prefixIcon(ic: AppImages.userIcon);
         case RequestFormFieldType.confirmPassword:
           return prefixIcon(ic: AppImages.lockIcon);

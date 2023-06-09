@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 import 'package:inshorts_newj/services/api_routes.dart';
 
-import '../../../models/menu_screen_model/proudctcategories_model.dart';
+import '../../../models/menu_screen_model'
+    '/proudctcategories_model.dart';
 import '../../setting_screen/view/setting_Screen.dart';
 import '../controller/menuscreen_controller.dart';
 

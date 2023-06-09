@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inshorts_newj/ui/explore/view/popular_screen.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_icons.dart';
@@ -32,7 +33,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           builder: (ExploreController exploreController) {
             return Column(
               children: [
-                const SizedBox(height: 25),
+                const SizedBox(height: 30),
                 Row(
                   children: [
                     const SizedBox(width: 25),
@@ -54,7 +55,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       onTap: () {},
                       child: Image.asset(
                         AppIcons.exploreNotificationIcons,
-                        width: 20,
+                        width: 25,
                       ),
                     ),
                     const SizedBox(width: 25),
@@ -69,8 +70,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Popular Topic",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -78,11 +79,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   color: AppColors.blueColor,
                                 ),
                               ),
-                              Text(
-                                "See all",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(PopularScreen.routeName);
+                                },
+                                child: const Text(
+                                  "See all",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ],
@@ -99,7 +105,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
+                                      horizontal: 10,
+                                    ),
                                     child: Container(
                                       height: 100,
                                       width: 100,
@@ -117,7 +124,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 }),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
@@ -148,7 +155,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             height: 30,
                             color: Colors.transparent,
                             child: ListView.builder(
-                              itemCount: 16,
+                              itemCount: exploreController.newsName.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
@@ -159,10 +166,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                       exploreController.selectedIndex = index;
                                     },
                                     child: Container(
-                                      height: 20,
-                                      width: 50,
+                                      // height: 20,
+                                      // width: 50,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
+                                        borderRadius: BorderRadius.circular(5),
                                         border: Border.all(
                                           color: index ==
                                                   exploreController
@@ -170,15 +177,24 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                               ? AppColors.blueColor
                                               : Colors.transparent,
                                         ),
-                                        color: Colors.white,
+                                        color: index ==
+                                                exploreController.selectedIndex
+                                            ? Colors.white
+                                            : AppColors
+                                                .exploreTopicContainerColor,
                                       ),
-                                      child: const Center(
-                                        child: Text(
-                                          "ALL",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w700,
-                                            color: AppColors.blueColor,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                          ),
+                                          child: Text(
+                                            exploreController.newsName[index],
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                              color: AppColors.blueColor,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -189,7 +205,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 15),
                         ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),

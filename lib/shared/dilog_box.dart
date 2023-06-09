@@ -32,19 +32,19 @@ dialog(
       return GetBuilder(
         builder: (BaseSettingController baseSettingController) {
           return Dialog(
-            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 40),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+                bottomLeft: Radius.circular(40),
               ),
             ), //this right herea
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+                bottomLeft: Radius.circular(40),
               ),
               child: FittedBox(
                 child: SizedBox(
@@ -77,7 +77,12 @@ dialog(
                                 onTap: () {
                                   Get.back();
                                 },
-                                child: Image.asset(AppIcons.removeIcons),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  color: Colors.transparent,
+                                  child: Image.asset(AppIcons.removeIcons),
+                                ),
                               ),
                             ],
                           ),
@@ -122,6 +127,7 @@ dialog(
                         groupValue: groupValue3,
                         onChanged: onChanged3,
                       ),
+                      const SizedBox(height: 20)
                     ],
                   ),
                 ),

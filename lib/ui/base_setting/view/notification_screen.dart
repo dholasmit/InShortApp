@@ -30,39 +30,44 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
           child: Column(
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      color: AppColors.blueColor,
-                    ),
-                  ),
-                  const Spacer(),
-                  const Text(
-                    "Notifications",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 21,
-                      color: AppColors.blueColor,
-                    ),
-                  ),
-                  const Spacer(),
-                  InkWell(
-                    onTap: () {},
-                    child: Image.asset(
-                      AppIcons.notificationSettingsIcons,
-                    ),
-                  ),
-                  const SizedBox(width: 25),
-                ],
-              ),
-              const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.only(
+                  top: 30,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      "Notifications",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 21,
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {},
+                      child: Image.asset(
+                        AppIcons.notificationSettingsIcons,
+                      ),
+                    ),
+                    const SizedBox(width: 25),
+                  ],
+                ),
+              ),
+              //   const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -83,13 +88,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Divider(
-                  thickness: 2,
-                  color: Colors.white,
-                ),
-              ),
+
               Expanded(
                 child: ListView.builder(
                     itemCount: 15,

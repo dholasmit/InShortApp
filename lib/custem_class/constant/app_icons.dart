@@ -20,7 +20,7 @@ class AppIcons {
       "asseat/images/setting_screen_images/nightmode_icon.png";
   static const String textSizeIcons =
       "asseat/images/setting_screen_images/text_size_icon.png";
-  static const String shareIcons =
+  static const String settingShareIcons =
       "asseat/images/setting_screen_images/share_icon.png";
   static const String rateIcons =
       "asseat/images/setting_screen_images/rete_icon.png";
@@ -46,4 +46,12 @@ class AppIcons {
   //Explore Screen
   static const String exploreNotificationIcons =
       "asseat/images/setting_screen_images/explore_notification_icon.png";
+
+  // homeScreen floating Icon
+  static const String likeIcons =
+      "asseat/images/home_screen_images/like_icon.png";
+  static const String bookMarkIcons =
+      "asseat/images/home_screen_images/bookmark_icon.png";
+  static const String shareIcons =
+      "asseat/images/home_screen_images/share_icon.png";
 }

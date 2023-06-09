@@ -9,4 +9,17 @@ class ExploreController extends GetxController {
     _selectedIndex = value;
     update();
   }
+
+  List<String> newsName = [
+    "All",
+    "Sports",
+    "Politics",
+    "Business",
+    "Fashion",
+    "All",
+    "Sports",
+    "Politics",
+    "Business",
+    "Fashion",
+  ];
 }

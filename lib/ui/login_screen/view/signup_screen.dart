@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,13 +79,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               const SizedBox(height: 100),
                               RequestFormTextfield(
-                                formFieldType: RequestFormFieldType.userName,
+                                formFieldType: RequestFormFieldType.firstName,
                                 textCapitalization: TextCapitalization.words,
                                 textInputAction: TextInputAction.next,
-                                controller: signUpController.userNameController,
+                                controller:
+                                    signUpController.firstNameController,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Enter Your UserName';
+                                    return 'Enter Your FirstName';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 15),
+                              RequestFormTextfield(
+                                formFieldType: RequestFormFieldType.lastName,
+                                textCapitalization: TextCapitalization.words,
+                                textInputAction: TextInputAction.next,
+                                controller: signUpController.lastNameController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Enter Your LastName';
                                   }
                                   return null;
                                 },
@@ -252,12 +264,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (!signUpController.isChecked) {
             flutterToast("Please agree Terms and conditions");
           } else {
-            Map<String, dynamic>? response =
-                await signUpController.userSignUp();
-            log(response.toString());
-            if (response != null) {
-              Get.back();
-            }
+            await signUpController.userSignUp();
+            // Get.back();
+            // Map<String, dynamic>? response =
+            //     await signUpController.userSignUp();
+            // if (response != null) {
+            //   Get.back();
+            // }
           }
         }
       },

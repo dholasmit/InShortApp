@@ -94,7 +94,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                       width: 20,
                                       color: controller.selectedTab == key
                                           ? AppColors.blueColor
-                                          : Colors.grey.shade700,
+                                          : Colors.black,
                                     ),
                                   ),
                                   Text(
@@ -106,7 +106,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                       fontWeight: FontWeight.w500,
                                       color: controller.selectedTab == key
                                           ? AppColors.blueColor
-                                          : Colors.grey.shade700,
+                                          : Colors.black,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),

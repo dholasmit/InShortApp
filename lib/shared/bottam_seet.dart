@@ -134,4 +134,3 @@ openBottomSheet(
 
 ThemeData dark = ThemeData(brightness: Brightness.dark);
 ThemeData light = ThemeData(brightness: Brightness.light);
-

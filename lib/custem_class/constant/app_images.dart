@@ -13,6 +13,8 @@ class AppImages {
       "asseat/images/splash_screen_image/splashscreen_image.png";
   static const String appLogo =
       "asseat/images/splash_screen_image/app_logo.png";
+  static const String welcomeContainer =
+      "asseat/images/splash_screen_image/welcome_container.png";
 
   /// login Screen image
   static const String bgImage = "asseat/images/login_screen_images/bg.png";

@@ -28,7 +28,7 @@ class API {
     try {
       if (await checkConnection()) {
         if (showLoader) LoadingOverlay.of().show();
-        Map<String, String> header = {'Content-Type': 'application/json'};
+        var header = {'Content-Type': 'application/json'};
 
         ///   if (userController.userModel != null) {
         ///     header
@@ -43,8 +43,11 @@ class API {
             headers: header,
           );
         } else {
-          response =
-              await http.post(Uri.parse(url), headers: header, body: body);
+          response = await http.post(
+            Uri.parse(url),
+            headers: header,
+            body: body,
+          );
         }
 
         log("return code ======" + response.statusCode.toString());
