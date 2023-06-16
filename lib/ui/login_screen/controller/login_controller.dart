@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inshorts_newj/ui/base_screen/view/base_screen.dart';
 
 import '../../../models/login_screen_model/login_model.dart';
 import '../../../services/login_screen_repo/signup_repo.dart';
+import '../../base_screen/view/base_screen.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
@@ -31,12 +31,12 @@ class LoginController extends GetxController {
 
   Future loginFlow() async {
     Map<String, dynamic> body = {
-      "EmailId": emailController.text.trim(),
+      "Email": emailController.text.trim(),
       "Password": passwordController.text.trim(),
     };
     loginModel = await LoginApi.loginUser(body);
     print(loginModel!.message);
-    Get.to(BaseScreen.routeName);
+    Get.toNamed(BaseScreen.routeName);
   }
 
 // Future userLogin() async {

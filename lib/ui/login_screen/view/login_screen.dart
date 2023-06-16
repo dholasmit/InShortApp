@@ -10,7 +10,6 @@ import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
-import '../../base_screen/view/base_screen.dart';
 import 'forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -134,8 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const Text(
                                   "Remember me",
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
                                   ),
                                 ),
                                 const Spacer(),
@@ -147,8 +146,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: const Text(
                                     "Forget password ?",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -170,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   "OR",
                                   style: TextStyle(
                                     fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                                 SizedBox(width: 15),
@@ -249,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         /// remove this line after API
         //Get.toNamed(ChooseTopicScreen.routeName);
-        Get.toNamed(BaseScreen.routeName);
+        //Get.toNamed(BaseScreen.routeName);
 
         ///
 
