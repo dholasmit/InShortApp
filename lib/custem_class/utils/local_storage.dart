@@ -1,23 +1,30 @@
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LocalStorage {
-  static Future<SharedPreferences> getSharedPreferences() async {
-    return await SharedPreferences.getInstance();
+  static final prefs = GetStorage();
+
+  static saveWelComeScreen() {
+    prefs.write("WELCOMESCREEN", true);
   }
 
-  static saveData(String key, dynamic value) async {
-    final prefs = await getSharedPreferences();
-    await prefs.setString(key, jsonEncode(value));
-    await prefs.reload();
+  static bool getWelcomeScreen() {
+    return prefs.read("WELCOMESCREEN") ?? false;
   }
-
-  static Future<dynamic> getData(String key) async {
-    final prefs = await getSharedPreferences();
-    var value = prefs.getString(key);
-    return json.decode(value!);
-  }
+// static Future<SharedPreferences> getSharedPreferences() async {
+//   return await SharedPreferences.getInstance();
+// }
+//
+// static saveData(String key, dynamic value) async {
+//   final prefs = await getSharedPreferences();
+//   await prefs.setString(key, jsonEncode(value));
+//   await prefs.reload();
+// }
+//
+// static Future<dynamic> getData(String key) async {
+//   final prefs = await getSharedPreferences();
+//   var value = prefs.getString(key);
+//   return json.decode(value!);
+// }
 }
 // import 'dart:developer';
 //

@@ -35,7 +35,7 @@ class LoginController extends GetxController {
       "Password": passwordController.text.trim(),
     };
     loginModel = await LoginApi.loginUser(body);
-    print(loginModel!.message);
+    //  print(loginModel!.message);
     Get.toNamed(BaseScreen.routeName);
   }
 

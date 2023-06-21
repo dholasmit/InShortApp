@@ -6,33 +6,10 @@ import 'package:inshorts_newj/services/http_service.dart';
 
 import '../../models/login_screen_model/login_model.dart';
 
-// class SignUpRepo {
-//   static Future signup({
-//     required String firstName,
-//     required String lastName,
-//     required String emailId,
-//     required String password,
-//     // required bool newsletter,
-//     // required bool acceptPrivacyPolicyPopup,
-//     // String? fcmToken,
-//   }) async {
-//     var responseBody = await API.apiHandler(
-//       url: APIRoutes.signUp,
-//       body: {
-//         "FirstName": firstName,
-//         "LastName": lastName,
-//         "EmailId": emailId,
-//         "Password": password,
-//       },
-//     );
-//     if (responseBody != null) {
-//       return responseBody;
-//     }
-//   }
-// }
-
 class SignUpApi {
-  static Future<SignupModel?> signUpUser(Map<String, dynamic> body) async {
+  static Future<SignupModel?> signUpUser(
+    Map<String, dynamic> body,
+  ) async {
     try {
       String url = APIRoutes.signUp;
       http.Response? response = await HttpService.postApi(
@@ -43,6 +20,7 @@ class SignUpApi {
       if (response != null && response.statusCode == 200) {
         SignupModel user = signupModelFromJson(response.body);
         flutterToast(user.message!);
+        print("Responce Body==============================>${response.body}");
         return user;
       } else {
         flutterToast(response!.body);

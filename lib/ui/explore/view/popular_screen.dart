@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 
 import '../../../custem_class/constant/app_images.dart';
+import '../controller/popular_topic_controller.dart';
 
 class PopularScreen extends StatefulWidget {
   static const String routeName = "/PopularScreen";
@@ -27,9 +28,19 @@ class _PopularScreenState extends State<PopularScreen> {
     AppImages.bgWithContainerImage,
     AppImages.splashScreenImage,
   ];
+  PopularTopicController popularTopicController =
+      Get.find<PopularTopicController>();
+
+  @override
+  void initState() {
+    print("DATA====================>${popularTopicController.popularData()}");
+    popularTopicController.popularData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PopularTopicController());
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -68,27 +79,74 @@ class _PopularScreenState extends State<PopularScreen> {
               ),
               const SizedBox(height: 20),
               Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 1.3 / 1.5,
-                    ),
-                    itemCount: img.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(img[index]),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                child: GetBuilder<PopularTopicController>(
+                  id: "gb",
+                  builder: (popularTopicController) {
+                    return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 0.8 / 1.5,
                         ),
-                      );
-                    }),
+                        itemCount: popularTopicController
+                                .getAllCategoriesModel?.length ??
+                            0,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                // image: DecorationImage(
+                                //   image: AssetImage(img[index]),
+                                //   fit: BoxFit.cover,
+                                // ),
+                                color: Colors.transparent,
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 130,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          popularTopicController
+                                              .getAllCategoriesModel![index]
+                                              .pictureModel!
+                                              .imageUrl
+                                              .toString(),
+                                        ),
+                                        // image: AssetImage(img[index]),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  // const SizedBox(height: 5),
+                                  Expanded(
+                                    child: Text(
+                                      popularTopicController
+                                          .getAllCategoriesModel![index]
+                                          .pictureModel!
+                                          .alternateText
+                                          .toString(),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.blueColor,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  },
+                ),
               ),
             ],
           ),

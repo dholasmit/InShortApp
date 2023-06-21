@@ -8,7 +8,7 @@ import '../custem_class/constant/app_functions.dart';
 class HttpService {
   static Future<http.Response?> getApi({
     required String url,
-    Map<String, String>? header,
+    required Map<String, String> header,
   }) async {
     try {
       if (kDebugMode) {

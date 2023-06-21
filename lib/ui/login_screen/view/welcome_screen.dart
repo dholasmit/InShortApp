@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
+import 'package:inshorts_newj/custem_class/utils/local_storage.dart';
 import 'package:inshorts_newj/ui/login_screen/view/login_screen.dart';
 import 'package:inshorts_newj/ui/login_screen/view/signup_screen.dart';
 
@@ -14,6 +15,7 @@ class WelComeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocalStorage.saveWelComeScreen();
     return Scaffold(
       body: Container(
         width: double.infinity,
