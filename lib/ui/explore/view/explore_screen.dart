@@ -21,7 +21,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
       Get.find<PopularTopicController>();
 
   @override
+  void initState() {
+    exploreController.exploreListData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Get.put(ExploreController());
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -62,11 +69,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 const SizedBox(width: 25),
               ],
             ),
-            //const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
@@ -95,10 +102,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
-                        height: 130,
+                        height: 140,
                         color: Colors.transparent,
                         child: GetBuilder<PopularTopicController>(
                           builder: (controller) {
@@ -113,7 +121,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                       horizontal: 10,
                                     ),
                                     child: Container(
-                                      height: 100,
+                                      height: 150,
                                       width: 100,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -127,6 +135,44 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                               ),
                                           fit: BoxFit.cover,
                                         ),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          const Spacer(),
+                                          Container(
+                                            width: double.infinity,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                bottomRight:
+                                                    Radius.circular(10),
+                                                bottomLeft: Radius.circular(10),
+                                              ),
+                                              color: Color(0XFF455077),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 10,
+                                              ),
+                                              child: Text(
+                                                popularTopicController
+                                                    .getAllCategoriesModel![
+                                                        index]
+                                                    .pictureModel!
+                                                    .title
+                                                    .toString(),
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   );
@@ -165,73 +211,101 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       child: Container(
                         height: 30,
                         color: Colors.transparent,
-                        child: ListView.builder(
-                          itemCount: exploreController.newsName.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: InkWell(
-                                onTap: () {
-                                  exploreController.selectedIndex = index;
-                                },
-                                child: Container(
-                                  // height: 20,
-                                  // width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                      color: index ==
-                                              exploreController.selectedIndex
-                                          ? AppColors.blueColor
-                                          : Colors.transparent,
-                                    ),
-                                    color: index ==
-                                            exploreController.selectedIndex
-                                        ? Colors.white
-                                        : AppColors.exploreTopicContainerColor,
-                                  ),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20,
+                        child: GetBuilder<ExploreController>(
+                          builder: (exploreController) {
+                            return ListView.builder(
+                              itemCount: exploreController
+                                      .getExploreTopicListModel?.data?.length ??
+                                  0,
+                              //exploreController.newsName.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        exploreController.selectedIndex = index;
+                                      });
+                                    },
+                                    child: Container(
+                                      // height: 20,
+                                      // width: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                          color: index ==
+                                                  exploreController
+                                                      .selectedIndex
+                                              ? AppColors.blueColor
+                                              : Colors.transparent,
+                                        ),
+                                        color: index ==
+                                                exploreController.selectedIndex
+                                            ? Colors.white
+                                            : AppColors
+                                                .exploreTopicContainerColor,
                                       ),
-                                      child: Text(
-                                        exploreController.newsName[index],
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColors.blueColor,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                          ),
+                                          child: Text(
+                                            exploreController
+                                                .getExploreTopicListModel!
+                                                .data![index]
+                                                .name
+                                                .toString(),
+                                            //  exploreController.newsName[index],
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                              color: AppColors.blueColor,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                             );
                           },
                         ),
                       ),
                     ),
                     const SizedBox(height: 15),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return exploreList(
-                            img: AppImages.splashScreenImage,
-                            title: "Kohli's captaincy in IPL after 556 days :",
-                            text:
-                                "Make Bharuch Manpa, After 2011, again in 2023 presentation before the Chief Minister regarding Maha Nagar Palika",
-                            onTap: () {},
-                          );
-                        })
+                    GetBuilder<ExploreController>(
+                      id: "bg",
+                      builder: (exploreController) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: exploreController
+                              .getHomePageProductsModel!.data!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return exploreList(
+                              img: exploreController.getHomePageProductsModel!
+                                  .data![index].pictureModels![0].imageUrl
+                                  .toString(),
+                              title: exploreController
+                                  .getHomePageProductsModel!.data![index].seName
+                                  .toString(),
+                              text: exploreController.getHomePageProductsModel!
+                                  .data![index].shortDescription
+                                  .toString(),
+                              onTap: () {},
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -249,7 +323,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       child: Column(
         children: [
           Container(
-            height: 150,
+            //height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
@@ -257,13 +331,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
             child: Row(
               children: [
                 Container(
-                  //height: 100,
+                  height: 100,
                   margin: const EdgeInsets.all(5),
-                  width: 120,
+                  width: 110,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      image: AssetImage(img),
+                      image: NetworkImage(img),
                       // image: AssetImage(AppImages.splashScreenImage),
                       fit: BoxFit.cover,
                     ),
@@ -288,9 +362,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           text,
                           maxLines: 2,
                           overflow: TextOverflow.clip,
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 11),
                         ),
-                        const Spacer(),
+
+                        /// const Spacer(),
                       ],
                     ),
                   ),

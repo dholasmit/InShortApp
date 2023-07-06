@@ -38,6 +38,28 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
               ),
               child: Column(
                 children: [
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      const SizedBox(width: 5),
+                      Image.asset(
+                        AppImages.appLogo,
+                        width: 60,
+                      ),
+                      const Spacer(),
+                      const Text(
+                        "Bookmark",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 21,
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(

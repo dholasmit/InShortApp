@@ -1,23 +1,23 @@
 // To parse this JSON data, do
 //
-//     final exploreListApiModel = exploreListApiModelFromJson(jsonString);
+//     final homePageProductsModel = homePageProductsModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ExploreListApiModel exploreListApiModelFromJson(String str) =>
-    ExploreListApiModel.fromJson(json.decode(str));
+HomePageProductsModel homePageProductsModelFromJson(String str) =>
+    HomePageProductsModel.fromJson(json.decode(str));
 
-String exploreListApiModelToJson(ExploreListApiModel data) =>
+String homePageProductsModelToJson(HomePageProductsModel data) =>
     json.encode(data.toJson());
 
-class ExploreListApiModel {
+class HomePageProductsModel {
   int? status;
   String? message;
   List<Datum>? data;
   List<dynamic>? validationMessage;
   dynamic errorMessage;
 
-  ExploreListApiModel({
+  HomePageProductsModel({
     this.status,
     this.message,
     this.data,
@@ -25,8 +25,8 @@ class ExploreListApiModel {
     this.errorMessage,
   });
 
-  factory ExploreListApiModel.fromJson(Map<String, dynamic> json) =>
-      ExploreListApiModel(
+  factory HomePageProductsModel.fromJson(Map<String, dynamic> json) =>
+      HomePageProductsModel(
         status: json["Status"],
         message: json["Message"],
         data: json["Data"] == null
@@ -63,6 +63,9 @@ class Datum {
   List<PictureModel>? pictureModels;
   ProductSpecificationModel? productSpecificationModel;
   ReviewOverviewModel? reviewOverviewModel;
+  String? categoryName;
+  String? categorySeName;
+  int? visitCount;
   int? id;
   CustomProperties? customProperties;
 
@@ -78,6 +81,9 @@ class Datum {
     this.pictureModels,
     this.productSpecificationModel,
     this.reviewOverviewModel,
+    this.categoryName,
+    this.categorySeName,
+    this.visitCount,
     this.id,
     this.customProperties,
   });
@@ -104,6 +110,9 @@ class Datum {
         reviewOverviewModel: json["ReviewOverviewModel"] == null
             ? null
             : ReviewOverviewModel.fromJson(json["ReviewOverviewModel"]),
+        categoryName: json["CategoryName"],
+        categorySeName: json["CategorySeName"],
+        visitCount: json["VisitCount"],
         id: json["Id"],
         customProperties: json["CustomProperties"] == null
             ? null
@@ -124,6 +133,9 @@ class Datum {
             : List<dynamic>.from(pictureModels!.map((x) => x.toJson())),
         "ProductSpecificationModel": productSpecificationModel?.toJson(),
         "ReviewOverviewModel": reviewOverviewModel?.toJson(),
+        "CategoryName": categoryName,
+        "CategorySeName": categorySeName,
+        "VisitCount": visitCount,
         "Id": id,
         "CustomProperties": customProperties?.toJson(),
       };
@@ -177,7 +189,7 @@ class PictureModel {
 }
 
 class ProductPrice {
-  String? oldPrice;
+  dynamic oldPrice;
   dynamic oldPriceValue;
   String? price;
   double? priceValue;
@@ -215,9 +227,9 @@ class ProductPrice {
         oldPrice: json["OldPrice"],
         oldPriceValue: json["OldPriceValue"],
         price: json["Price"],
-        priceValue: json["PriceValue"]?.toDouble(),
+        priceValue: json["PriceValue"],
         basePricePAngV: json["BasePricePAngV"],
-        basePricePAngVValue: json["BasePricePAngVValue"]?.toDouble(),
+        basePricePAngVValue: json["BasePricePAngVValue"],
         disableBuyButton: json["DisableBuyButton"],
         disableWishlistButton: json["DisableWishlistButton"],
         disableAddToCompareListButton: json["DisableAddToCompareListButton"],

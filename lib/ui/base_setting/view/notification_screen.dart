@@ -99,6 +99,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         // key: ObjectKey(list[index]),
                         trailingActions: <SwipeAction>[
                           SwipeAction(
+                            backgroundRadius: 10,
                             title: "delete",
                             icon: const Icon(Icons.delete),
                             onTap: (CompletionHandler handler) async {
@@ -121,6 +122,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             color: Colors.blue,
                           ),
                         ],
+
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 25, vertical: 5),

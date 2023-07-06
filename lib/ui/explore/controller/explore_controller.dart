@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../models/explore/explore_list_model.dart';
+import '../../../models/explore/explore_topic_model.dart';
 import '../../../services/Explore_screen_repo/explore_list_repo.dart';
 
 class ExploreController extends GetxController {
@@ -25,17 +26,39 @@ class ExploreController extends GetxController {
     "Business",
     "Fashion",
   ];
-  List<ExploreListApiModel>? _exploreListApiModel;
 
-  List<ExploreListApiModel>? get exploreListApiModel => _exploreListApiModel;
+  HomePageProductsModel? _homePageProductsModel;
 
-  set exploreListApiModel(List<ExploreListApiModel>? value) {
-    _exploreListApiModel = value;
+  HomePageProductsModel? get getHomePageProductsModel => _homePageProductsModel;
+
+  set setHomePageProductsModel(HomePageProductsModel? value) {
+    _homePageProductsModel = value;
     update();
   }
 
   Future<void> exploreListData() async {
-    exploreListApiModel = await ExploreListApi.getExploreList();
+    setHomePageProductsModel = await ExploreApi.getExploreList();
     update(["bg"]);
+  }
+
+  ExploreTopicListModel? _exploreTopicListModel;
+
+  ExploreTopicListModel? get getExploreTopicListModel => _exploreTopicListModel;
+
+  set setExploreTopicListModel(ExploreTopicListModel? value) {
+    _exploreTopicListModel = value;
+    update();
+  }
+
+  Future<void> exploreTopicListData() async {
+    setExploreTopicListModel = await ExploreApi.getExploreTopic();
+    update(["bg"]);
+  }
+
+  @override
+  void onInit() {
+    exploreListData();
+    exploreTopicListData();
+    super.onInit();
   }
 }
