@@ -264,14 +264,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (!signUpController.isChecked) {
             flutterToast("Please agree Terms and conditions");
           } else {
-            await signUpController.userSignUp();
-            // Get.back();
-            // Map<String, dynamic>? response =
-            //     await signUpController.userSignUp();
-            // if (response != null) {
-            //   Get.back();
-            // }
+            signUpController.userDataLogin();
           }
+          //   Map<String, dynamic>? response =
+          //       await signUpController.userSignUp();
+          //   if (response != null) {
+          //     Get.back();
+          //   }
+          // }
         }
       },
       color: AppColors.blueColor,
@@ -279,7 +279,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-//signUpController.userSignUp();
 
 class AlwaysActiveBorderSide extends MaterialStateBorderSide {
   @override

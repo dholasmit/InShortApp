@@ -17,6 +17,12 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
   BookMarkController bookMarkController = Get.find<BookMarkController>();
 
   @override
+  void initState() {
+    //  bookMarkController.bookMarkListData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -28,87 +34,107 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: GetBuilder(
-          builder: (BookMarkController bookMarkController) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                top: 35,
-                left: 25,
-                right: 25,
-              ),
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 35,
+            left: 25,
+            right: 25,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              Row(
                 children: [
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      const SizedBox(width: 5),
-                      Image.asset(
-                        AppImages.appLogo,
-                        width: 60,
-                      ),
-                      const Spacer(),
-                      const Text(
-                        "Bookmark",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 21,
-                          color: AppColors.blueColor,
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      const Spacer(),
-                    ],
+                  const SizedBox(width: 5),
+                  Image.asset(
+                    AppImages.appLogo,
+                    width: 60,
                   ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: const [
-                            CircleAvatar(
-                              backgroundColor: AppColors.blueColor,
-                              radius: 22,
-                            ),
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.search,
-                                color: AppColors.blueColor,
-                              ),
-                            ),
-                          ],
+                  const Spacer(),
+                  const Text(
+                    "Bookmark",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 21,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  const Spacer(),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: const [
+                        CircleAvatar(
+                          backgroundColor: AppColors.blueColor,
+                          radius: 22,
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: RequestFormTextfield(
-                            formFieldType: RequestFormFieldType.search,
-                            textCapitalization: TextCapitalization.none,
-                            textInputAction: TextInputAction.next,
-                            controller: bookMarkController.searchController,
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.search,
+                            color: AppColors.blueColor,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: 10,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: RequestFormTextfield(
+                        formFieldType: RequestFormFieldType.search,
+                        textCapitalization: TextCapitalization.none,
+                        textInputAction: TextInputAction.next,
+                        controller: bookMarkController.searchController,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: GetBuilder<BookMarkController>(
+                  id: "bookMark",
+                  builder: (bookMarkController) {
+                    return ListView.builder(
+                        itemCount:
+                            bookMarkController.getBookMarkData?.items?.length ??
+                                0,
+                        // bookMarkController
+                        //         .getBookMarkModel?.data?.items?.length ??
+                        //     0,
                         itemBuilder: (BuildContext context, int index) {
                           return bookMarkCommon(
-                            img: AppImages.splashScreenImage,
-                            title: "Obama meets PM Modi in Delhi :",
-                            text:
-                                "Make Bharuch Manpa, After 2011, again in 2023 presentation before the Chief Minister regarding Maha Nagar Palika",
+                            img: bookMarkController.getBookMarkData!
+                                .items![index].picture!.imageUrl
+                                .toString(),
+                            // bookMarkController.getBookMarkModel!.data!
+                            //     .items![index].picture!.imageUrl
+                            //     .toString(),
+                            title: bookMarkController
+                                .getBookMarkData!.items![index].productName
+                                .toString(),
+                            // bookMarkController.getBookMarkModel!.data!
+                            //     .items![index].productName
+                            //     .toString(),
+                            text: bookMarkController
+                                .getBookMarkData!.items![index].productSeName
+                                .toString(),
+                            // bookMarkController.getBookMarkModel!.data!
+                            //       .items![index].productSeName
+                            //       .toString(),
                             onTap: () {},
                           );
-                        }),
-                  ),
-                ],
+                        });
+                  },
+                ),
               ),
-            );
-          },
+            ],
+          ),
         ),
       ),
     );
@@ -137,7 +163,7 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(img),
+                    image: NetworkImage(img),
                     // image: AssetImage(AppImages.splashScreenImage),
                     fit: BoxFit.cover,
                   ),

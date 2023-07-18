@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:inshorts_newj/custem_class/constant/app_settings.dart';
 import 'package:inshorts_newj/custem_class/utils/globle.dart';
+import 'package:inshorts_newj/ui/base_screen/view/base_screen.dart';
+import 'package:inshorts_newj/ui/login_screen/view/splash_screen.dart';
 
 import 'custem_class/utils/bindinges.dart';
+import 'custem_class/utils/local_storage.dart';
 import 'custem_class/utils/localization_serivce.dart';
 import 'custem_class/utils/routes.dart';
 
-void main() {
-  globalVerbInit();
+void main() async {
+  await GetStorage.init();
+  await getInitialRoute();
+
   runApp(const MyApp());
+}
+
+getInitialRoute() async {
+  if (LocalStorage.isUserLogin()) {
+    LocalStorage.getUserDetails();
+
+    if (userController.userModel != null) {
+      initialRoute = BaseScreen.routeName;
+    } else {
+      initialRoute = SplashScreen.routeName;
+    }
+  } else {
+    initialRoute = SplashScreen.routeName;
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -20,8 +40,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  //SettingController settingController = Get.find<SettingController>();
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

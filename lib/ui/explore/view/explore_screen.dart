@@ -22,13 +22,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   void initState() {
-    exploreController.exploreListData();
+    //  exploreController.exploreListData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ExploreController());
+    // Get.put(ExploreController());
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -111,9 +111,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: GetBuilder<PopularTopicController>(
                           builder: (controller) {
                             return ListView.builder(
-                                itemCount:
-                                    controller.getAllCategoriesModel?.length ??
-                                        0,
+                                itemCount: popularTopicController
+                                    .getAllCategoriesModel!.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
@@ -126,13 +125,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
-                                          image: NetworkImage(controller
-                                                  .getAllCategoriesModel![index]
-                                                  .pictureModel!
-                                                  .imageUrl
-                                                  .toString()
-                                              //  AppImages.bgWithContainerImage,
-                                              ),
+                                          image: NetworkImage(
+                                            popularTopicController
+                                                .getAllCategoriesModel![index]
+                                                .pictureModel!
+                                                .imageUrl
+                                                .toString(),
+                                          ),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -159,7 +158,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                     .getAllCategoriesModel![
                                                         index]
                                                     .pictureModel!
-                                                    .title
+                                                    .alternateText
                                                     .toString(),
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
@@ -277,9 +276,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ),
                     ),
                     const SizedBox(height: 15),
-                    GetBuilder<ExploreController>(
-                      id: "bg",
-                      builder: (exploreController) {
+                    GetBuilder(
+                      // id: "exploreData",
+                      builder: (ExploreController exploreController) {
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),

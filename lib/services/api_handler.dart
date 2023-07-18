@@ -9,6 +9,7 @@ import 'package:http_parser/http_parser.dart' as mimeee;
 import 'package:mime_type/mime_type.dart';
 
 import '../custem_class/constant/app_functions.dart';
+import '../custem_class/utils/globle.dart';
 import 'over&loding.dart';
 
 enum RequestType { Get, Post }
@@ -19,8 +20,6 @@ class API {
   static Future<Map<String, dynamic>?> apiHandler({
     required String url,
     RequestType requestType = RequestType.Post,
-
-    ///Map<String, String>? header,
     bool showLoader = true,
     bool showToast = false,
     dynamic body,
@@ -28,12 +27,12 @@ class API {
     try {
       if (await checkConnection()) {
         if (showLoader) LoadingOverlay.of().show();
-        var header = {'Content-Type': 'application/json'};
-
-        ///   if (userController.userModel != null) {
-        ///     header
-        ///         .addAll({"Authorization": userController.userModel!.accessToken});
-        ///   }
+        Map<String, String> header = {'Content-Type': 'application/json'};
+        // if (userController.userModel != null) {
+        //   header.addAll({
+        //     "Authorization": userController.userModel!.customerGuid.toString()
+        //   });
+        // }
         log("URl ===> $url");
         log("HEADER ===> $header");
         log("BODY ===> $body");
@@ -43,33 +42,28 @@ class API {
             headers: header,
           );
         } else {
-          response = await http.post(
-            Uri.parse(url),
-            headers: header,
-            body: body,
-          );
+          response =
+              await http.post(Uri.parse(url), headers: header, body: body);
         }
-
-        log("return code ======" + response.statusCode.toString());
-        log("RETURN RESPONSE BODY CREATE ====== ${response.body}");
+        log("RETURN RESPONSE BODY CREATE ====== $url ===> ${response.body}");
         if (showLoader) LoadingOverlay.of().hide();
         if (response.body.isNotEmpty) {
           var res = jsonDecode(response.body);
-          if (res["code"] == 200) {
+          if (res["Status"] == 1) {
             if (showToast) {
-              flutterToast(res["message"]);
+              flutterToast(res["Message"]);
             }
             return res;
           } else if (res["code"] == 401) {
           } else {
-            // flutterToast(res["message"]);
+            flutterToast(res["message"]);
             return null;
           }
         } else {
           return null;
         }
       } else {
-        flutterToast('Check Your Connection'.tr);
+        flutterToast('check_your_connection'.tr);
         return null;
       }
     } catch (e) {
@@ -101,11 +95,11 @@ class API {
         );
 
         Map<String, String> header = {'Content-Type': 'form-data/multipart'};
-
-        ///  if (userController.userModel != null) {
-        ///    header
-        ///        .addAll({"Authorization": userController.userModel!.accessToken});
-        ///  }
+        if (userController.userModel != null) {
+          header.addAll({
+            "Authorization": userController.userModel!.customerGuid.toString()
+          });
+        }
         log("HEADER ===> $header");
         if (header != null) request.headers.addAll(header);
         if (field != null) request.fields.addAll(field);
@@ -135,7 +129,7 @@ class API {
         var res = await response.stream.bytesToString();
 
         var resDecode = jsonDecode(res);
-        log("RETURN RESPONSE BODY CREATE ====== $resDecode");
+        log("RETURN RESPONSE BODY CREATE ====== $url $resDecode");
         if (resDecode["code"] == 100) {
           if (showLoader) LoadingOverlay.of().hide();
 
@@ -149,7 +143,7 @@ class API {
           return null;
         }
       } else {
-        flutterToast('Check Your Connection'.tr);
+        flutterToast('check_your_connection'.tr);
         return null;
       }
     } catch (e) {

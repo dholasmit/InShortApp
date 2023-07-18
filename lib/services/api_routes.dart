@@ -1,8 +1,8 @@
 class APIRoutes {
-  //URL 1
-  static const baseUrl = "https://panchat.in/api/client/";
+  //URL 1 with client
+  static const baseUrl = "http://panchat.in/api/client/";
 
-  //URL 2
+  //URL 2 without client
   static const baseUrl2 = "https://panchat.in/api/";
 
   static const String productCategories =
@@ -19,9 +19,12 @@ class APIRoutes {
   /// baseurl 2
   static const String getAllCategories =
       "${baseUrl2}getAllCategories?languageId=1";
+
   // static const String exploreTopicList =
   //     "${baseUrl}RecentlyAddedProducts?languageId=2";
   static const String homeProductsList = "${baseUrl}HomePageProducts";
   static const String exploreTopicList =
       "${baseUrl}GetHomePageCategory?languageId=2";
+  static const String bookMarkList = "${baseUrl}GetBookMark?customerGuid=";
+  static const String language2 = "${baseUrl}GetAllLanguages";
 }

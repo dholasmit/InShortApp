@@ -15,32 +15,18 @@ class PopularScreen extends StatefulWidget {
 }
 
 class _PopularScreenState extends State<PopularScreen> {
-  List<String> img = [
-    AppImages.splashScreenImage,
-    AppImages.bgWithContainerImage,
-    AppImages.splashScreenImage,
-    AppImages.bgWithContainerImage,
-    AppImages.splashScreenImage,
-    AppImages.bgWithContainerImage,
-    AppImages.splashScreenImage,
-    AppImages.bgWithContainerImage,
-    AppImages.splashScreenImage,
-    AppImages.bgWithContainerImage,
-    AppImages.splashScreenImage,
-  ];
   PopularTopicController popularTopicController =
       Get.find<PopularTopicController>();
 
   @override
   void initState() {
-    print("DATA====================>${popularTopicController.popularData()}");
     popularTopicController.popularData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PopularTopicController());
+    // Get.put(PopularTopicController());
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -89,18 +75,13 @@ class _PopularScreenState extends State<PopularScreen> {
                           childAspectRatio: 0.8 / 1.5,
                         ),
                         itemCount: popularTopicController
-                                .getAllCategoriesModel?.length ??
-                            0,
+                            .getAllCategoriesModel!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                // image: DecorationImage(
-                                //   image: AssetImage(img[index]),
-                                //   fit: BoxFit.cover,
-                                // ),
                                 color: Colors.transparent,
                               ),
                               child: Column(

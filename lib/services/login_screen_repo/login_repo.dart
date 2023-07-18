@@ -4,19 +4,17 @@ import 'dart:io';
 import '../api_handler.dart';
 import '../api_routes.dart';
 
-class LoginRepo {
+class UserRepo {
   static Future login({
     required String email,
     required String password,
-//    String? fcmToken,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.login,
       body: jsonEncode(
         {
-          "email": email,
-          "password": password,
-          //   "fcmToken": fcmToken,
+          "Email": email,
+          "Password": password,
           "device": Platform.isAndroid ? "android" : "ios",
         },
       ),

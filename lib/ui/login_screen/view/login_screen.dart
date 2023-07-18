@@ -245,19 +245,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return materialButton(
       onTap: () {
         disposeKeyboard();
-
-        /// remove this line after API
-        //Get.toNamed(ChooseTopicScreen.routeName);
-        //Get.toNamed(BaseScreen.routeName);
-
-        ///
-
         if (loginController.loginFormKey.currentState!.validate()) {
           if (!loginController.checkValue) {
             flutterToast("Please agree Terms and conditions");
           } else {
-            //loginController.userLogin();
-            loginController.loginFlow();
+            loginController.userLogin();
           }
         }
       },

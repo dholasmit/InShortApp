@@ -14,19 +14,6 @@ class ExploreController extends GetxController {
     update();
   }
 
-  List<String> newsName = [
-    "All",
-    "Sports",
-    "Politics",
-    "Business",
-    "Fashion",
-    "All",
-    "Sports",
-    "Politics",
-    "Business",
-    "Fashion",
-  ];
-
   HomePageProductsModel? _homePageProductsModel;
 
   HomePageProductsModel? get getHomePageProductsModel => _homePageProductsModel;
@@ -52,7 +39,7 @@ class ExploreController extends GetxController {
 
   Future<void> exploreTopicListData() async {
     setExploreTopicListModel = await ExploreApi.getExploreTopic();
-    update(["bg"]);
+    // update(["exploreData"]);
   }
 
   @override
