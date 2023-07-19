@@ -82,6 +82,8 @@ class _SettingScreenState extends State<SettingScreen> {
                         return settingCommonSell(
                           onTap: () {
                             baseSettingController.selectedIndex = index;
+
+                            // baseSettingController.languageListData();
                             index == 0
                                 ? languageDialog()
                                 : index == 1
@@ -172,33 +174,35 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   languageDialog() {
-    return GetBuilder(builder: (BaseSettingController baseSettingController) {
-      return dialog(
-        context,
-        ic: AppIcons.languageIcons,
-        title: "Language",
-        // txt1: "English",
-        txt1: baseSettingController.getLanguageModel2!.data![0].languageCulture
-            .toString(),
-        value1: baseSettingController.eng,
-        groupValue1: baseSettingController.group,
-        onChanged1: (val) {
-          baseSettingController.group = baseSettingController.eng;
-        },
-        txt2: "Hindi",
-        value2: baseSettingController.hindi,
-        groupValue2: baseSettingController.group,
-        onChanged2: (val) {
-          baseSettingController.group = baseSettingController.hindi;
-        },
-        txt3: "Gujrati",
-        value3: baseSettingController.guj,
-        groupValue3: baseSettingController.group,
-        onChanged3: (val) {
-          baseSettingController.group = baseSettingController.guj;
-        },
-      );
-    });
+    return dialog(
+      context,
+      ic: AppIcons.languageIcons,
+      title: "Language",
+      //txt1: "English",
+      txt1: baseSettingController.getLanguageModel2!.data![0].languageCulture
+          .toString(),
+      value1: baseSettingController.getEng,
+      groupValue1: baseSettingController.getGroup,
+      onChanged1: (val) {
+        baseSettingController.setGroup = baseSettingController.getEng;
+      },
+      // txt2: "Hindi",
+      txt2: baseSettingController.getLanguageModel2!.data![1].languageCulture
+          .toString(),
+      value2: baseSettingController.getHindi,
+      groupValue2: baseSettingController.getGroup,
+      onChanged2: (val) {
+        baseSettingController.setGroup = baseSettingController.getHindi;
+      },
+      //   txt3: "Gujrati",
+      txt3: baseSettingController.getLanguageModel2!.data![2].languageCulture
+          .toString(),
+      value3: baseSettingController.getGuj,
+      groupValue3: baseSettingController.getGroup,
+      onChanged3: (val) {
+        baseSettingController.setGroup = baseSettingController.getGuj;
+      },
+    );
   }
 
   nightModeDialog() {

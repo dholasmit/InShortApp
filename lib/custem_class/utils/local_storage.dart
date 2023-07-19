@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:get_storage/get_storage.dart';
 
 import '../../models/login_screen_model/user_model.dart';
+import '../../models/setting_screen_model/langeuge_model_2.dart';
 import 'globle.dart';
 
 class LocalStorage {
@@ -30,5 +31,33 @@ class LocalStorage {
 
   static bool isUserLogin() {
     return prefs.read("IS_USER_LOGIN") ?? false;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////
+  /// language Model  ///
+  ////////////////////////////////////////////////////////////////////////////
+
+  static saveLanguage() {
+    log("saveUserDetails ${userController.languageModel2!.toJson()}");
+
+    prefs.write("LOGIN_USER_DATA", userController.languageModel2!.toJson());
+    LocalStorage.setUserLogin();
+  }
+
+  static bool getLanguage() {
+    Map<String, dynamic>? languageModel2 = prefs.read("LOGIN_USER_DATA");
+    log("getUserDetails $languageModel2");
+    if (languageModel2 != null) {
+      userController.languageModel2 = LanguageModel2.fromJson(languageModel2);
+    }
+    return userController.userModel == null ? false : true;
+  }
+
+  static setLanguage() {
+    prefs.write("LANGUAGE", true);
+  }
+
+  static bool isLanguage() {
+    return prefs.read("LANGUAGE") ?? false;
   }
 }

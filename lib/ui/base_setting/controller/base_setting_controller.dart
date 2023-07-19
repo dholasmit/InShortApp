@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
 
 import '../../../models/setting_screen_model/langeuge_model_2.dart';
+import '../../../services/setting_screen_repo/language_repo.dart';
 
 class BaseSettingController extends GetxController {
   List<String> settingIcon = [
@@ -46,38 +47,38 @@ class BaseSettingController extends GetxController {
 
   String _eng = "Eng";
 
-  String get eng => _eng;
+  String get getEng => _eng;
 
-  set eng(String value) {
+  set setEng(String value) {
     _eng = value;
-    update();
+    update(["dialog"]);
   }
 
   String _guj = "Guj";
 
-  String get guj => _guj;
+  String get getGuj => _guj;
 
-  set guj(String value) {
+  set setGuj(String value) {
     _guj = value;
-    update();
+    update(["dialog"]);
   }
 
   String _hindi = "Hindi";
 
-  String get hindi => _hindi;
+  String get getHindi => _hindi;
 
-  set hindi(String value) {
+  set setHindi(String value) {
     _hindi = value;
-    update();
+    update(["dialog"]);
   }
 
   String _group = "Eng";
 
-  String get group => _group;
+  String get getGroup => _group;
 
-  set group(String value) {
+  set setGroup(String value) {
     _group = value;
-    update();
+    update(["dialog"]);
   }
 
   ///
@@ -177,14 +178,14 @@ class BaseSettingController extends GetxController {
     update();
   }
 
-  // Future<void> languageListData() async {
-  //   setLanguageModel2 = await LanguageApi.languageList();
-  //   update(["language"]);
-  // }
-  //
-  // @override
-  // void onInit() {
-  //   languageListData();
-  //   super.onInit();
-  // }
+  Future<void> languageListData() async {
+    setLanguageModel2 = await LanguageApi.languageList();
+    update(["language"]);
+  }
+
+  @override
+  void onInit() {
+    languageListData();
+    super.onInit();
+  }
 }
