@@ -29,9 +29,9 @@ dialog(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
-      return GetBuilder(
+      return GetBuilder<BaseSettingController>(
         id: "dialog",
-        builder: (BaseSettingController baseSettingController) {
+        builder: (baseSettingController) {
           return Dialog(
             insetPadding: const EdgeInsets.symmetric(horizontal: 40),
             shape: const RoundedRectangleBorder(

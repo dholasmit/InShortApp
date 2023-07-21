@@ -18,6 +18,11 @@ class BaseSettingController extends GetxController {
     AppIcons.policyIcons,
     AppIcons.logOutIcons,
   ];
+  List<String> languageName = [
+    "Hello",
+    "નમસ્તે",
+    "नमस्ते",
+  ];
 
   List<String> settingName = [
     "Language",
@@ -51,7 +56,7 @@ class BaseSettingController extends GetxController {
 
   set setEng(String value) {
     _eng = value;
-    update(["dialog"]);
+    update();
   }
 
   String _guj = "Guj";
@@ -60,7 +65,7 @@ class BaseSettingController extends GetxController {
 
   set setGuj(String value) {
     _guj = value;
-    update(["dialog"]);
+    update();
   }
 
   String _hindi = "Hindi";
@@ -69,7 +74,7 @@ class BaseSettingController extends GetxController {
 
   set setHindi(String value) {
     _hindi = value;
-    update(["dialog"]);
+    update();
   }
 
   String _group = "Eng";
@@ -157,6 +162,16 @@ class BaseSettingController extends GetxController {
 
   set textSizeGroup(String value) {
     _textSizeGroup = value;
+    update();
+  }
+
+  ///  Language Option Screen
+  int _chooseLanguage = 0;
+
+  int get chooseLanguage => _chooseLanguage;
+
+  set chooseLanguage(int value) {
+    _chooseLanguage = value;
     update();
   }
 

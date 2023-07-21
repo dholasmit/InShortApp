@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inshorts_newj/custem_class/utils/globle.dart';
 
+import '../../../custem_class/utils/local_storage.dart';
+import '../../../models/login_screen_model/signup_model.dart';
 import '../../../services/login_screen_repo/signup_repo.dart';
+import '../../base_screen/view/base_screen.dart';
 
 class SignUpController extends GetxController {
   final signFormKey = GlobalKey<FormState>();
@@ -20,19 +24,33 @@ class SignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
+  SignUpModel? signUpModel;
+
   Future userSignUp() async {
-    return await SignUpRepo.signUp(
+    Map<String, dynamic>? response = await SignUpRepo.signUp(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
       firstName: firstNameController.text.trim(),
       lastName: lastNameController.text.trim(),
     );
+    signUpModel = SignUpModel.fromJson(response!);
+    userController.signUpData = signUpModel!.data;
+    LocalStorage.saveSignUpDetails();
+    Get.toNamed(BaseScreen.routeName);
   }
-
-  userDataLogin() async {
-    Map<String, dynamic>? response = await userSignUp();
-    if (response != null) {
-      Get.back();
-    }
-  }
+// Future userSignUp() async {
+//   return await SignUpRepo.signUp(
+//     email: emailController.text.trim(),
+//     password: passwordController.text.trim(),
+//     firstName: firstNameController.text.trim(),
+//     lastName: lastNameController.text.trim(),
+//   );
+// }
+  ///
+// userDataLogin() async {
+//   Map<String, dynamic>? response = await userSignUp();
+//   if (response != null) {
+//     Get.back();
+//   }
+// }
 }

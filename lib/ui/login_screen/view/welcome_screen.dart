@@ -27,7 +27,10 @@ class WelComeScreen extends StatelessWidget {
           children: [
             const Spacer(),
             const Spacer(),
-            Image.asset(AppImages.appLogo),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Image.asset(AppImages.appLogoBig),
+            ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),

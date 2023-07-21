@@ -6,6 +6,7 @@ import 'package:inshorts_newj/ui/base_setting/view/profile_screen.dart';
 
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../shared/laguage_option _screen.dart';
 import '../controller/base_setting_controller.dart';
 import 'notification_screen.dart';
 
@@ -101,7 +102,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                                         : index == 7
                                                             ? const SizedBox()
                                                             : index == 8
-                                                                ? const SizedBox()
+
+                                                                ///   ? const SizedBox()
+                                                                ? Get.toNamed(
+                                                                    LanguageOptionScreen
+                                                                        .routeName)
                                                                 : index == 9
                                                                     ? logOut()
                                                                     : const SizedBox();
@@ -179,28 +184,42 @@ class _SettingScreenState extends State<SettingScreen> {
       ic: AppIcons.languageIcons,
       title: "Language",
       //txt1: "English",
-      txt1: baseSettingController.getLanguageModel2!.data![0].languageCulture
-          .toString(),
+      txt1: baseSettingController.getLanguageModel2!.data![0].name.toString(),
       value1: baseSettingController.getEng,
       groupValue1: baseSettingController.getGroup,
       onChanged1: (val) {
-        baseSettingController.setGroup = baseSettingController.getEng;
+        setState(() {
+          baseSettingController.setGroup = baseSettingController.getEng;
+
+          ///id 1 = English
+          baseSettingController.getLanguageModel2!.data![0].id.toString();
+        });
       },
       // txt2: "Hindi",
-      txt2: baseSettingController.getLanguageModel2!.data![1].languageCulture
-          .toString(),
+      txt2: baseSettingController.getLanguageModel2!.data![2].name.toString(),
       value2: baseSettingController.getHindi,
       groupValue2: baseSettingController.getGroup,
       onChanged2: (val) {
-        baseSettingController.setGroup = baseSettingController.getHindi;
+        setState(() {
+          baseSettingController.setGroup = baseSettingController.getHindi;
+
+          ///id 3 = Hindi
+
+          baseSettingController.getLanguageModel2!.data![2].id.toString();
+        });
       },
       //   txt3: "Gujrati",
-      txt3: baseSettingController.getLanguageModel2!.data![2].languageCulture
-          .toString(),
+      txt3: baseSettingController.getLanguageModel2!.data![1].name.toString(),
       value3: baseSettingController.getGuj,
       groupValue3: baseSettingController.getGroup,
       onChanged3: (val) {
-        baseSettingController.setGroup = baseSettingController.getGuj;
+        setState(() {
+          baseSettingController.setGroup = baseSettingController.getGuj;
+
+          ///id 2 = Guj
+
+          baseSettingController.getLanguageModel2!.data![1].id.toString();
+        });
       },
     );
   }

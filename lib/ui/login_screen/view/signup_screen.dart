@@ -264,7 +264,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (!signUpController.isChecked) {
             flutterToast("Please agree Terms and conditions");
           } else {
-            signUpController.userDataLogin();
+            signUpController.userSignUp();
           }
           //   Map<String, dynamic>? response =
           //       await signUpController.userSignUp();

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../../models/explore/explore_list_model.dart';
 import '../../models/explore/explore_topic_model.dart';
+import '../../models/explore/recentlyAddedProducts_model.dart';
 import '../api_routes.dart';
 import '../http_service.dart';
 
@@ -38,6 +39,25 @@ class ExploreApi {
         print(
             "RESPONSE BODY=============================== $url=====> ${response.body}");
         return exploreTopicListModelFromJson(response.body);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return null;
+    }
+  }
+
+  static Future recentlyAddedProductsList() async {
+    try {
+      String url = APIRoutes.recentlyAddedProducts;
+      http.Response? response = await HttpService.getApi(
+        url: url,
+        header: {'Content-Type': 'application/json'},
+      );
+      if (response != null && response.statusCode == 200) {
+        print("RESPONSE BODY=================> $url ====>${response.body}");
+        return recentlyAddedProductsModelFromJson(response.body);
       }
     } catch (e) {
       if (kDebugMode) {

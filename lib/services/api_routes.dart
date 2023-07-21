@@ -24,7 +24,9 @@ class APIRoutes {
   //     "${baseUrl}RecentlyAddedProducts?languageId=2";
   static const String homeProductsList = "${baseUrl}HomePageProducts";
   static const String exploreTopicList =
-      "${baseUrl}GetHomePageCategory?languageId=2";
+      "${baseUrl}GetHomePageCategory?languageId=1";
   static const String bookMarkList = "${baseUrl}GetBookMark?customerGuid=";
   static const String language2 = "${baseUrl}GetAllLanguages";
+  static const String recentlyAddedProducts =
+      "${baseUrl}RecentlyAddedProducts?languageId=1";
 }

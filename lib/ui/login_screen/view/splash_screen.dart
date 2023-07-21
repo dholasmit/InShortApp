@@ -35,8 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Center(
-          child: Image.asset(
-            AppImages.appLogo,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Image.asset(
+              AppImages.appLogoBig,
+            ),
           ),
         ),
       ),

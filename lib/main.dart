@@ -19,10 +19,10 @@ void main() async {
 }
 
 getInitialRoute() async {
-  if (LocalStorage.isUserLogin()) {
-    LocalStorage.getUserDetails();
+  if (LocalStorage.isUserLogin() || LocalStorage.isUserSignUp()) {
+    LocalStorage.getUserDetails() || LocalStorage.getSignUpDetails();
 
-    if (userController.userModel != null) {
+    if (userController.userModel != null || userController.signUpData != null) {
       initialRoute = BaseScreen.routeName;
     } else {
       initialRoute = SplashScreen.routeName;

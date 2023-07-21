@@ -80,7 +80,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            "Popular Topic",
+                            "Popular Category",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
@@ -187,7 +187,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "Topic",
+                            "Category",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
@@ -216,7 +216,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               itemCount: exploreController
                                       .getExploreTopicListModel?.data?.length ??
                                   0,
-                              //exploreController.newsName.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
@@ -226,11 +225,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                     onTap: () {
                                       setState(() {
                                         exploreController.selectedIndex = index;
+                                        print(
+                                            "ID===================>   ${exploreController.getExploreTopicListModel!.data![0].id.toString()}");
                                       });
                                     },
                                     child: Container(
-                                      // height: 20,
-                                      // width: 50,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         border: Border.all(
@@ -257,7 +256,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                 .data![index]
                                                 .name
                                                 .toString(),
-                                            //  exploreController.newsName[index],
                                             style: const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700,
@@ -290,7 +288,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   .data![index].pictureModels![0].imageUrl
                                   .toString(),
                               title: exploreController
-                                  .getHomePageProductsModel!.data![index].seName
+                                  .getHomePageProductsModel!.data![index].name
                                   .toString(),
                               text: exploreController.getHomePageProductsModel!
                                   .data![index].shortDescription
@@ -351,6 +349,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       children: [
                         Text(
                           title,
+                          maxLines: 2,
+                          overflow: TextOverflow.clip,
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 14,

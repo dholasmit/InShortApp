@@ -32,7 +32,11 @@ class _CongressScreenState extends State<CongressScreen> {
         child: Column(
           children: [
             const Spacer(),
-            Image.asset(AppImages.appLogo),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Image.asset(AppImages.appLogoBig),
+            ),
+            const SizedBox(height: 10),
             const Text(
               "Congratulations!",
               style: TextStyle(

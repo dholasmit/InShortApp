@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../../../models/explore/explore_list_model.dart';
 import '../../../models/explore/explore_topic_model.dart';
+import '../../../models/explore/recentlyAddedProducts_model.dart';
 import '../../../services/Explore_screen_repo/explore_list_repo.dart';
 
 class ExploreController extends GetxController {
@@ -14,6 +15,9 @@ class ExploreController extends GetxController {
     update();
   }
 
+  ///
+  /// category List
+  ///
   HomePageProductsModel? _homePageProductsModel;
 
   HomePageProductsModel? get getHomePageProductsModel => _homePageProductsModel;
@@ -28,6 +32,9 @@ class ExploreController extends GetxController {
     update(["bg"]);
   }
 
+  ///
+  /// category
+  ///
   ExploreTopicListModel? _exploreTopicListModel;
 
   ExploreTopicListModel? get getExploreTopicListModel => _exploreTopicListModel;
@@ -42,10 +49,29 @@ class ExploreController extends GetxController {
     // update(["exploreData"]);
   }
 
+  ///
+  /// RecentlyAddedProducts
+  ///
+  RecentlyAddedProductsModel? _recentlyAddedProductsModel;
+
+  RecentlyAddedProductsModel? get getRecentlyAddedProductsModel =>
+      _recentlyAddedProductsModel;
+
+  set getRecentlyAddedProductsModel(RecentlyAddedProductsModel? value) {
+    _recentlyAddedProductsModel = value;
+    update();
+  }
+
+  Future<void> recentlyAddedProductsData() async {
+    setHomePageProductsModel = await ExploreApi.recentlyAddedProductsList();
+    update();
+  }
+
   @override
   void onInit() {
     exploreListData();
     exploreTopicListData();
+    recentlyAddedProductsData();
     super.onInit();
   }
 }

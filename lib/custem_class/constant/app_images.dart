@@ -11,8 +11,16 @@ class AppImages {
   /// splash screen image
   static const String splashScreenImage =
       "asseat/images/splash_screen_image/splashscreen_image.png";
+
+  // static const String splashScreenImage =
+  //     "asseat/images/splash_screen_image/panchat_big_logo.png";
+
+  // static const String appLogo =
+  //     "asseat/images/splash_screen_image/app_logo.png";
   static const String appLogo =
-      "asseat/images/splash_screen_image/app_logo.png";
+      "asseat/images/splash_screen_image/panchat_logo.png";
+  static const String appLogoBig =
+      "asseat/images/splash_screen_image/panchat_big_logo.png";
   static const String welcomeContainer =
       "asseat/images/splash_screen_image/welcome_container.png";
 

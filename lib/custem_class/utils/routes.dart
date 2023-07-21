@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../shared/laguage_option _screen.dart';
 import '../../ui/base_screen/view/base_screen.dart';
 import '../../ui/base_setting/view/edit_profile_screen.dart';
 import '../../ui/base_setting/view/notification_screen.dart';
@@ -44,4 +45,6 @@ final List<GetPage<dynamic>> routes = [
   GetPage(
       name: EditProfileScreen.routeName, page: () => const EditProfileScreen()),
   GetPage(name: PopularScreen.routeName, page: () => const PopularScreen()),
+  GetPage(
+      name: LanguageOptionScreen.routeName, page: () => LanguageOptionScreen()),
 ];

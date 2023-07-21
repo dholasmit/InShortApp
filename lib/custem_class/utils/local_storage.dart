@@ -2,12 +2,17 @@ import 'dart:developer';
 
 import 'package:get_storage/get_storage.dart';
 
+import '../../models/login_screen_model/signup_model.dart';
 import '../../models/login_screen_model/user_model.dart';
 import '../../models/setting_screen_model/langeuge_model_2.dart';
 import 'globle.dart';
 
 class LocalStorage {
   static final prefs = GetStorage();
+
+  ////////////////////////////////////////////////////////////////////////////
+  /// loginData Model Save
+  ////////////////////////////////////////////////////////////////////////////
 
   static saveUserDetails() {
     log("saveUserDetails ${userController.userModel!.toJson()}");
@@ -31,6 +36,34 @@ class LocalStorage {
 
   static bool isUserLogin() {
     return prefs.read("IS_USER_LOGIN") ?? false;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////
+  /// signupData Model Save
+  ////////////////////////////////////////////////////////////////////////////
+
+  static saveSignUpDetails() {
+    log("saveSignUpDetails ${userController.signUpData!.toJson()}");
+
+    prefs.write("SIGNUP_USER_DATA", userController.signUpData!.toJson());
+    LocalStorage.setUserSignUp();
+  }
+
+  static bool getSignUpDetails() {
+    Map<String, dynamic>? signUpData = prefs.read("SIGNUP_USER_DATA");
+    log("getSignUpDetails $signUpData");
+    if (signUpData != null) {
+      userController.signUpData = SignUpData.fromJson(signUpData);
+    }
+    return userController.signUpData == null ? false : true;
+  }
+
+  static setUserSignUp() {
+    prefs.write("IS_USER_SIGNUP", true);
+  }
+
+  static bool isUserSignUp() {
+    return prefs.read("IS_USER_SIGNUP") ?? false;
   }
 
   ////////////////////////////////////////////////////////////////////////////
@@ -59,5 +92,16 @@ class LocalStorage {
 
   static bool isLanguage() {
     return prefs.read("LANGUAGE") ?? false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
+  /// Choose Language Screen  ///
+////////////////////////////////////////////////////////////////////////////
+  static saveChooseLanguageScreen() {
+    prefs.write("CHOOSE_LANGUAGE", true);
+  }
+
+  static bool getChooseLanguageScreen() {
+    return prefs.read("CHOOSE_LANGUAGE") ?? false;
   }
 }
