@@ -7,6 +7,15 @@ import '../../../services/bookmark/bookmark_repo.dart';
 class BookMarkController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
+  //
+  // BookMarkData? _bookMarkData;
+  //
+  // BookMarkData? get getBookMarkData => _bookMarkData;
+  //
+  // set setBookMarkData(BookMarkData? value) {
+  //   _bookMarkData = value;
+  //   update();
+  // }
   // BookMarkModel? _bookMarkModel;
   //
   // BookMarkModel? get getBookMarkModel => _bookMarkModel;
@@ -15,18 +24,12 @@ class BookMarkController extends GetxController {
   //   _bookMarkModel = value;
   //   update();
   // }
-
-  BookMarkData? _bookMarkData;
-
-  BookMarkData? get getBookMarkData => _bookMarkData;
-
-  set setBookMarkData(BookMarkData? value) {
-    _bookMarkData = value;
-    update();
-  }
-
+  // List<Item> itemData = [];
+  BookMarkModel? bookmarkData;
   Future<void> bookMarkListData() async {
-    setBookMarkData = await BookmarkApi.bookmarkList();
+    // itemData = await BookmarkApi.bookmarkList();
+    bookmarkData = await BookmarkApi.bookmarkList();
+    print("BookMarkData:- ${bookmarkData?.message}");
     update(["bookMark"]);
   }
 

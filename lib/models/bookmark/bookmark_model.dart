@@ -8,7 +8,7 @@ String bookMarkModelToJson(BookMarkModel data) => json.encode(data.toJson());
 class BookMarkModel {
   int? status;
   String? message;
-  BookMarkData? data;
+  BookmarkData? data;
   List<dynamic>? validationMessage;
   dynamic errorMessage;
 
@@ -23,7 +23,7 @@ class BookMarkModel {
   factory BookMarkModel.fromJson(Map<String, dynamic> json) => BookMarkModel(
         status: json["Status"],
         message: json["Message"],
-        data: json["Data"] == null ? null : BookMarkData.fromJson(json["Data"]),
+        data: json["Data"] == null ? null : BookmarkData.fromJson(json["Data"]),
         validationMessage: json["ValidationMessage"] == null
             ? []
             : List<dynamic>.from(json["ValidationMessage"]!.map((x) => x)),
@@ -41,7 +41,7 @@ class BookMarkModel {
       };
 }
 
-class BookMarkData {
+class BookmarkData {
   String? customerGuid;
   String? customerFullname;
   bool? emailWishlistEnabled;
@@ -52,9 +52,9 @@ class BookMarkData {
   bool? displayTaxShippingInfo;
   List<Item>? items;
   List<dynamic>? warnings;
-  dynamic message;
+  // dynamic message;
 
-  BookMarkData({
+  BookmarkData({
     this.customerGuid,
     this.customerFullname,
     this.emailWishlistEnabled,
@@ -65,10 +65,10 @@ class BookMarkData {
     this.displayTaxShippingInfo,
     this.items,
     this.warnings,
-    this.message,
+    // this.message,
   });
 
-  factory BookMarkData.fromJson(Map<String, dynamic> json) => BookMarkData(
+  factory BookmarkData.fromJson(Map<String, dynamic> json) => BookmarkData(
         customerGuid: json["CustomerGuid"],
         customerFullname: json["CustomerFullname"],
         emailWishlistEnabled: json["EmailWishlistEnabled"],
@@ -83,7 +83,7 @@ class BookMarkData {
         warnings: json["Warnings"] == null
             ? []
             : List<dynamic>.from(json["Warnings"]!.map((x) => x)),
-        message: json["Message"],
+        // message: json["Message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -100,31 +100,36 @@ class BookMarkData {
             : List<dynamic>.from(items!.map((x) => x.toJson())),
         "Warnings":
             warnings == null ? [] : List<dynamic>.from(warnings!.map((x) => x)),
-        "Message": message,
+        // "Message": message,
       };
 }
 
 class Item {
-  dynamic sku;
+  String? sku;
   Picture? picture;
-  int? productId;
+  dynamic productId;
   String? productName;
   String? productSeName;
-  dynamic unitPrice;
-  int? unitPriceValue;
-  dynamic subTotal;
-  int? subTotalValue;
-  dynamic discount;
-  int? discountValue;
-  dynamic maximumDiscountedQty;
-  int? quantity;
+
+  // dynamic unitPrice;
+  dynamic unitPriceValue;
+
+//dynamic subTotal;
+  dynamic subTotalValue;
+
+//  dynamic discount;
+  dynamic discountValue;
+
+  // dynamic maximumDiscountedQty;
+  dynamic quantity;
   List<dynamic>? allowedQuantities;
   String? attributeInfo;
-  dynamic recurringInfo;
-  dynamic rentalInfo;
+
+//  dynamic recurringInfo;
+  //dynamic rentalInfo;
   bool? allowItemEditing;
   List<dynamic>? warnings;
-  int? id;
+  dynamic id;
   CustomProperties? customProperties;
 
   Item({
@@ -133,18 +138,18 @@ class Item {
     this.productId,
     this.productName,
     this.productSeName,
-    this.unitPrice,
+    // this.unitPrice,
     this.unitPriceValue,
-    this.subTotal,
+    // this.subTotal,
     this.subTotalValue,
-    this.discount,
+    // this.discount,
     this.discountValue,
-    this.maximumDiscountedQty,
+    // this.maximumDiscountedQty,
     this.quantity,
     this.allowedQuantities,
     this.attributeInfo,
-    this.recurringInfo,
-    this.rentalInfo,
+    // this.recurringInfo,
+    // this.rentalInfo,
     this.allowItemEditing,
     this.warnings,
     this.id,
@@ -158,20 +163,20 @@ class Item {
         productId: json["ProductId"],
         productName: json["ProductName"],
         productSeName: json["ProductSeName"],
-        unitPrice: json["UnitPrice"],
+        // unitPrice: json["UnitPrice"],
         unitPriceValue: json["UnitPriceValue"],
-        subTotal: json["SubTotal"],
+        // subTotal: json["SubTotal"],
         subTotalValue: json["SubTotalValue"],
-        discount: json["Discount"],
+        // discount: json["Discount"],
         discountValue: json["DiscountValue"],
-        maximumDiscountedQty: json["MaximumDiscountedQty"],
+        // maximumDiscountedQty: json["MaximumDiscountedQty"],
         quantity: json["Quantity"],
         allowedQuantities: json["AllowedQuantities"] == null
             ? []
             : List<dynamic>.from(json["AllowedQuantities"]!.map((x) => x)),
         attributeInfo: json["AttributeInfo"],
-        recurringInfo: json["RecurringInfo"],
-        rentalInfo: json["RentalInfo"],
+        // recurringInfo: json["RecurringInfo"],
+        // rentalInfo: json["RentalInfo"],
         allowItemEditing: json["AllowItemEditing"],
         warnings: json["Warnings"] == null
             ? []
@@ -188,20 +193,20 @@ class Item {
         "ProductId": productId,
         "ProductName": productName,
         "ProductSeName": productSeName,
-        "UnitPrice": unitPrice,
+        // "UnitPrice": unitPrice,
         "UnitPriceValue": unitPriceValue,
-        "SubTotal": subTotal,
+        // "SubTotal": subTotal,
         "SubTotalValue": subTotalValue,
-        "Discount": discount,
+        // "Discount": discount,
         "DiscountValue": discountValue,
-        "MaximumDiscountedQty": maximumDiscountedQty,
+        // "MaximumDiscountedQty": maximumDiscountedQty,
         "Quantity": quantity,
         "AllowedQuantities": allowedQuantities == null
             ? []
             : List<dynamic>.from(allowedQuantities!.map((x) => x)),
         "AttributeInfo": attributeInfo,
-        "RecurringInfo": recurringInfo,
-        "RentalInfo": rentalInfo,
+        // "RecurringInfo": recurringInfo,
+        // "RentalInfo": rentalInfo,
         "AllowItemEditing": allowItemEditing,
         "Warnings":
             warnings == null ? [] : List<dynamic>.from(warnings!.map((x) => x)),
@@ -221,16 +226,17 @@ class CustomProperties {
 
 class Picture {
   String? imageUrl;
-  dynamic thumbImageUrl;
-  dynamic fullSizeImageUrl;
+
+//  dynamic thumbImageUrl;
+//  dynamic fullSizeImageUrl;
   String? title;
   String? alternateText;
   CustomProperties? customProperties;
 
   Picture({
     this.imageUrl,
-    this.thumbImageUrl,
-    this.fullSizeImageUrl,
+    // this.thumbImageUrl,
+    // this.fullSizeImageUrl,
     this.title,
     this.alternateText,
     this.customProperties,
@@ -238,8 +244,8 @@ class Picture {
 
   factory Picture.fromJson(Map<String, dynamic> json) => Picture(
         imageUrl: json["ImageUrl"],
-        thumbImageUrl: json["ThumbImageUrl"],
-        fullSizeImageUrl: json["FullSizeImageUrl"],
+        // thumbImageUrl: json["ThumbImageUrl"],
+        // fullSizeImageUrl: json["FullSizeImageUrl"],
         title: json["Title"],
         alternateText: json["AlternateText"],
         customProperties: json["CustomProperties"] == null
@@ -249,8 +255,8 @@ class Picture {
 
   Map<String, dynamic> toJson() => {
         "ImageUrl": imageUrl,
-        "ThumbImageUrl": thumbImageUrl,
-        "FullSizeImageUrl": fullSizeImageUrl,
+        // "ThumbImageUrl": thumbImageUrl,
+        // "FullSizeImageUrl": fullSizeImageUrl,
         "Title": title,
         "AlternateText": alternateText,
         "CustomProperties": customProperties?.toJson(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
-import 'package:inshorts_newj/custem_class/utils/local_storage.dart';
 import 'package:inshorts_newj/shared/material_button.dart';
+import 'package:inshorts_newj/ui/base_screen/view/base_screen.dart';
 
 import '../custem_class/constant/app_images.dart';
 import '../ui/base_setting/controller/base_setting_controller.dart';
@@ -21,8 +21,8 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
       Get.find<BaseSettingController>();
 
   @override
+  @override
   Widget build(BuildContext context) {
-    LocalStorage.saveChooseLanguageScreen();
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -60,7 +60,7 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                 child: Column(
                   children: [
                     GetBuilder(
-                      builder: (BaseSettingController controller) {
+                      builder: (BaseSettingController baseSettingController) {
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -89,7 +89,9 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                         // bottom: 220,
                       ),
                       child: materialButton(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(BaseScreen.routeName);
+                        },
                         btnText: "Continue",
                         color: AppColors.blueColor,
                       ),

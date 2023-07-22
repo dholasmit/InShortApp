@@ -94,14 +94,14 @@ class LocalStorage {
     return prefs.read("LANGUAGE") ?? false;
   }
 
+  ////////////////////////////////////////////////////////////////////////////
+  /// Logout Data ///
 ////////////////////////////////////////////////////////////////////////////
-  /// Choose Language Screen  ///
-////////////////////////////////////////////////////////////////////////////
-  static saveChooseLanguageScreen() {
-    prefs.write("CHOOSE_LANGUAGE", true);
-  }
 
-  static bool getChooseLanguageScreen() {
-    return prefs.read("CHOOSE_LANGUAGE") ?? false;
+  static clearData() {
+    prefs.remove("LOGIN_USER_DATA");
+    prefs.remove("IS_USER_LOGIN");
+    prefs.remove("SIGNUP_USER_DATA");
+    prefs.remove("IS_USER_SIGNUP");
   }
 }

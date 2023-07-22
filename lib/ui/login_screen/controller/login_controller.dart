@@ -5,7 +5,7 @@ import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../models/login_screen_model/user_model.dart';
 import '../../../services/login_screen_repo/login_repo.dart';
-import '../../base_screen/view/base_screen.dart';
+import '../../../shared/laguage_option _screen.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
@@ -32,7 +32,10 @@ class LoginController extends GetxController {
       currentUserModel = CurrentUserModel.fromJson(response);
       userController.userModel = currentUserModel!.data;
       LocalStorage.saveUserDetails();
-      Get.toNamed(BaseScreen.routeName);
+      emailController.clear();
+      passwordController.clear();
+      // Get.toNamed(BaseScreen.routeName);
+      Get.toNamed(LanguageOptionScreen.routeName);
     }
   }
 }

@@ -97,36 +97,25 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                 ),
               ),
               Expanded(
-                child: GetBuilder<BookMarkController>(
+                child: GetBuilder(
                   id: "bookMark",
-                  builder: (bookMarkController) {
+                  builder: (BookMarkController bookMarkController) {
+                    print("ImageUrl:- ${bookMarkController.bookmarkData}");
                     return ListView.builder(
-                        itemCount:
-                            bookMarkController.getBookMarkData?.items?.length ??
-                                0,
-                        // bookMarkController
-                        //         .getBookMarkModel?.data?.items?.length ??
-                        //     0,
+                        itemCount: bookMarkController
+                            .bookmarkData?.data?.items?.length,
                         itemBuilder: (BuildContext context, int index) {
                           return bookMarkCommon(
-                            img: bookMarkController.getBookMarkData!
-                                .items![index].picture!.imageUrl
-                                .toString(),
-                            // bookMarkController.getBookMarkModel!.data!
-                            //     .items![index].picture!.imageUrl
-                            //     .toString(),
-                            title: bookMarkController
-                                .getBookMarkData!.items![index].productName
-                                .toString(),
-                            // bookMarkController.getBookMarkModel!.data!
-                            //     .items![index].productName
-                            //     .toString(),
-                            text: bookMarkController
-                                .getBookMarkData!.items![index].productSeName
-                                .toString(),
-                            // bookMarkController.getBookMarkModel!.data!
-                            //       .items![index].productSeName
-                            //       .toString(),
+                            img: bookMarkController.bookmarkData?.data
+                                    ?.items?[index].picture?.imageUrl ??
+                                "",
+                            title: bookMarkController.bookmarkData?.data
+                                    ?.items?[index].picture?.title
+                                    .toString() ??
+                                "",
+                            text: bookMarkController.bookmarkData?.data
+                                    ?.items?[index].picture?.alternateText ??
+                                "",
                             onTap: () {},
                           );
                         });
@@ -149,7 +138,7 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
     return Column(
       children: [
         Container(
-          height: 150,
+          height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -157,9 +146,9 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
           child: Row(
             children: [
               Container(
-                //height: 100,
+                height: 100,
+                width: 100,
                 margin: const EdgeInsets.all(5),
-                width: 120,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
@@ -176,8 +165,11 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 5),
                       Text(
                         title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 14,

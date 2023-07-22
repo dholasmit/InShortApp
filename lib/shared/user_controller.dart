@@ -11,8 +11,8 @@ class UserController extends GetxController {
 
   set userModel(UserModel? value) {
     _userModel = value;
-    // onUpdateUser();
     update();
+    //  onUpdateUser();
   }
 
   /// Language Model
@@ -34,4 +34,12 @@ class UserController extends GetxController {
     _signUpData = value;
     update();
   }
+
+  /// Update User
+// onUpdateUser() {
+//   LocalStorage.saveUserDetails();
+//   LocalStorage.saveSignUpDetails();
+//   print("onUpdateUser");
+//   update();
+// }
 }

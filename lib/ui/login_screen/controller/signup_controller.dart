@@ -5,7 +5,7 @@ import 'package:inshorts_newj/custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../models/login_screen_model/signup_model.dart';
 import '../../../services/login_screen_repo/signup_repo.dart';
-import '../../base_screen/view/base_screen.dart';
+import '../../../shared/laguage_option _screen.dart';
 
 class SignUpController extends GetxController {
   final signFormKey = GlobalKey<FormState>();
@@ -36,7 +36,8 @@ class SignUpController extends GetxController {
     signUpModel = SignUpModel.fromJson(response!);
     userController.signUpData = signUpModel!.data;
     LocalStorage.saveSignUpDetails();
-    Get.toNamed(BaseScreen.routeName);
+    // Get.toNamed(BaseScreen.routeName);
+    Get.toNamed(LanguageOptionScreen.routeName);
   }
 // Future userSignUp() async {
 //   return await SignUpRepo.signUp(
