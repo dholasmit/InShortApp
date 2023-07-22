@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/custem_class/utils/globle.dart';
 
 import '../../models/bookmark/bookmark_model.dart';
+import '../../models/bookmark/remove_bookmark_model.dart';
+import '../api_handler.dart';
 import '../api_routes.dart';
 import '../http_service.dart';
 
@@ -27,6 +31,29 @@ class BookmarkApi {
       if (kDebugMode) {
         print(e);
       }
+      return null;
+    }
+  }
+
+  /// REMOVE BOOKMARK DATA
+  ///
+  static Future removeBookmarkRepo({
+    required String CustomerGUID,
+    required int ItemIds,
+  }) async {
+    var responseBody = await API.apiHandler(
+      url: APIRoutes.removeBookMark,
+      requestType: RequestType.Post,
+      body: jsonEncode(
+        {
+          "CustomerGUID": CustomerGUID,
+          "ItemIds": ItemIds,
+        },
+      ),
+    );
+    if (responseBody != null) {
+      return RemoveBookmarkModel.fromJson(responseBody);
+    } else {
       return null;
     }
   }

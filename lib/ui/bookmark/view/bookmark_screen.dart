@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
+import '../../../custem_class/utils/globle.dart';
 import '../../../shared/textfild_common.dart';
 import '../controller/book_mark_controller.dart';
 
@@ -100,23 +101,59 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                 child: GetBuilder(
                   id: "bookMark",
                   builder: (BookMarkController bookMarkController) {
-                    print("ImageUrl:- ${bookMarkController.bookmarkData}");
                     return ListView.builder(
                         itemCount: bookMarkController
-                            .bookmarkData?.data?.items?.length,
+                            .bookMarkModel?.data?.items?.length,
                         itemBuilder: (BuildContext context, int index) {
                           return bookMarkCommon(
-                            img: bookMarkController.bookmarkData?.data
+                            index: index,
+                            img: bookMarkController.bookMarkModel?.data
                                     ?.items?[index].picture?.imageUrl ??
                                 "",
-                            title: bookMarkController.bookmarkData?.data
+                            title: bookMarkController.bookMarkModel?.data
                                     ?.items?[index].picture?.title
                                     .toString() ??
                                 "",
-                            text: bookMarkController.bookmarkData?.data
+                            text: bookMarkController.bookMarkModel?.data
                                     ?.items?[index].picture?.alternateText ??
                                 "",
-                            onTap: () {},
+                            onTap: () {
+                              setState(() {
+                                bookMarkController.bookMarkBool =
+                                    !bookMarkController.bookMarkBool;
+
+                                ///
+                                // if (bookMarkController.bookMarkBool == false) {
+                                //   bookMarkController.removeBookMark(
+                                //       CustomerGUID: userController
+                                //           .userModel!.customerId
+                                //           .toString(),
+                                //       ItemIds: bookMarkController.bookMarkModel
+                                //           ?.data?.items?[index].productId);
+                                //   setState(() {
+                                //     bookMarkController.bookMarkBool == true;
+                                //   });
+                                // } else {
+                                //   bookMarkController.removeBookMark(
+                                //       CustomerGUID: userController
+                                //           .userModel!.customerId
+                                //           .toString(),
+                                //       ItemIds: bookMarkController.bookMarkModel
+                                //           ?.data?.items?[index].productId);
+                                //   setState(() {
+                                //     bookMarkController.bookMarkBool == false;
+                                //   });
+                                // }
+
+                                ///
+                                bookMarkController.removeBookMark(
+                                    CustomerGUID: userController
+                                        .userModel!.customerId
+                                        .toString(),
+                                    ItemIds: bookMarkController.bookMarkModel
+                                        ?.data?.items?[index].productId);
+                              });
+                            },
                           );
                         });
                   },
@@ -134,11 +171,12 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
     required String title,
     required String text,
     required void Function() onTap,
+    required int index,
   }) {
     return Column(
       children: [
         Container(
-          height: 120,
+          height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -188,10 +226,13 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         children: [
                           InkWell(
                             onTap: onTap,
-                            child: const Icon(
-                              Icons.bookmark,
-                              color: AppColors.blueColor,
-                            ),
+                            child: bookMarkController.bookMarkBool
+                                ? const Icon(Icons.bookmark_border,
+                                    color: AppColors.blueColor)
+                                : const Icon(
+                                    Icons.bookmark,
+                                    color: AppColors.blueColor,
+                                  ),
                           ),
                         ],
                       ),

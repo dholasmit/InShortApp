@@ -52,6 +52,7 @@ class BookmarkData {
   bool? displayTaxShippingInfo;
   List<Item>? items;
   List<dynamic>? warnings;
+
   // dynamic message;
 
   BookmarkData({
@@ -65,6 +66,7 @@ class BookmarkData {
     this.displayTaxShippingInfo,
     this.items,
     this.warnings,
+
     // this.message,
   });
 
@@ -83,6 +85,7 @@ class BookmarkData {
         warnings: json["Warnings"] == null
             ? []
             : List<dynamic>.from(json["Warnings"]!.map((x) => x)),
+
         // message: json["Message"],
       );
 
@@ -100,6 +103,7 @@ class BookmarkData {
             : List<dynamic>.from(items!.map((x) => x.toJson())),
         "Warnings":
             warnings == null ? [] : List<dynamic>.from(warnings!.map((x) => x)),
+
         // "Message": message,
       };
 }
@@ -231,6 +235,7 @@ class Picture {
 //  dynamic fullSizeImageUrl;
   String? title;
   String? alternateText;
+
   CustomProperties? customProperties;
 
   Picture({
