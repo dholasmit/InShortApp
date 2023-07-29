@@ -7,7 +7,6 @@ import 'package:inshorts_newj/ui/base_setting/view/profile_screen.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../../../shared/laguage_option _screen.dart';
 import '../../login_screen/view/login_screen.dart';
 import '../controller/base_setting_controller.dart';
 import 'notification_screen.dart';
@@ -104,11 +103,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                         : index == 7
                                                             ? const SizedBox()
                                                             : index == 8
-
-                                                                ///   ? const SizedBox()
-                                                                ? Get.toNamed(
-                                                                    LanguageOptionScreen
-                                                                        .routeName)
+                                                                ? const SizedBox()
                                                                 : index == 9
                                                                     ? logOut()
                                                                     : const SizedBox();

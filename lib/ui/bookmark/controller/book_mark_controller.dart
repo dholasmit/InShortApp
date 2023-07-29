@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../models/bookmark/addbookmark_model.dart';
 import '../../../models/bookmark/bookmark_model.dart';
 import '../../../models/bookmark/remove_bookmark_model.dart';
 import '../../../services/bookmark/bookmark_repo.dart';
@@ -18,7 +19,6 @@ class BookMarkController extends GetxController {
 
   /// Remove BookMark Model
   ///
-  bool bookMarkBool = false;
 
   RemoveBookmarkModel? _removeBookmarkModel;
 
@@ -29,6 +29,9 @@ class BookMarkController extends GetxController {
     update();
   }
 
+  ///
+
+  /// removeBookMark
   Future<void> removeBookMark({
     required String CustomerGUID,
     required int ItemIds,
@@ -40,6 +43,21 @@ class BookMarkController extends GetxController {
     );
 
     if (removeBookmarkModel != null) {
+      return;
+    }
+  }
+
+  /// addBookMark
+  Future<void> addBookMark({
+    required String CustomerGUID,
+    required int ProductId,
+  }) async {
+    AddBookMarkModel? addBookMarkModel = await BookmarkApi.addBookmarkRepo(
+      CustomerGUID: CustomerGUID,
+      ProductId: ProductId,
+    );
+
+    if (addBookMarkModel != null) {
       return;
     }
   }

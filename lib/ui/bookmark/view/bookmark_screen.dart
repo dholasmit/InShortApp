@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
-import '../../../custem_class/utils/globle.dart';
 import '../../../shared/textfild_common.dart';
 import '../controller/book_mark_controller.dart';
 
@@ -101,61 +100,90 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                 child: GetBuilder(
                   id: "bookMark",
                   builder: (BookMarkController bookMarkController) {
-                    return ListView.builder(
-                        itemCount: bookMarkController
-                            .bookMarkModel?.data?.items?.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return bookMarkCommon(
-                            index: index,
-                            img: bookMarkController.bookMarkModel?.data
-                                    ?.items?[index].picture?.imageUrl ??
-                                "",
-                            title: bookMarkController.bookMarkModel?.data
-                                    ?.items?[index].picture?.title
-                                    .toString() ??
-                                "",
-                            text: bookMarkController.bookMarkModel?.data
-                                    ?.items?[index].picture?.alternateText ??
-                                "",
-                            onTap: () {
-                              setState(() {
-                                bookMarkController.bookMarkBool =
-                                    !bookMarkController.bookMarkBool;
+                    return bookMarkController.bookMarkModel!.data == null
+                        ? const Center(
+                            child: Text(
+                            "No Data Found",
+                            style: TextStyle(
+                              color: AppColors.blueColor,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ))
+                        : ListView.builder(
+                            itemCount: bookMarkController
+                                    .bookMarkModel?.data?.items?.length ??
+                                0,
+                            itemBuilder: (BuildContext context, int index) {
+                              return bookMarkCommon(
+                                index: index,
+                                img: bookMarkController.bookMarkModel?.data
+                                        ?.items?[index].picture?.imageUrl ??
+                                    "",
+                                title: bookMarkController.bookMarkModel?.data
+                                        ?.items?[index].picture?.title
+                                        .toString() ??
+                                    "",
+                                text: bookMarkController
+                                        .bookMarkModel
+                                        ?.data
+                                        ?.items?[index]
+                                        .picture
+                                        ?.alternateText ??
+                                    "",
+                                onTap: () {
+                                  setState(() {
+                                    bookMarkController
+                                            .bookMarkModel!
+                                            .data!
+                                            .items![index]
+                                            .picture!
+                                            .isBookMark ==
+                                        !bookMarkController.bookMarkModel!.data!
+                                            .items![index].picture!.isBookMark;
+                                    bookMarkController.bookMarkModel!.data!
+                                            .items![index].picture!.isBookMark
 
-                                ///
-                                // if (bookMarkController.bookMarkBool == false) {
-                                //   bookMarkController.removeBookMark(
-                                //       CustomerGUID: userController
-                                //           .userModel!.customerId
-                                //           .toString(),
-                                //       ItemIds: bookMarkController.bookMarkModel
-                                //           ?.data?.items?[index].productId);
-                                //   setState(() {
-                                //     bookMarkController.bookMarkBool == true;
-                                //   });
-                                // } else {
-                                //   bookMarkController.removeBookMark(
-                                //       CustomerGUID: userController
-                                //           .userModel!.customerId
-                                //           .toString(),
-                                //       ItemIds: bookMarkController.bookMarkModel
-                                //           ?.data?.items?[index].productId);
-                                //   setState(() {
-                                //     bookMarkController.bookMarkBool == false;
-                                //   });
-                                // }
+                                        ///ADD BOOKMARK
+                                        ? bookMarkController.addBookMark(
+                                            CustomerGUID: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.customerGuid ??
+                                                "",
+                                            ProductId: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.items?[index]
+                                                    .productId ??
+                                                0,
+                                          )
 
-                                ///
-                                bookMarkController.removeBookMark(
-                                    CustomerGUID: userController
-                                        .userModel!.customerId
-                                        .toString(),
-                                    ItemIds: bookMarkController.bookMarkModel
-                                        ?.data?.items?[index].productId);
-                              });
-                            },
-                          );
-                        });
+                                        ///REMOVE BOOKMARK
+                                        : bookMarkController.removeBookMark(
+                                            CustomerGUID: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.customerGuid ??
+                                                "",
+                                            ItemIds: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.items?[index]
+                                                    .productId ??
+                                                0,
+                                          );
+                                    bookMarkController
+                                        .bookMarkModel!.data!.items!
+                                        .removeWhere((element) =>
+                                            element.id ==
+                                            bookMarkController.bookMarkModel!
+                                                .data!.items![index].id);
+                                    bookMarkController.update();
+                                  });
+                                },
+                              );
+                            });
                   },
                 ),
               ),
@@ -226,9 +254,12 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         children: [
                           InkWell(
                             onTap: onTap,
-                            child: bookMarkController.bookMarkBool
-                                ? const Icon(Icons.bookmark_border,
-                                    color: AppColors.blueColor)
+                            child: bookMarkController.bookMarkModel!.data!
+                                    .items![index].picture!.isBookMark
+                                ? const Icon(
+                                    Icons.bookmark_border,
+                                    color: AppColors.blueColor,
+                                  )
                                 : const Icon(
                                     Icons.bookmark,
                                     color: AppColors.blueColor,

@@ -111,7 +111,7 @@ class BookmarkData {
 class Item {
   String? sku;
   Picture? picture;
-  dynamic productId;
+  int? productId;
   String? productName;
   String? productSeName;
 
@@ -237,6 +237,7 @@ class Picture {
   String? alternateText;
 
   CustomProperties? customProperties;
+  bool isBookMark;
 
   Picture({
     this.imageUrl,
@@ -245,6 +246,7 @@ class Picture {
     this.title,
     this.alternateText,
     this.customProperties,
+    required this.isBookMark,
   });
 
   factory Picture.fromJson(Map<String, dynamic> json) => Picture(
@@ -253,9 +255,11 @@ class Picture {
         // fullSizeImageUrl: json["FullSizeImageUrl"],
         title: json["Title"],
         alternateText: json["AlternateText"],
+
         customProperties: json["CustomProperties"] == null
             ? null
             : CustomProperties.fromJson(json["CustomProperties"]),
+        isBookMark: json["isBookMark"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -265,5 +269,6 @@ class Picture {
         "Title": title,
         "AlternateText": alternateText,
         "CustomProperties": customProperties?.toJson(),
+        "isBookMark": isBookMark,
       };
 }

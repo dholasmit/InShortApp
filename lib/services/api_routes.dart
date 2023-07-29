@@ -29,5 +29,6 @@ class APIRoutes {
   static const String language2 = "${baseUrl}GetAllLanguages";
   static const String recentlyAddedProducts =
       "${baseUrl}RecentlyAddedProducts?languageId=1";
-  static const String removeBookMark = "${baseUrl}RemoveFromWishList";
+  static const String removeBookMark = "${baseUrl}RemoveFromBookMark";
+  static const String addBookMark = "${baseUrl}AddToBookMark";
 }

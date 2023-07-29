@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/custem_class/utils/globle.dart';
 
+import '../../models/bookmark/addbookmark_model.dart';
 import '../../models/bookmark/bookmark_model.dart';
 import '../../models/bookmark/remove_bookmark_model.dart';
 import '../api_handler.dart';
@@ -53,6 +54,27 @@ class BookmarkApi {
     );
     if (responseBody != null) {
       return RemoveBookmarkModel.fromJson(responseBody);
+    } else {
+      return null;
+    }
+  }
+
+  static Future addBookmarkRepo({
+    required String CustomerGUID,
+    required int ProductId,
+  }) async {
+    var responseBody = await API.apiHandler(
+      url: APIRoutes.addBookMark,
+      requestType: RequestType.Post,
+      body: jsonEncode(
+        {
+          "CustomerGUID": CustomerGUID,
+          "ProductId": ProductId,
+        },
+      ),
+    );
+    if (responseBody != null) {
+      return AddBookMarkModel.fromJson(responseBody);
     } else {
       return null;
     }
