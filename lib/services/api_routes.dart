@@ -31,4 +31,6 @@ class APIRoutes {
       "${baseUrl}RecentlyAddedProducts?languageId=1";
   static const String removeBookMark = "${baseUrl}RemoveFromBookMark";
   static const String addBookMark = "${baseUrl}AddToBookMark";
+  static const String homeScreenRecentlyAddedProducts =
+      "${baseUrl}RecentlyAddedProducts?languageId=1";
 }

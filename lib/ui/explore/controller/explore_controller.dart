@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 
 import '../../../models/explore/explore_list_model.dart';
 import '../../../models/explore/explore_topic_model.dart';
-import '../../../models/explore/recentlyAddedProducts_model.dart';
 import '../../../services/Explore_screen_repo/explore_list_repo.dart';
 
 class ExploreController extends GetxController {
+  bool exploreLoader = false;
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
@@ -28,8 +28,10 @@ class ExploreController extends GetxController {
   }
 
   Future<void> exploreListData() async {
+    exploreLoader = true;
     setHomePageProductsModel = await ExploreApi.getExploreList();
-    update(["bg"]);
+    exploreLoader = false;
+    update(["exploreListData"]);
   }
 
   ///
@@ -45,33 +47,41 @@ class ExploreController extends GetxController {
   }
 
   Future<void> exploreTopicListData() async {
+    exploreLoader = true;
     setExploreTopicListModel = await ExploreApi.getExploreTopic();
+    exploreLoader = false;
     // update(["exploreData"]);
   }
 
   ///
   /// RecentlyAddedProducts
   ///
-  RecentlyAddedProductsModel? _recentlyAddedProductsModel;
+  // RecentlyAddedProductsModel? _recentlyAddedProductsModel;
+  //
+  // RecentlyAddedProductsModel? get getRecentlyAddedProductsModel =>
+  //     _recentlyAddedProductsModel;
+  //
+  // set getRecentlyAddedProductsModel(RecentlyAddedProductsModel? value) {
+  //   _recentlyAddedProductsModel = value;
+  //   update();
+  // }
+  /// this API is not play
+  //
+  // Future<void> recentlyAddedProductsData() async {
+  //   exploreLoader = true;
+  //   setHomePageProductsModel = await ExploreApi.recentlyAddedProductsList();
+  //   exploreLoader = false;
+  //   update();
+  // }
 
-  RecentlyAddedProductsModel? get getRecentlyAddedProductsModel =>
-      _recentlyAddedProductsModel;
-
-  set getRecentlyAddedProductsModel(RecentlyAddedProductsModel? value) {
-    _recentlyAddedProductsModel = value;
-    update();
-  }
-
-  Future<void> recentlyAddedProductsData() async {
-    setHomePageProductsModel = await ExploreApi.recentlyAddedProductsList();
-    update();
-  }
+  ///
 
   @override
   void onInit() {
     exploreListData();
     exploreTopicListData();
-    recentlyAddedProductsData();
+
+    /// recentlyAddedProductsData();
     super.onInit();
   }
 }

@@ -177,53 +177,47 @@ class _SettingScreenState extends State<SettingScreen> {
 
   languageDialog() {
     return dialog(
-      context,
-      ic: AppIcons.languageIcons,
-      title: "Language",
-      //txt1: "English",
-      txt1: baseSettingController.getLanguageModel2!.data![0].name.toString(),
-      value1: baseSettingController.getEng,
-      groupValue1: baseSettingController.getGroup,
-      onChanged1: (val) {
-        setState(() {
-          baseSettingController.setGroup = baseSettingController.getEng;
-
+        context: context,
+        ic: AppIcons.languageIcons,
+        title: "Language",
+        //txt1: "English",
+        txt1: baseSettingController.getLanguageModel2!.data![0].name.toString(),
+        value1: baseSettingController.getEng,
+        groupValue1: baseSettingController.getGroup,
+        onChanged1: (val) {
           ///id 1 = English
-          baseSettingController.getLanguageModel2!.data![0].id.toString();
-        });
-      },
-      // txt2: "Hindi",
-      txt2: baseSettingController.getLanguageModel2!.data![2].name.toString(),
-      value2: baseSettingController.getHindi,
-      groupValue2: baseSettingController.getGroup,
-      onChanged2: (val) {
-        setState(() {
-          baseSettingController.setGroup = baseSettingController.getHindi;
 
+          baseSettingController.setGroup = baseSettingController.getEng;
+          baseSettingController.getLanguageModel2!.data![0].id.toString();
+          Get.back();
+        },
+        // txt2: "Hindi",
+        txt2: baseSettingController.getLanguageModel2!.data![2].name.toString(),
+        value2: baseSettingController.getHindi,
+        groupValue2: baseSettingController.getGroup,
+        onChanged2: (val) {
           ///id 3 = Hindi
 
+          baseSettingController.setGroup = baseSettingController.getHindi;
           baseSettingController.getLanguageModel2!.data![2].id.toString();
-        });
-      },
-      //   txt3: "Gujrati",
-      txt3: baseSettingController.getLanguageModel2!.data![1].name.toString(),
-      value3: baseSettingController.getGuj,
-      groupValue3: baseSettingController.getGroup,
-      onChanged3: (val) {
-        setState(() {
-          baseSettingController.setGroup = baseSettingController.getGuj;
-
+          Get.back();
+        },
+        //   txt3: "Gujrati",
+        txt3: baseSettingController.getLanguageModel2!.data![1].name.toString(),
+        value3: baseSettingController.getGuj,
+        groupValue3: baseSettingController.getGroup,
+        onChanged3: (val) {
           ///id 2 = Guj
 
+          baseSettingController.setGroup = baseSettingController.getGuj;
           baseSettingController.getLanguageModel2!.data![1].id.toString();
+          Get.back();
         });
-      },
-    );
   }
 
   nightModeDialog() {
     return dialog(
-      context,
+      context: context,
       ic: AppIcons.nightMOdeIcons,
       title: "Night Mode",
       txt1: "Light",
@@ -231,6 +225,7 @@ class _SettingScreenState extends State<SettingScreen> {
       groupValue1: baseSettingController.nightModeGroup,
       onChanged1: (val) {
         baseSettingController.nightModeGroup = baseSettingController.light;
+        Get.back();
 
         /// Get.changeTheme(ThemeData.light());
       },
@@ -239,6 +234,7 @@ class _SettingScreenState extends State<SettingScreen> {
       groupValue2: baseSettingController.nightModeGroup,
       onChanged2: (val) {
         baseSettingController.nightModeGroup = baseSettingController.dark;
+        Get.back();
 
         /// Get.changeTheme(ThemeData.dark());
       },
@@ -247,13 +243,14 @@ class _SettingScreenState extends State<SettingScreen> {
       groupValue3: baseSettingController.nightModeGroup,
       onChanged3: (val) {
         baseSettingController.nightModeGroup = baseSettingController.system;
+        Get.back();
       },
     );
   }
 
   textSizeDialog() {
     return dialog(
-      context,
+      context: context,
       ic: AppIcons.textSizeIcons,
       title: "Text Size",
       txt1: "Default",
@@ -261,18 +258,21 @@ class _SettingScreenState extends State<SettingScreen> {
       groupValue1: baseSettingController.textSizeGroup,
       onChanged1: (val) {
         baseSettingController.textSizeGroup = baseSettingController.defaultText;
+        Get.back();
       },
       txt2: "Medium",
       value2: baseSettingController.medium,
       groupValue2: baseSettingController.textSizeGroup,
       onChanged2: (val) {
         baseSettingController.textSizeGroup = baseSettingController.medium;
+        Get.back();
       },
       txt3: "Large",
       value3: baseSettingController.large,
       groupValue3: baseSettingController.textSizeGroup,
       onChanged3: (val) {
         baseSettingController.textSizeGroup = baseSettingController.large;
+        Get.back();
       },
     );
   }

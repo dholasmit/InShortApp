@@ -8,12 +8,15 @@ import '../../../services/bookmark/bookmark_repo.dart';
 
 class BookMarkController extends GetxController {
   TextEditingController searchController = TextEditingController();
+  bool bookmarkLoader = false;
 
   /// BookMark Data show List
   BookMarkModel? bookMarkModel;
 
   Future<void> bookMarkListData() async {
+    bookmarkLoader = true;
     bookMarkModel = await BookmarkApi.bookmarkList();
+    bookmarkLoader = false;
     update(["bookMark"]);
   }
 

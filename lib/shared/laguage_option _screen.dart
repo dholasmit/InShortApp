@@ -61,25 +61,28 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                   children: [
                     GetBuilder(
                       builder: (BaseSettingController baseSettingController) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: baseSettingController
-                              .getLanguageModel2!.data!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return languageCommonContainer(
-                              onTap: () {
-                                baseSettingController.chooseLanguage = index;
-                              },
-                              index: index,
-                              languageText:
-                                  baseSettingController.languageName[index],
-                              language: baseSettingController
-                                  .getLanguageModel2!.data![index].name
-                                  .toString(),
-                            );
-                          },
-                        );
+                        return baseSettingController.languageLoader
+                            ? const Center(child: CircularProgressIndicator())
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: baseSettingController
+                                    .getLanguageModel2!.data!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return languageCommonContainer(
+                                    onTap: () {
+                                      baseSettingController.chooseLanguage =
+                                          index;
+                                    },
+                                    index: index,
+                                    languageText: baseSettingController
+                                        .languageName[index],
+                                    language: baseSettingController
+                                        .getLanguageModel2!.data![index].name
+                                        .toString(),
+                                  );
+                                },
+                              );
                       },
                     ),
                     Padding(

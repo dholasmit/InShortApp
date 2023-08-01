@@ -8,8 +8,8 @@ import '../ui/base_setting/controller/base_setting_controller.dart';
 
 BaseSettingController baseSettingController = Get.find<BaseSettingController>();
 
-dialog(
-  BuildContext context, {
+dialog({
+  required BuildContext context,
   required String ic,
   required String title,
   required String txt1,
@@ -29,9 +29,9 @@ dialog(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
-      return GetBuilder<BaseSettingController>(
+      return GetBuilder(
         id: "dialog",
-        builder: (baseSettingController) {
+        builder: (BaseSettingController baseSettingController) {
           return Dialog(
             insetPadding: const EdgeInsets.symmetric(horizontal: 40),
             shape: const RoundedRectangleBorder(

@@ -66,66 +66,69 @@ class _PopularScreenState extends State<PopularScreen> {
               const SizedBox(height: 20),
               Expanded(
                 child: GetBuilder<PopularTopicController>(
-                  id: "gb",
+                  id: "popularData",
                   builder: (popularTopicController) {
-                    return GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 0.8 / 1.5,
-                        ),
-                        itemCount: popularTopicController
-                            .getAllCategoriesModel!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.transparent,
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 130,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
+                    return popularTopicController.popularLoader
+                        ? const Center(child: CircularProgressIndicator())
+                        : GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 0.8 / 1.5,
+                            ),
+                            itemCount: popularTopicController
+                                .getAllCategoriesModel!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.transparent,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 130,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              popularTopicController
+                                                  .getAllCategoriesModel![index]
+                                                  .pictureModel!
+                                                  .imageUrl
+                                                  .toString(),
+                                            ),
+                                            // image: AssetImage(img[index]),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      // const SizedBox(height: 5),
+                                      Expanded(
+                                        child: Text(
                                           popularTopicController
                                               .getAllCategoriesModel![index]
                                               .pictureModel!
-                                              .imageUrl
+                                              .alternateText
                                               .toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.blueColor,
+                                          ),
                                         ),
-                                        // image: AssetImage(img[index]),
-                                        fit: BoxFit.cover,
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  // const SizedBox(height: 5),
-                                  Expanded(
-                                    child: Text(
-                                      popularTopicController
-                                          .getAllCategoriesModel![index]
-                                          .pictureModel!
-                                          .alternateText
-                                          .toString(),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColors.blueColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        });
+                                ),
+                              );
+                            });
                   },
                 ),
               ),

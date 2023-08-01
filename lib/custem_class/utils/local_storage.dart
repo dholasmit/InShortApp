@@ -104,4 +104,15 @@ class LocalStorage {
     prefs.remove("SIGNUP_USER_DATA");
     prefs.remove("IS_USER_SIGNUP");
   }
+
+////////////////////////////////////////////////////////////////////////////
+  /// Language Set Filter ///
+////////////////////////////////////////////////////////////////////////////
+  static setLanguageType(int value) {
+    prefs.write("languageType", value);
+  }
+
+  static int getLanguageType() {
+    return prefs.read("languageType") ?? 0;
+  }
 }

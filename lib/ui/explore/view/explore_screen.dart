@@ -109,73 +109,83 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         height: 140,
                         color: Colors.transparent,
                         child: GetBuilder<PopularTopicController>(
-                          builder: (controller) {
-                            return ListView.builder(
-                                itemCount: popularTopicController
-                                    .getAllCategoriesModel!.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                    ),
-                                    child: Container(
-                                      height: 150,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            popularTopicController
-                                                .getAllCategoriesModel![index]
-                                                .pictureModel!
-                                                .imageUrl
-                                                .toString(),
-                                          ),
-                                          fit: BoxFit.cover,
+                          builder: (popularTopicController) {
+                            return popularTopicController.popularLoader
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : ListView.builder(
+                                    itemCount: popularTopicController
+                                        .getAllCategoriesModel!.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
                                         ),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          const Spacer(),
-                                          Container(
-                                            width: double.infinity,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight:
-                                                    Radius.circular(10),
-                                                bottomLeft: Radius.circular(10),
-                                              ),
-                                              color: Color(0XFF455077),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 10,
-                                              ),
-                                              child: Text(
+                                        child: Container(
+                                          height: 150,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
                                                 popularTopicController
                                                     .getAllCategoriesModel![
                                                         index]
                                                     .pictureModel!
-                                                    .alternateText
+                                                    .imageUrl
                                                     .toString(),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 12,
-                                                ),
                                               ),
+                                              fit: BoxFit.cover,
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                });
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              const Spacer(),
+                                              Container(
+                                                width: double.infinity,
+                                                decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomRight:
+                                                        Radius.circular(10),
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                  ),
+                                                  color: Color(0XFF455077),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    horizontal: 10,
+                                                  ),
+                                                  child: Text(
+                                                    popularTopicController
+                                                        .getAllCategoriesModel![
+                                                            index]
+                                                        .pictureModel!
+                                                        .alternateText
+                                                        .toString(),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    textAlign: TextAlign.center,
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
                           },
                         ),
                       ),
@@ -212,91 +222,110 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         color: Colors.transparent,
                         child: GetBuilder<ExploreController>(
                           builder: (exploreController) {
-                            return ListView.builder(
-                              itemCount: exploreController
-                                      .getExploreTopicListModel?.data?.length ??
-                                  0,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        exploreController.selectedIndex = index;
-                                        print(
-                                            "ID===================>   ${exploreController.getExploreTopicListModel!.data![0].id.toString()}");
-                                      });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          color: index ==
+                            return exploreController.exploreLoader
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : ListView.builder(
+                                    itemCount: exploreController
+                                            .getExploreTopicListModel
+                                            ?.data
+                                            ?.length ??
+                                        0,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              exploreController.selectedIndex =
+                                                  index;
+                                              print(
+                                                  "ID===================>   ${exploreController.getExploreTopicListModel!.data![0].id.toString()}");
+                                            });
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              border: Border.all(
+                                                color: index ==
+                                                        exploreController
+                                                            .selectedIndex
+                                                    ? AppColors.blueColor
+                                                    : Colors.transparent,
+                                              ),
+                                              color: index ==
+                                                      exploreController
+                                                          .selectedIndex
+                                                  ? Colors.white
+                                                  : AppColors
+                                                      .exploreTopicContainerColor,
+                                            ),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                ),
+                                                child: Text(
                                                   exploreController
-                                                      .selectedIndex
-                                              ? AppColors.blueColor
-                                              : Colors.transparent,
-                                        ),
-                                        color: index ==
-                                                exploreController.selectedIndex
-                                            ? Colors.white
-                                            : AppColors
-                                                .exploreTopicContainerColor,
-                                      ),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                          ),
-                                          child: Text(
-                                            exploreController
-                                                .getExploreTopicListModel!
-                                                .data![index]
-                                                .name
-                                                .toString(),
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w700,
-                                              color: AppColors.blueColor,
+                                                      .getExploreTopicListModel!
+                                                      .data![index]
+                                                      .name
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColors.blueColor,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
+                                      );
+                                    },
+                                  );
                           },
                         ),
                       ),
                     ),
                     const SizedBox(height: 15),
                     GetBuilder(
-                      // id: "exploreData",
+                      id: "exploreListData",
                       builder: (ExploreController exploreController) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: exploreController
-                              .getHomePageProductsModel!.data!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return exploreList(
-                              img: exploreController.getHomePageProductsModel!
-                                  .data![index].pictureModels![0].imageUrl
-                                  .toString(),
-                              title: exploreController
-                                  .getHomePageProductsModel!.data![index].name
-                                  .toString(),
-                              text: exploreController.getHomePageProductsModel!
-                                  .data![index].shortDescription
-                                  .toString(),
-                              onTap: () {},
-                            );
-                          },
-                        );
+                        return exploreController.exploreLoader
+                            ? const Center(child: CircularProgressIndicator())
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: exploreController
+                                    .getHomePageProductsModel!.data!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return exploreList(
+                                    img: exploreController
+                                        .getHomePageProductsModel!
+                                        .data![index]
+                                        .pictureModels![0]
+                                        .imageUrl
+                                        .toString(),
+                                    title: exploreController
+                                        .getHomePageProductsModel!
+                                        .data![index]
+                                        .name
+                                        .toString(),
+                                    text: exploreController
+                                        .getHomePageProductsModel!
+                                        .data![index]
+                                        .shortDescription
+                                        .toString(),
+                                    onTap: () {},
+                                  );
+                                },
+                              );
                       },
                     ),
                   ],

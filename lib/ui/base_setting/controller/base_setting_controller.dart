@@ -56,7 +56,7 @@ class BaseSettingController extends GetxController {
 
   set setEng(String value) {
     _eng = value;
-    update();
+    update(["dialog"]);
   }
 
   String _guj = "Guj";
@@ -65,7 +65,7 @@ class BaseSettingController extends GetxController {
 
   set setGuj(String value) {
     _guj = value;
-    update();
+    update(["dialog"]);
   }
 
   String _hindi = "Hindi";
@@ -74,7 +74,7 @@ class BaseSettingController extends GetxController {
 
   set setHindi(String value) {
     _hindi = value;
-    update();
+    update(["dialog"]);
   }
 
   String _group = "Eng";
@@ -184,6 +184,8 @@ class BaseSettingController extends GetxController {
   }
 
   /// language API
+  bool languageLoader = false;
+
   LanguageModel2? _languageModel2;
 
   LanguageModel2? get getLanguageModel2 => _languageModel2;
@@ -194,7 +196,9 @@ class BaseSettingController extends GetxController {
   }
 
   Future<void> languageListData() async {
+    languageLoader = true;
     setLanguageModel2 = await LanguageApi.languageList();
+    languageLoader = false;
     update(["language"]);
   }
 
