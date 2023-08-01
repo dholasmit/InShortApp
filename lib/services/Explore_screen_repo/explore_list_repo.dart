@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../../custem_class/utils/globle.dart';
 import '../../models/explore/explore_list_model.dart';
 import '../../models/explore/explore_topic_model.dart';
 import '../../models/explore/recentlyAddedProducts_model.dart';
@@ -13,7 +14,10 @@ class ExploreApi {
       String url = APIRoutes.homeProductsList;
       http.Response? response = await HttpService.getApi(
         url: url,
-        header: {'Content-Type': 'application/json'},
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ${userController.userModel!.token}",
+        },
       );
       if (response != null && response.statusCode == 200) {
         print("RESPONSE BODY=================> $url ====>${response.body}");
@@ -33,7 +37,10 @@ class ExploreApi {
 
       http.Response? response = await HttpService.getApi(
         url: url,
-        header: {'Content-Type': 'application/json'},
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ${userController.userModel!.token}",
+        },
       );
       if (response != null && response.statusCode == 200) {
         print(
@@ -53,7 +60,10 @@ class ExploreApi {
       String url = APIRoutes.recentlyAddedProducts;
       http.Response? response = await HttpService.getApi(
         url: url,
-        header: {'Content-Type': 'application/json'},
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ${userController.userModel!.token}",
+        },
       );
       if (response != null && response.statusCode == 200) {
         print("RESPONSE BODY=================> $url ====>${response.body}");

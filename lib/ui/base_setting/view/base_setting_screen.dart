@@ -180,35 +180,32 @@ class _SettingScreenState extends State<SettingScreen> {
         context: context,
         ic: AppIcons.languageIcons,
         title: "Language",
-        //txt1: "English",
-        txt1: baseSettingController.getLanguageModel2!.data![0].name.toString(),
+
+        ///id 1 = English
+        txt1: "${baseSettingController.getLanguageModel2!.data![0].name}",
         value1: baseSettingController.getEng,
         groupValue1: baseSettingController.getGroup,
         onChanged1: (val) {
-          ///id 1 = English
-
           baseSettingController.setGroup = baseSettingController.getEng;
           baseSettingController.getLanguageModel2!.data![0].id.toString();
           Get.back();
         },
-        // txt2: "Hindi",
-        txt2: baseSettingController.getLanguageModel2!.data![2].name.toString(),
+
+        ///id 3 = Hindi
+        txt2: "${baseSettingController.getLanguageModel2!.data![2].name}",
         value2: baseSettingController.getHindi,
         groupValue2: baseSettingController.getGroup,
         onChanged2: (val) {
-          ///id 3 = Hindi
-
           baseSettingController.setGroup = baseSettingController.getHindi;
           baseSettingController.getLanguageModel2!.data![2].id.toString();
           Get.back();
         },
-        //   txt3: "Gujrati",
-        txt3: baseSettingController.getLanguageModel2!.data![1].name.toString(),
+
+        ///id 2 = Guj
+        txt3: "${baseSettingController.getLanguageModel2!.data![1].name}",
         value3: baseSettingController.getGuj,
         groupValue3: baseSettingController.getGroup,
         onChanged3: (val) {
-          ///id 2 = Guj
-
           baseSettingController.setGroup = baseSettingController.getGuj;
           baseSettingController.getLanguageModel2!.data![1].id.toString();
           Get.back();

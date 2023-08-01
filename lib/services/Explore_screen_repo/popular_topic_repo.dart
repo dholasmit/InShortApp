@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/services/api_routes.dart';
 
+import '../../custem_class/utils/globle.dart';
 import '../../models/explore/all_categories_model.dart';
 import '../http_service.dart';
 
@@ -12,7 +13,10 @@ class PopularTopicApi {
 
       http.Response? response = await HttpService.getApi(
         url: url,
-        header: {'Content-Type': 'application/json'},
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ${userController.userModel!.token}",
+        },
       );
       if (response != null && response.statusCode == 200) {
         print(

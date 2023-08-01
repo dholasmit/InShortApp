@@ -51,6 +51,7 @@ class UserModel {
   bool? isValid;
   bool? rememberMe;
   int? customerId;
+  String? token;
 
   UserModel({
     this.customerGuid,
@@ -60,6 +61,7 @@ class UserModel {
     this.isValid,
     this.rememberMe,
     this.customerId,
+    this.token,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -70,6 +72,7 @@ class UserModel {
         isValid: json["IsValid"],
         rememberMe: json["RememberMe"],
         customerId: json["CustomerId"],
+        token: json["Token"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -80,5 +83,6 @@ class UserModel {
         "IsValid": isValid,
         "RememberMe": rememberMe,
         "CustomerId": customerId,
+        "Token": token,
       };
 }

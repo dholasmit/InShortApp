@@ -20,7 +20,10 @@ class BookmarkApi {
 
       http.Response? response = await HttpService.getApi(
         url: url,
-        header: {'Content-Type': 'application/json'},
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ${userController.userModel!.token}",
+        },
       );
       if (response != null && response.statusCode == 200) {
         print(

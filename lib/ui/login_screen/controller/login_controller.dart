@@ -34,6 +34,7 @@ class LoginController extends GetxController {
       LocalStorage.saveUserDetails();
       emailController.clear();
       passwordController.clear();
+      checkValue = false;
       // Get.toNamed(BaseScreen.routeName);
       Get.toNamed(LanguageOptionScreen.routeName);
     }

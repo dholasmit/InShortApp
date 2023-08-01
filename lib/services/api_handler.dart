@@ -28,11 +28,10 @@ class API {
       if (await checkConnection()) {
         if (showLoader) LoadingOverlay.of().show();
         Map<String, String> header = {'Content-Type': 'application/json'};
-        // if (userController.userModel != null) {
-        //   header.addAll({
-        //     "Authorization": userController.userModel!.customerGuid.toString()
-        //   });
-        // }
+        if (userController.userModel != null) {
+          header.addAll(
+              {"Authorization": "Bearer ${userController.userModel!.token}"});
+        }
         log("URl ===> $url");
         log("HEADER ===> $header");
         log("BODY ===> $body");
@@ -96,9 +95,8 @@ class API {
 
         Map<String, String> header = {'Content-Type': 'form-data/multipart'};
         if (userController.userModel != null) {
-          header.addAll({
-            "Authorization": userController.userModel!.customerGuid.toString()
-          });
+          header.addAll(
+              {"Authorization": "Bearer ${userController.userModel!.token}"});
         }
         log("HEADER ===> $header");
         if (header != null) request.headers.addAll(header);

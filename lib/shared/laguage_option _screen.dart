@@ -5,6 +5,8 @@ import 'package:inshorts_newj/shared/material_button.dart';
 import 'package:inshorts_newj/ui/base_screen/view/base_screen.dart';
 
 import '../custem_class/constant/app_images.dart';
+import '../custem_class/utils/globle.dart';
+import '../custem_class/utils/local_storage.dart';
 import '../ui/base_setting/controller/base_setting_controller.dart';
 
 class LanguageOptionScreen extends StatefulWidget {
@@ -20,7 +22,6 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +94,21 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                       ),
                       child: materialButton(
                         onTap: () {
-                          Get.toNamed(BaseScreen.routeName);
+                          print(
+                              "Language Choose :- ${baseSettingController.chooseLanguage}");
+                          LocalStorage.setLanguageType(
+                              baseSettingController.chooseLanguage);
+                          baseSettingController
+                              .setLanguage(
+                                  ItemIds: baseSettingController.chooseLanguage,
+                                  // baseSettingController
+                                  //     .getLanguageModel2!.data![1].id!
+                                  //     .toInt(),
+                                  CustomerGUID: userController
+                                      .userModel!.customerId
+                                      .toString())
+                              .then(
+                                  (value) => Get.toNamed(BaseScreen.routeName));
                         },
                         btnText: "Continue",
                         color: AppColors.blueColor,

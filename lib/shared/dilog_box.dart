@@ -113,6 +113,139 @@ dialog({
                         ),
                         value: value2,
                         groupValue: groupValue2,
+                        onChanged: (value) {},
+                      ),
+                      RadioListTile(
+                        title: Text(
+                          txt3,
+                          style: const TextStyle(
+                            color: AppColors.blueColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        value: value3,
+                        groupValue: groupValue3,
+                        onChanged: onChanged3,
+                      ),
+                      const SizedBox(height: 20)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
+dialog2({
+  required BuildContext context,
+  required String ic,
+  required String title,
+  required String txt1,
+  required String value1,
+  required String groupValue1,
+  required void Function(String?) onChanged1,
+  required String txt2,
+  required String value2,
+  required String groupValue2,
+  required void Function(String?) onChanged2,
+  required String txt3,
+  required String value3,
+  required String groupValue3,
+  required void Function(String?) onChanged3,
+}) {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return GetBuilder(
+        id: "dialog",
+        builder: (BaseSettingController baseSettingController) {
+          return Dialog(
+            insetPadding: const EdgeInsets.symmetric(horizontal: 40),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+                bottomLeft: Radius.circular(40),
+              ),
+            ), //this right herea
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+                bottomLeft: Radius.circular(40),
+              ),
+              child: FittedBox(
+                child: SizedBox(
+                  width: Get.width,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: AppColors.blueColor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(
+                                ic,
+                                height: 40,
+                              ),
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  color: Colors.transparent,
+                                  child: Image.asset(AppIcons.removeIcons),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      RadioListTile(
+                        title: Text(
+                          txt1,
+                          style: const TextStyle(
+                            color: AppColors.blueColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        value: value1,
+                        groupValue: groupValue1,
+                        onChanged: onChanged1,
+                      ),
+                      RadioListTile(
+                        title: Text(
+                          txt2,
+                          style: const TextStyle(
+                            color: AppColors.blueColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        value: value2,
+                        groupValue: groupValue2,
                         onChanged: onChanged2,
                       ),
                       RadioListTile(

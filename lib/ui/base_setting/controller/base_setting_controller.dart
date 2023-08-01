@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
 
 import '../../../models/setting_screen_model/langeuge_model_2.dart';
+import '../../../models/setting_screen_model/set_language_model.dart';
 import '../../../services/setting_screen_repo/language_repo.dart';
 
 class BaseSettingController extends GetxController {
@@ -183,7 +184,7 @@ class BaseSettingController extends GetxController {
     );
   }
 
-  /// language API
+  /// language List API
   bool languageLoader = false;
 
   LanguageModel2? _languageModel2;
@@ -200,6 +201,30 @@ class BaseSettingController extends GetxController {
     setLanguageModel2 = await LanguageApi.languageList();
     languageLoader = false;
     update(["language"]);
+  }
+
+  /// set Language API
+  SetLanguageModel? _setLanguageModel;
+
+  SetLanguageModel? get setLanguageModel => _setLanguageModel;
+
+  set setLanguageModel(SetLanguageModel? value) {
+    _setLanguageModel = value;
+    update();
+  }
+
+  Future<void> setLanguage({
+    required String CustomerGUID,
+    required int ItemIds,
+  }) async {
+    SetLanguageModel? setLanguageModel = await LanguageApi.setLanguageApi(
+      CustomerGuid: CustomerGUID,
+      LanguageId: ItemIds,
+    );
+
+    if (setLanguageModel != null) {
+      return;
+    }
   }
 
   @override
