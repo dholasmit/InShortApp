@@ -62,7 +62,7 @@ class API {
           return null;
         }
       } else {
-        flutterToast('check_your_connection'.tr);
+        flutterToast('Check Your Connection');
         return null;
       }
     } catch (e) {

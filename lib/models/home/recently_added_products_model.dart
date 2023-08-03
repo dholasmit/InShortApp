@@ -70,6 +70,7 @@ class Datum {
   int? visitCount;
   int? id;
   CustomProperties? customProperties;
+  bool? bookId;
 
   Datum({
     this.name,
@@ -88,6 +89,7 @@ class Datum {
     this.visitCount,
     this.id,
     this.customProperties,
+    this.bookId,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -116,6 +118,7 @@ class Datum {
         categorySeName: json["CategorySeName"],
         visitCount: json["VisitCount"],
         id: json["Id"],
+        bookId: json["BookId"] ?? false,
         customProperties: json["CustomProperties"] == null
             ? null
             : CustomProperties.fromJson(json["CustomProperties"]),
@@ -140,6 +143,7 @@ class Datum {
         "VisitCount": visitCount,
         "Id": id,
         "CustomProperties": customProperties?.toJson(),
+        "BookId": bookId,
       };
 }
 

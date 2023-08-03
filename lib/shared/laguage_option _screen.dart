@@ -72,10 +72,16 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return languageCommonContainer(
                                     onTap: () {
-                                      baseSettingController.chooseLanguage =
-                                          index;
+                                      setState(() {
+                                        baseSettingController.chooseLanguage =
+                                            baseSettingController
+                                                .getLanguageModel2!
+                                                .data![index]
+                                                .id!;
+                                      });
                                     },
-                                    index: index,
+                                    index: baseSettingController
+                                        .getLanguageModel2!.data![index].id!,
                                     languageText: baseSettingController
                                         .languageName[index],
                                     language: baseSettingController
@@ -101,9 +107,6 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                           baseSettingController
                               .setLanguage(
                                   ItemIds: baseSettingController.chooseLanguage,
-                                  // baseSettingController
-                                  //     .getLanguageModel2!.data![1].id!
-                                  //     .toInt(),
                                   CustomerGUID: userController
                                       .userModel!.customerId
                                       .toString())

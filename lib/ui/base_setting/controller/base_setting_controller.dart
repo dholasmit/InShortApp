@@ -167,7 +167,7 @@ class BaseSettingController extends GetxController {
   }
 
   ///  Language Option Screen
-  int _chooseLanguage = 0;
+  int _chooseLanguage = 1;
 
   int get chooseLanguage => _chooseLanguage;
 

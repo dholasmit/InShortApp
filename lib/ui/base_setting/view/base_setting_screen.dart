@@ -191,23 +191,25 @@ class _SettingScreenState extends State<SettingScreen> {
           Get.back();
         },
 
-        ///id 3 = Hindi
-        txt2: "${baseSettingController.getLanguageModel2!.data![2].name}",
+        ///id 2 = Guj
+
+        txt2: "${baseSettingController.getLanguageModel2!.data![1].name}",
         value2: baseSettingController.getHindi,
         groupValue2: baseSettingController.getGroup,
         onChanged2: (val) {
           baseSettingController.setGroup = baseSettingController.getHindi;
-          baseSettingController.getLanguageModel2!.data![2].id.toString();
+          baseSettingController.getLanguageModel2!.data![1].id.toString();
           Get.back();
         },
 
-        ///id 2 = Guj
-        txt3: "${baseSettingController.getLanguageModel2!.data![1].name}",
+        ///id 3 = Hindi
+
+        txt3: "${baseSettingController.getLanguageModel2!.data![2].name}",
         value3: baseSettingController.getGuj,
         groupValue3: baseSettingController.getGroup,
         onChanged3: (val) {
           baseSettingController.setGroup = baseSettingController.getGuj;
-          baseSettingController.getLanguageModel2!.data![1].id.toString();
+          baseSettingController.getLanguageModel2!.data![2].id.toString();
           Get.back();
         });
   }

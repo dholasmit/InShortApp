@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
-import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
+import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/floting_action_btn.dart';
 import '../controller/home_screen_controller.dart';
@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeScreenController homeScreenController = Get.find<HomeScreenController>();
+  int selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +33,25 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Image.asset(AppIcons.shareIcons),
           ),
-          ActionButton(
-            onPressed: () {
-              print("Book mark");
+          GetBuilder(
+            builder: (HomeScreenController homeScreenController) {
+              return ActionButton(
+                onPressed: () {
+                  setState(() {
+                    homeScreenController.getHomeRecentlyAddedProductsModel!
+                            .data![selectedIndex].bookId !=
+                        homeScreenController.getHomeRecentlyAddedProductsModel!
+                            .data![selectedIndex].bookId;
+                    homeScreenController.addBookMark(ProductId: selectedIndex);
+                  });
+                },
+                icon: homeScreenController.getHomeRecentlyAddedProductsModel!
+                            .data![selectedIndex].bookId ==
+                        false
+                    ? const Icon(Icons.bookmark_border)
+                    : const Icon(Icons.bookmark),
+              );
             },
-            icon: const Icon(Icons.bookmark_border),
           ),
           // ActionButton(
           //   onPressed: () {
@@ -64,6 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         .getHomeRecentlyAddedProductsModel!.data!.length,
                     autoplay: false,
                     scrollDirection: Axis.horizontal,
+                    onIndexChanged: (value) {
+                      selectedIndex = homeScreenController
+                          .getHomeRecentlyAddedProductsModel!.data![value].id!;
+                    },
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: const EdgeInsets.only(

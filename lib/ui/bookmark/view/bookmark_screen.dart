@@ -147,42 +147,43 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                                                 .items![index]
                                                 .picture!
                                                 .isBookMark;
-                                        bookMarkController
-                                                .bookMarkModel!
-                                                .data!
-                                                .items![index]
-                                                .picture!
-                                                .isBookMark
-
-                                            ///ADD BOOKMARK
-                                            ? bookMarkController.addBookMark(
-                                                CustomerGUID: bookMarkController
-                                                        .bookMarkModel
-                                                        ?.data
-                                                        ?.customerGuid ??
-                                                    "",
-                                                ProductId: bookMarkController
-                                                        .bookMarkModel
-                                                        ?.data
-                                                        ?.items?[index]
-                                                        .productId ??
-                                                    0,
-                                              )
-
-                                            ///REMOVE BOOKMARK
-                                            : bookMarkController.removeBookMark(
-                                                CustomerGUID: bookMarkController
-                                                        .bookMarkModel
-                                                        ?.data
-                                                        ?.customerGuid ??
-                                                    "",
-                                                ItemIds: bookMarkController
-                                                        .bookMarkModel
-                                                        ?.data
-                                                        ?.items?[index]
-                                                        .productId ??
-                                                    0,
-                                              );
+                                        // bookMarkController
+                                        //         .bookMarkModel!
+                                        //         .data!
+                                        //         .items![index]
+                                        //         .picture!
+                                        //         .isBookMark
+                                        //
+                                        //     ///ADD BOOKMARK
+                                        //     ? bookMarkController.addBookMark(
+                                        //         CustomerGUID: bookMarkController
+                                        //                 .bookMarkModel
+                                        //                 ?.data
+                                        //                 ?.customerGuid ??
+                                        //             "",
+                                        //         ProductId: bookMarkController
+                                        //                 .bookMarkModel
+                                        //                 ?.data
+                                        //                 ?.items?[index]
+                                        //                 .productId ??
+                                        //             0,
+                                        //       )
+                                        //
+                                        //     ///REMOVE BOOKMARK
+                                        //     :
+                                        bookMarkController.removeBookMark(
+                                          CustomerGUID: bookMarkController
+                                                  .bookMarkModel
+                                                  ?.data
+                                                  ?.customerGuid ??
+                                              "",
+                                          ItemIds: bookMarkController
+                                                  .bookMarkModel
+                                                  ?.data
+                                                  ?.items?[index]
+                                                  .productId ??
+                                              0,
+                                        );
                                         bookMarkController
                                             .bookMarkModel!.data!.items!
                                             .removeWhere((element) =>
