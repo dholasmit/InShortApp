@@ -40,7 +40,8 @@ class SignUpController extends GetxController {
     userController.userModel = currentUserModel!.data;
 
     /// userController.signUpData = signUpModel!.data;
-    LocalStorage.saveSignUpDetails();
+    //LocalStorage.saveSignUpDetails();
+    LocalStorage.saveUserDetails();
     // Get.toNamed(BaseScreen.routeName);
     Get.toNamed(LanguageOptionScreen.routeName);
   }

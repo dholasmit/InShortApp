@@ -113,7 +113,7 @@ dialog({
                         ),
                         value: value2,
                         groupValue: groupValue2,
-                        onChanged: (value) {},
+                        onChanged: onChanged2,
                       ),
                       RadioListTile(
                         title: Text(
@@ -145,25 +145,15 @@ dialog2({
   required BuildContext context,
   required String ic,
   required String title,
-  required String txt1,
-  required String value1,
-  required String groupValue1,
-  required void Function(String?) onChanged1,
-  required String txt2,
-  required String value2,
-  required String groupValue2,
-  required void Function(String?) onChanged2,
-  required String txt3,
-  required String value3,
-  required String groupValue3,
-  required void Function(String?) onChanged3,
-}) {
+  required String txt,
+  required void Function() onTap,
+  required int index,
+}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return GetBuilder(
-        id: "dialog",
         builder: (BaseSettingController baseSettingController) {
           return Dialog(
             insetPadding: const EdgeInsets.symmetric(horizontal: 40),
@@ -222,44 +212,71 @@ dialog2({
                           ),
                         ),
                       ),
-                      RadioListTile(
-                        title: Text(
-                          txt1,
-                          style: const TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      Container(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: baseSettingController
+                              .getLanguageModel2!.data!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
+                              child: GestureDetector(
+                                onTap: onTap,
+                                child: Container(
+                                  color: Colors.red,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 17,
+                                        width: 17,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: baseSettingController
+                                                        .chooseLanguage ==
+                                                    index
+                                                ? Colors.blue
+                                                : Colors.black,
+                                          ),
+                                          color: Colors.white,
+                                        ),
+                                        child: Center(
+                                          child: Container(
+                                            height: 9,
+                                            width: 9,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: baseSettingController
+                                                          .chooseLanguage ==
+                                                      index
+                                                  ? Colors.blue
+                                                  : Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        txt,
+                                        style: const TextStyle(
+                                          color: AppColors.blueColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                        value: value1,
-                        groupValue: groupValue1,
-                        onChanged: onChanged1,
-                      ),
-                      RadioListTile(
-                        title: Text(
-                          txt2,
-                          style: const TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        value: value2,
-                        groupValue: groupValue2,
-                        onChanged: onChanged2,
-                      ),
-                      RadioListTile(
-                        title: Text(
-                          txt3,
-                          style: const TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        value: value3,
-                        groupValue: groupValue3,
-                        onChanged: onChanged3,
                       ),
                       const SizedBox(height: 20)
                     ],

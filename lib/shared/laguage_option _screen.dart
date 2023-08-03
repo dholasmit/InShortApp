@@ -108,7 +108,7 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                               .setLanguage(
                                   ItemIds: baseSettingController.chooseLanguage,
                                   CustomerGUID: userController
-                                      .userModel!.customerId
+                                      .userModel!.customerGuid
                                       .toString())
                               .then(
                                   (value) => Get.toNamed(BaseScreen.routeName));

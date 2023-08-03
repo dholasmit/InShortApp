@@ -5,7 +5,7 @@ import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../models/login_screen_model/user_model.dart';
 import '../../../services/login_screen_repo/login_repo.dart';
-import '../../../shared/laguage_option _screen.dart';
+import '../../base_screen/view/base_screen.dart';
 
 class LoginController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
@@ -35,8 +35,8 @@ class LoginController extends GetxController {
       emailController.clear();
       passwordController.clear();
       checkValue = false;
-      // Get.toNamed(BaseScreen.routeName);
-      Get.toNamed(LanguageOptionScreen.routeName);
+      Get.toNamed(BaseScreen.routeName);
+      // Get.toNamed(LanguageOptionScreen.routeName);
     }
   }
 }

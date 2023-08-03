@@ -6,6 +6,7 @@ import 'package:inshorts_newj/ui/base_setting/view/profile_screen.dart';
 
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../login_screen/view/login_screen.dart';
 import '../controller/base_setting_controller.dart';
@@ -84,8 +85,8 @@ class _SettingScreenState extends State<SettingScreen> {
                         return settingCommonSell(
                           onTap: () {
                             baseSettingController.selectedIndex = index;
-
-                            // baseSettingController.languageListData();
+                            baseSettingController.chooseLanguage =
+                                LocalStorage.getLanguageType();
                             index == 0
                                 ? languageDialog()
                                 : index == 1
@@ -175,43 +176,192 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  languageDialog() {
-    return dialog(
-        context: context,
-        ic: AppIcons.languageIcons,
-        title: "Language",
+  // languageDialog2({required int index}) {
+  //   return dialog2(
+  //     context: context,
+  //     title: "Language",
+  //     index: baseSettingController.getLanguageModel2!.data![index].id!,
+  //     ic: AppIcons.textSizeIcons,
+  //     txt:
+  //         baseSettingController.getLanguageModel2!.data![index].name.toString(),
+  //     onTap: () {
+  //       setState(() {
+  //         baseSettingController.chooseLanguage =
+  //             baseSettingController.getLanguageModel2!.data![index].id!;
+  //       });
+  //     },
+  //   );
+  // }
 
-        ///id 1 = English
-        txt1: "${baseSettingController.getLanguageModel2!.data![0].name}",
-        value1: baseSettingController.getEng,
-        groupValue1: baseSettingController.getGroup,
-        onChanged1: (val) {
-          baseSettingController.setGroup = baseSettingController.getEng;
-          baseSettingController.getLanguageModel2!.data![0].id.toString();
-          Get.back();
-        },
+  languageDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return GetBuilder(
+          builder: (BaseSettingController baseSettingController) {
+            return Dialog(
+              insetPadding: const EdgeInsets.symmetric(horizontal: 40),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                  bottomLeft: Radius.circular(40),
+                ),
+              ), //this right herea
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                  bottomLeft: Radius.circular(40),
+                ),
+                child: FittedBox(
+                  child: SizedBox(
+                    width: Get.width,
+                    child: Column(
+                      children: [
+                        Container(
+                          color: AppColors.blueColor,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  AppIcons.textSizeIcons,
+                                  height: 40,
+                                ),
+                                const Text(
+                                  "Language",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    color: Colors.transparent,
+                                    child: Image.asset(AppIcons.removeIcons),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: baseSettingController
+                                .getLanguageModel2!.data!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 12),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    baseSettingController.chooseLanguage =
+                                        baseSettingController.getLanguageModel2!
+                                            .data![index].id!;
 
-        ///id 2 = Guj
-
-        txt2: "${baseSettingController.getLanguageModel2!.data![1].name}",
-        value2: baseSettingController.getHindi,
-        groupValue2: baseSettingController.getGroup,
-        onChanged2: (val) {
-          baseSettingController.setGroup = baseSettingController.getHindi;
-          baseSettingController.getLanguageModel2!.data![1].id.toString();
-          Get.back();
-        },
-
-        ///id 3 = Hindi
-
-        txt3: "${baseSettingController.getLanguageModel2!.data![2].name}",
-        value3: baseSettingController.getGuj,
-        groupValue3: baseSettingController.getGroup,
-        onChanged3: (val) {
-          baseSettingController.setGroup = baseSettingController.getGuj;
-          baseSettingController.getLanguageModel2!.data![2].id.toString();
-          Get.back();
-        });
+                                    LocalStorage.setLanguageType(
+                                        baseSettingController.chooseLanguage);
+                                    print(
+                                        "====================asdfhjkweryui${LocalStorage.setLanguageType(baseSettingController.chooseLanguage)}");
+                                    baseSettingController
+                                        .setLanguage(
+                                            ItemIds: baseSettingController
+                                                .chooseLanguage,
+                                            CustomerGUID: userController
+                                                .userModel!.customerGuid
+                                                .toString())
+                                        .then(
+                                          (value) => Get.back(),
+                                        );
+                                  },
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 17,
+                                          width: 17,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                              color: baseSettingController
+                                                          .chooseLanguage ==
+                                                      baseSettingController
+                                                          .getLanguageModel2!
+                                                          .data![index]
+                                                          .id!
+                                                  ? Colors.blue
+                                                  : Colors.black,
+                                            ),
+                                            color: Colors.white,
+                                          ),
+                                          child: Center(
+                                            child: Container(
+                                              height: 9,
+                                              width: 9,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: baseSettingController
+                                                            .chooseLanguage ==
+                                                        baseSettingController
+                                                            .getLanguageModel2!
+                                                            .data![index]
+                                                            .id!
+                                                    ? Colors.blue
+                                                    : Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 15),
+                                        Text(
+                                          baseSettingController
+                                              .getLanguageModel2!
+                                              .data![index]
+                                              .name!,
+                                          style: const TextStyle(
+                                            color: AppColors.blueColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   nightModeDialog() {
