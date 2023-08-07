@@ -17,12 +17,6 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
   BookMarkController bookMarkController = Get.find<BookMarkController>();
 
   @override
-  void initState() {
-    //  bookMarkController.bookMarkListData();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(

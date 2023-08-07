@@ -5,6 +5,7 @@ import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../custem_class/utils/globle.dart';
+import '../../bookmark/controller/book_mark_controller.dart';
 import '../controller/base_screen_controller.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   BaseScreenController baseScreenController = Get.find<BaseScreenController>();
+  BookMarkController bookMarkController = Get.find<BookMarkController>();
   DateTime? currentBackPressTime;
 
   Future<bool> onWillPop() {
@@ -72,6 +74,9 @@ class _BaseScreenState extends State<BaseScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Get.find<BaseScreenController>().selectedTab = key;
+                          Get.find<BaseScreenController>().selectedTab == 2
+                              ? bookMarkController.bookMarkListData()
+                              : const SizedBox();
                         },
                         child: Container(
                           color: Colors.white,
