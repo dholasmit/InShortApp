@@ -116,6 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               textCapitalization: TextCapitalization.none,
                               textInputAction: TextInputAction.done,
                               controller: loginController.passwordController,
+                              obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Enter Your Password';

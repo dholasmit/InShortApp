@@ -47,124 +47,8 @@ class BaseSettingController extends GetxController {
     update();
   }
 
-  ///
-  /// Language Dialog Box Data
-  ///
-
-  String _eng = "Eng";
-
-  String get getEng => _eng;
-
-  set setEng(String value) {
-    _eng = value;
-    update(["dialog"]);
-  }
-
-  String _guj = "Guj";
-
-  String get getGuj => _guj;
-
-  set setGuj(String value) {
-    _guj = value;
-    update(["dialog"]);
-  }
-
-  String _hindi = "Hindi";
-
-  String get getHindi => _hindi;
-
-  set setHindi(String value) {
-    _hindi = value;
-    update(["dialog"]);
-  }
-
-  String _group = "Eng";
-
-  String get getGroup => _group;
-
-  set setGroup(String value) {
-    _group = value;
-    update(["dialog"]);
-  }
-
-  ///
-  /// Night Mode Dialog Box Data
-  ///
-  String _light = "Light";
-
-  String get light => _light;
-
-  set light(String value) {
-    _light = value;
-    update();
-  }
-
-  String _dark = "Dark";
-
-  String get dark => _dark;
-
-  set dark(String value) {
-    _dark = value;
-    update();
-  }
-
-  String _system = "System";
-
-  String get system => _system;
-
-  set system(String value) {
-    _system = value;
-    update();
-  }
-
-  String _nightModeGroup = "Light";
-
-  String get nightModeGroup => _nightModeGroup;
-
-  set nightModeGroup(String value) {
-    _nightModeGroup = value;
-    update();
-  }
-
-  ///
-  /// Text Size Dialog Box Data
-  ///
-
-  String _defaultText = "Default";
-
-  String get defaultText => _defaultText;
-
-  set defaultText(String value) {
-    _defaultText = value;
-    update();
-  }
-
-  String _medium = "Medium";
-
-  String get medium => _medium;
-
-  set medium(String value) {
-    _medium = value;
-    update();
-  }
-
-  String _large = "Large";
-
-  String get large => _large;
-
-  set large(String value) {
-    _large = value;
-    update();
-  }
-
-  String _textSizeGroup = "Default";
-
-  String get textSizeGroup => _textSizeGroup;
-
-  set textSizeGroup(String value) {
-    _textSizeGroup = value;
-    update();
-  }
+  String termsCondition = "https://panchat.in/conditions-of-use";
+  String privacyPolicy = "https://panchat.in/conditions-of-use";
 
   ///  Language Option Screen
   int _chooseLanguage = 1;
@@ -175,6 +59,38 @@ class BaseSettingController extends GetxController {
     _chooseLanguage = value;
     update();
   }
+
+  /// Night Mode Dialog Box Data
+  int _chooseModeList = 0;
+
+  int get chooseModeList => _chooseModeList;
+
+  set chooseModeList(int value) {
+    _chooseModeList = value;
+    update();
+  }
+
+  List<String> modeList = [
+    "Light",
+    "Dark",
+    "System",
+  ];
+
+  /// Text Size Dialog Box Data
+  int _chooseFontSize = 0;
+
+  int get chooseFontSize => _chooseFontSize;
+
+  set chooseFontSize(int value) {
+    _chooseFontSize = value;
+    update();
+  }
+
+  List<String> fontSize = [
+    "Default",
+    "Medium",
+    "Large",
+  ];
 
   /// App share
   Future<void> share() async {

@@ -11,6 +11,7 @@ class HomeScreenApi {
   static Future homeRecentlyAddedProducts() async {
     try {
       int languageId = LocalStorage.getLanguageType();
+      //String data = "pageNumber=1";
       String url = "${APIRoutes.homeScreenRecentlyAddedProducts}$languageId";
       http.Response? response = await HttpService.getApi(
         url: url,

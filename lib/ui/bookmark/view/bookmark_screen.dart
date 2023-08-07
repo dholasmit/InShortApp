@@ -100,104 +100,119 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                 child: GetBuilder(
                   id: "bookMark",
                   builder: (BookMarkController bookMarkController) {
-                    return bookMarkController.bookmarkLoader
-                        ? const Center(child: CircularProgressIndicator())
-                        : bookMarkController.bookMarkModel!.data == null
-                            ? const Center(
-                                child: Text(
-                                "No Data Found",
-                                style: TextStyle(
-                                  color: AppColors.blueColor,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ))
-                            : ListView.builder(
-                                itemCount: bookMarkController
-                                        .bookMarkModel?.data?.items?.length ??
-                                    0,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return bookMarkCommon(
-                                    index: index,
-                                    img: bookMarkController.bookMarkModel?.data
-                                            ?.items?[index].picture?.imageUrl ??
-                                        "",
-                                    title: bookMarkController.bookMarkModel
-                                            ?.data?.items?[index].picture?.title
-                                            .toString() ??
-                                        "",
-                                    text: bookMarkController
-                                            .bookMarkModel
-                                            ?.data
-                                            ?.items?[index]
-                                            .picture
-                                            ?.alternateText ??
-                                        "",
-                                    onTap: () {
-                                      setState(() {
-                                        bookMarkController
-                                                .bookMarkModel!
-                                                .data!
-                                                .items![index]
-                                                .picture!
-                                                .isBookMark ==
-                                            !bookMarkController
-                                                .bookMarkModel!
-                                                .data!
-                                                .items![index]
-                                                .picture!
-                                                .isBookMark;
-                                        // bookMarkController
-                                        //         .bookMarkModel!
-                                        //         .data!
-                                        //         .items![index]
-                                        //         .picture!
-                                        //         .isBookMark
-                                        //
-                                        //     ///ADD BOOKMARK
-                                        //     ? bookMarkController.addBookMark(
-                                        //         CustomerGUID: bookMarkController
-                                        //                 .bookMarkModel
-                                        //                 ?.data
-                                        //                 ?.customerGuid ??
-                                        //             "",
-                                        //         ProductId: bookMarkController
-                                        //                 .bookMarkModel
-                                        //                 ?.data
-                                        //                 ?.items?[index]
-                                        //                 .productId ??
-                                        //             0,
-                                        //       )
-                                        //
-                                        //     ///REMOVE BOOKMARK
-                                        //     :
-                                        bookMarkController.removeBookMark(
-                                          CustomerGUID: bookMarkController
-                                                  .bookMarkModel
-                                                  ?.data
-                                                  ?.customerGuid ??
-                                              "",
-                                          ItemIds: bookMarkController
-                                                  .bookMarkModel
-                                                  ?.data
-                                                  ?.items?[index]
-                                                  .productId ??
-                                              0,
-                                        );
-                                        bookMarkController
-                                            .bookMarkModel!.data!.items!
-                                            .removeWhere((element) =>
-                                                element.id ==
-                                                bookMarkController
-                                                    .bookMarkModel!
-                                                    .data!
-                                                    .items![index]
-                                                    .id);
-                                        bookMarkController.update();
-                                      });
-                                    },
-                                  );
-                                });
+                    return RefreshIndicator(
+                      onRefresh: () async {
+                        await Future.delayed(const Duration(milliseconds: 100));
+                        bookMarkController.bookMarkListData();
+                      },
+                      child: bookMarkController.bookmarkLoader
+                          ? const Center(child: CircularProgressIndicator())
+                          : bookMarkController.bookMarkModel!.data == null
+                              ? const Center(
+                                  child: Text(
+                                  "No Data Found",
+                                  style: TextStyle(
+                                    color: AppColors.blueColor,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ))
+                              : ListView.builder(
+                                  itemCount: bookMarkController
+                                          .bookMarkModel?.data?.items?.length ??
+                                      0,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return bookMarkCommon(
+                                      index: index,
+                                      img: bookMarkController
+                                              .bookMarkModel
+                                              ?.data
+                                              ?.items?[index]
+                                              .picture
+                                              ?.imageUrl ??
+                                          "",
+                                      title: bookMarkController
+                                              .bookMarkModel
+                                              ?.data
+                                              ?.items?[index]
+                                              .picture
+                                              ?.title
+                                              .toString() ??
+                                          "",
+                                      text: bookMarkController
+                                              .bookMarkModel
+                                              ?.data
+                                              ?.items?[index]
+                                              .picture
+                                              ?.alternateText ??
+                                          "",
+                                      onTap: () {
+                                        setState(() {
+                                          bookMarkController
+                                                  .bookMarkModel!
+                                                  .data!
+                                                  .items![index]
+                                                  .picture!
+                                                  .isBookMark ==
+                                              !bookMarkController
+                                                  .bookMarkModel!
+                                                  .data!
+                                                  .items![index]
+                                                  .picture!
+                                                  .isBookMark;
+                                          // bookMarkController
+                                          //         .bookMarkModel!
+                                          //         .data!
+                                          //         .items![index]
+                                          //         .picture!
+                                          //         .isBookMark
+                                          //
+                                          //     ///ADD BOOKMARK
+                                          //     ? bookMarkController.addBookMark(
+                                          //         CustomerGUID: bookMarkController
+                                          //                 .bookMarkModel
+                                          //                 ?.data
+                                          //                 ?.customerGuid ??
+                                          //             "",
+                                          //         ProductId: bookMarkController
+                                          //                 .bookMarkModel
+                                          //                 ?.data
+                                          //                 ?.items?[index]
+                                          //                 .productId ??
+                                          //             0,
+                                          //       )
+                                          //
+                                          //     ///REMOVE BOOKMARK
+                                          //     :
+                                          bookMarkController.removeBookMark(
+                                            CustomerGUID: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.customerGuid ??
+                                                "",
+                                            ItemIds: bookMarkController
+                                                    .bookMarkModel
+                                                    ?.data
+                                                    ?.items?[index]
+                                                    .productId ??
+                                                0,
+                                          );
+                                          bookMarkController
+                                              .bookMarkModel!.data!.items!
+                                              .removeWhere((element) =>
+                                                  element.id ==
+                                                  bookMarkController
+                                                      .bookMarkModel!
+                                                      .data!
+                                                      .items![index]
+                                                      .id);
+                                          bookMarkController.update();
+                                        });
+                                      },
+                                    );
+                                  }),
+                    );
                   },
                 ),
               ),

@@ -34,6 +34,7 @@ class RequestFormTextfield extends StatefulWidget {
   final bool isSuffixIcon;
   final bool isPreffixIcon;
   final bool autoFocus;
+  final bool? obscureText;
   FocusNode? focusNode;
   ValueSetter? onChanged;
   GestureTapCallback? onTap;
@@ -61,6 +62,7 @@ class RequestFormTextfield extends StatefulWidget {
     this.suffixText = "",
     this.isSuffixIcon = false,
     this.isPreffixIcon = false,
+    this.obscureText = false,
     required this.controller,
     this.autoFocus = false,
     this.focusNode,
@@ -100,12 +102,14 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
           widget.onFieldSubmitted!(value);
         }
       },
+
       keyboardType: getTextInputType(),
       maxLines: getMaxLines,
       readOnly: false,
       textInputAction: widget.textInputAction,
       controller: widget.controller,
-      obscureText: false,
+      obscureText: widget.obscureText!,
+      obscuringCharacter: "*",
       autofocus: widget.autoFocus,
       validator: widget.validator,
       focusNode: widget.focusNode,
@@ -125,6 +129,7 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
 
         labelText: getLabel(),
         hintText: getHintText(),
+
         suffixText: widget.suffixText,
         filled: true,
         fillColor: const Color(0xffEDEDED),

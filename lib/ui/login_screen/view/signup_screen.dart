@@ -118,6 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 textCapitalization: TextCapitalization.none,
                                 textInputAction: TextInputAction.next,
                                 controller: signUpController.passwordController,
+                                obscureText: true,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Enter Your Password';
@@ -133,6 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 textInputAction: TextInputAction.done,
                                 controller:
                                     signUpController.confirmPasswordController,
+                                obscureText: true,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Enter Your Password';

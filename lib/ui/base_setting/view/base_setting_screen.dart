@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 import 'package:inshorts_newj/shared/dilog_box.dart';
 import 'package:inshorts_newj/ui/base_setting/view/profile_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
-import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../login_screen/view/login_screen.dart';
 import '../controller/base_setting_controller.dart';
+import 'common/dialog.dart';
 import 'notification_screen.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -88,13 +89,13 @@ class _SettingScreenState extends State<SettingScreen> {
                             baseSettingController.chooseLanguage =
                                 LocalStorage.getLanguageType();
                             index == 0
-                                ? languageDialog()
+                                ? languageDialog(context)
                                 : index == 1
                                     ? Get.toNamed(NotificationScreen.routeName)
                                     : index == 2
-                                        ? nightModeDialog()
+                                        ? nightModeDialog(context)
                                         : index == 3
-                                            ? textSizeDialog()
+                                            ? textSizeDialog(context)
                                             : index == 4
                                                 ? baseSettingController.share()
                                                 : index == 5
@@ -102,9 +103,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                                     : index == 6
                                                         ? const SizedBox()
                                                         : index == 7
-                                                            ? const SizedBox()
+
+                                                            /// open in google chrome web
+                                                            ? termsCondition()
                                                             : index == 8
-                                                                ? const SizedBox()
+                                                                ? privacyPolicy()
                                                                 : index == 9
                                                                     ? logOut()
                                                                     : const SizedBox();
@@ -176,254 +179,12 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  // languageDialog2({required int index}) {
-  //   return dialog2(
-  //     context: context,
-  //     title: "Language",
-  //     index: baseSettingController.getLanguageModel2!.data![index].id!,
-  //     ic: AppIcons.textSizeIcons,
-  //     txt:
-  //         baseSettingController.getLanguageModel2!.data![index].name.toString(),
-  //     onTap: () {
-  //       setState(() {
-  //         baseSettingController.chooseLanguage =
-  //             baseSettingController.getLanguageModel2!.data![index].id!;
-  //       });
-  //     },
-  //   );
-  // }
-
-  languageDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return GetBuilder(
-          builder: (BaseSettingController baseSettingController) {
-            return Dialog(
-              insetPadding: const EdgeInsets.symmetric(horizontal: 40),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                  bottomLeft: Radius.circular(40),
-                ),
-              ), //this right herea
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                  bottomLeft: Radius.circular(40),
-                ),
-                child: FittedBox(
-                  child: SizedBox(
-                    width: Get.width,
-                    child: Column(
-                      children: [
-                        Container(
-                          color: AppColors.blueColor,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(
-                                  AppIcons.textSizeIcons,
-                                  height: 40,
-                                ),
-                                const Text(
-                                  "Language",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    color: Colors.transparent,
-                                    child: Image.asset(AppIcons.removeIcons),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 150,
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: baseSettingController
-                                .getLanguageModel2!.data!.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 12),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    baseSettingController.chooseLanguage =
-                                        baseSettingController.getLanguageModel2!
-                                            .data![index].id!;
-
-                                    LocalStorage.setLanguageType(
-                                        baseSettingController.chooseLanguage);
-                                    print(
-                                        "====================asdfhjkweryui${LocalStorage.setLanguageType(baseSettingController.chooseLanguage)}");
-                                    baseSettingController
-                                        .setLanguage(
-                                            ItemIds: baseSettingController
-                                                .chooseLanguage,
-                                            CustomerGUID: userController
-                                                .userModel!.customerGuid
-                                                .toString())
-                                        .then(
-                                          (value) => Get.back(),
-                                        );
-                                  },
-                                  child: Container(
-                                    color: Colors.transparent,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 17,
-                                          width: 17,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            border: Border.all(
-                                              color: baseSettingController
-                                                          .chooseLanguage ==
-                                                      baseSettingController
-                                                          .getLanguageModel2!
-                                                          .data![index]
-                                                          .id!
-                                                  ? Colors.blue
-                                                  : Colors.black,
-                                            ),
-                                            color: Colors.white,
-                                          ),
-                                          child: Center(
-                                            child: Container(
-                                              height: 9,
-                                              width: 9,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: baseSettingController
-                                                            .chooseLanguage ==
-                                                        baseSettingController
-                                                            .getLanguageModel2!
-                                                            .data![index]
-                                                            .id!
-                                                    ? Colors.blue
-                                                    : Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Text(
-                                          baseSettingController
-                                              .getLanguageModel2!
-                                              .data![index]
-                                              .name!,
-                                          style: const TextStyle(
-                                            color: AppColors.blueColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 20)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
+  termsCondition() {
+    return launch(baseSettingController.termsCondition);
   }
 
-  nightModeDialog() {
-    return dialog(
-      context: context,
-      ic: AppIcons.nightMOdeIcons,
-      title: "Night Mode",
-      txt1: "Light",
-      value1: baseSettingController.light,
-      groupValue1: baseSettingController.nightModeGroup,
-      onChanged1: (val) {
-        baseSettingController.nightModeGroup = baseSettingController.light;
-        Get.back();
-
-        /// Get.changeTheme(ThemeData.light());
-      },
-      txt2: "Dark",
-      value2: baseSettingController.dark,
-      groupValue2: baseSettingController.nightModeGroup,
-      onChanged2: (val) {
-        baseSettingController.nightModeGroup = baseSettingController.dark;
-        Get.back();
-
-        /// Get.changeTheme(ThemeData.dark());
-      },
-      txt3: "System",
-      value3: baseSettingController.system,
-      groupValue3: baseSettingController.nightModeGroup,
-      onChanged3: (val) {
-        baseSettingController.nightModeGroup = baseSettingController.system;
-        Get.back();
-      },
-    );
-  }
-
-  textSizeDialog() {
-    return dialog(
-      context: context,
-      ic: AppIcons.textSizeIcons,
-      title: "Text Size",
-      txt1: "Default",
-      value1: baseSettingController.defaultText,
-      groupValue1: baseSettingController.textSizeGroup,
-      onChanged1: (val) {
-        baseSettingController.textSizeGroup = baseSettingController.defaultText;
-        Get.back();
-      },
-      txt2: "Medium",
-      value2: baseSettingController.medium,
-      groupValue2: baseSettingController.textSizeGroup,
-      onChanged2: (val) {
-        baseSettingController.textSizeGroup = baseSettingController.medium;
-        Get.back();
-      },
-      txt3: "Large",
-      value3: baseSettingController.large,
-      groupValue3: baseSettingController.textSizeGroup,
-      onChanged3: (val) {
-        baseSettingController.textSizeGroup = baseSettingController.large;
-        Get.back();
-      },
-    );
+  privacyPolicy() {
+    return launch(baseSettingController.privacyPolicy);
   }
 
   logOut() {
