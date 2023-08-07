@@ -165,8 +165,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                     popularTopicController
                                                         .getAllCategoriesModel![
                                                             index]
-                                                        .pictureModel!
-                                                        .alternateText
+                                                        .name
                                                         .toString(),
                                                     maxLines: 2,
                                                     overflow:

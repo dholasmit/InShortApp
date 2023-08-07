@@ -24,7 +24,8 @@ int initialTab = 0;
 final List<NavigationTabContainModel> navigationTabList = [
   NavigationTabContainModel(icon: AppIcons.homeIcons, name: "Home"),
   NavigationTabContainModel(icon: AppIcons.exploreIcons, name: "Explore"),
-  NavigationTabContainModel(icon: AppIcons.bookmarkIcons, name: "Bookmark"),
+  NavigationTabContainModel(
+      icon: AppIcons.baseScreenBookmarkIcons, name: "Bookmark"),
   NavigationTabContainModel(icon: AppIcons.settingIcons, name: "Settings"),
 ];
 List<Widget> navigationScreensWithHome = const [

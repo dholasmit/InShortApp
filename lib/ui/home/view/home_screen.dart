@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_icons.dart';
@@ -24,9 +25,24 @@ class HomeScreen extends StatelessWidget {
           return controller.loader
               ? const Center(child: SizedBox())
               : ExpandableFab(
-                  distance: 60.0,
+                  distance: 70.0,
                   initialOpen: controller.flotClose,
                   children: [
+                    ActionButton(
+                      onPressed: () {
+                        print("liked");
+                        print(
+                            "PRODUCT URL ============>${controller.getHomeRecentlyAddedProductsModel!.data![controller.selectedIndex].prouductUrl!}");
+                        launch(controller.getHomeRecentlyAddedProductsModel!
+                            .data![controller.selectedIndex].prouductUrl!
+                            .toString());
+                      },
+                      icon: Image.asset(
+                        AppIcons.browserIcons,
+                        color: AppColors.blueColor,
+                        height: 25,
+                      ),
+                    ),
                     ActionButton(
                       onPressed: () {
                         print("share");
@@ -43,12 +59,6 @@ class HomeScreen extends StatelessWidget {
                           ? const Icon(Icons.bookmark_border)
                           : const Icon(Icons.bookmark),
                     ),
-                    // ActionButton(
-                    //   onPressed: () {
-                    //     print("liked");
-                    //   },
-                    //   icon: Image.asset(AppIcons.likeIcons),
-                    // ),
                   ],
                 );
         },

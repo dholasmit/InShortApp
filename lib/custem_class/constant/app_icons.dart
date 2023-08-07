@@ -6,7 +6,7 @@ class AppIcons {
       "asseat/images/base_screen_images/profile_icon.png";
   static const String exploreIcons =
       "asseat/images/base_screen_images/explore_icon.png";
-  static const String bookmarkIcons =
+  static const String baseScreenBookmarkIcons =
       "asseat/images/base_screen_images/bookmark_icon.png";
   static const String settingIcons =
       "asseat/images/base_screen_images/setting_icon.png";
@@ -54,4 +54,8 @@ class AppIcons {
       "asseat/images/home_screen_images/bookmark_icon.png";
   static const String shareIcons =
       "asseat/images/home_screen_images/share_icon.png";
+  static const String unBookMarkIcons =
+      "asseat/images/home_screen_images/un_bookmark.png";
+  static const String browserIcons =
+      "asseat/images/home_screen_images/browser_icon.png";
 }
