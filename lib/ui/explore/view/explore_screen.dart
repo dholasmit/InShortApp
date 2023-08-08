@@ -242,7 +242,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                               exploreController.selectedIndex =
                                                   index;
                                               print(
-                                                  "ID===================>   ${exploreController.getExploreTopicListModel!.data![0].id.toString()}");
+                                                exploreController
+                                                    .getExploreTopicListModel!
+                                                    .data![index]
+                                                    .id
+                                                    .toString(),
+                                              );
+                                              exploreController
+                                                  .getProductsByCategoryList(
+                                                      id: exploreController
+                                                          .getExploreTopicListModel!
+                                                          .data![index]
+                                                          .id!);
                                             });
                                           },
                                           child: Container(
@@ -294,37 +305,50 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     ),
                     const SizedBox(height: 15),
                     GetBuilder(
-                      id: "exploreListData",
+                      id: "GetProductsByCategory",
                       builder: (ExploreController exploreController) {
-                        return exploreController.exploreLoader
-                            ? const Center(child: CircularProgressIndicator())
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: exploreController
-                                    .getHomePageProductsModel!.data!.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return exploreList(
-                                    img: exploreController
-                                        .getHomePageProductsModel!
-                                        .data![index]
-                                        .pictureModels![0]
-                                        .imageUrl
-                                        .toString(),
-                                    title: exploreController
-                                        .getHomePageProductsModel!
-                                        .data![index]
-                                        .name
-                                        .toString(),
-                                    text: exploreController
-                                        .getHomePageProductsModel!
-                                        .data![index]
-                                        .shortDescription
-                                        .toString(),
-                                    onTap: () {},
-                                  );
-                                },
-                              );
+                        return
+                            // exploreController.exploreLoader
+                            //   ? Column(
+                            //       children: [
+                            //         const Center(
+                            //           child: Text(
+                            //             "No Select Category",
+                            //             style: TextStyle(
+                            //               color: AppColors.blueColor,
+                            //               fontSize: 25,
+                            //               fontWeight: FontWeight.w500,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     )
+                            //   :
+                            ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: exploreController
+                                  .getProductsByCategoryModel?.length ??
+                              0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return exploreList(
+                              img: exploreController
+                                  .getProductsByCategoryModel![index]
+                                  .pictureModels![0]
+                                  .imageUrl
+                                  .toString(),
+                              title: exploreController
+                                  .getProductsByCategoryModel![index]
+                                  .productName
+                                  .toString(),
+                              text: exploreController
+                                  .getProductsByCategoryModel![index]
+                                  .shortDescription
+                                  .toString(),
+                              onTap: () {},
+                            );
+                          },
+                        );
                       },
                     ),
                   ],

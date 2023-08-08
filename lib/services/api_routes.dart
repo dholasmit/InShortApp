@@ -37,4 +37,6 @@ class APIRoutes {
   static String homeScreenRecentlyAddedProducts =
       "${baseUrl}RecentlyAddedProducts?languageId=";
   static const String setLanguage = "${baseUrl}SetLanguage";
+  static String getProductsByCategory =
+      "${baseUrl}GetProductsByCategoryId?id=29&languageId=${LocalStorage.getLanguageType}";
 }

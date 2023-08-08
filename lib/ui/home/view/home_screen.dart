@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
-import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
-import '../../../shared/floting_action_btn.dart';
+import '../../../shared/home_screen_floating_btn.dart';
 import '../controller/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,53 +14,53 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  floatingActionButton: FoldableOptions(),
+      floatingActionButton: FoldableOptions(),
 
-      floatingActionButton: GetBuilder<HomeScreenController>(
-        id: "flot",
-        builder: (controller) {
-          print("flot ==> ${controller.flotClose}");
-          return controller.loader
-              ? const Center(child: SizedBox())
-              : ExpandableFab(
-                  distance: 70.0,
-                  initialOpen: controller.flotClose,
-                  children: [
-                    ActionButton(
-                      onPressed: () {
-                        print("liked");
-                        print(
-                            "PRODUCT URL ============>${controller.getHomeRecentlyAddedProductsModel!.data![controller.selectedIndex].prouductUrl!}");
-                        launch(controller.getHomeRecentlyAddedProductsModel!
-                            .data![controller.selectedIndex].prouductUrl!
-                            .toString());
-                      },
-                      icon: Image.asset(
-                        AppIcons.browserIcons,
-                        color: AppColors.blueColor,
-                        height: 25,
-                      ),
-                    ),
-                    ActionButton(
-                      onPressed: () {
-                        print("share");
-                        // controller.share();
-                        Get.back();
-                      },
-                      icon: Image.asset(AppIcons.shareIcons),
-                    ),
-                    ActionButton(
-                      onPressed: controller.onTapBookMark,
-                      icon: controller.getHomeRecentlyAddedProductsModel!
-                                  .data![controller.selectedIndex].bookId! ==
-                              false
-                          ? const Icon(Icons.bookmark_border)
-                          : const Icon(Icons.bookmark),
-                    ),
-                  ],
-                );
-        },
-      ),
+      // floatingActionButton: GetBuilder<HomeScreenController>(
+      //   id: "flot",
+      //   builder: (controller) {
+      //     print("flot ==> ${controller.flotClose}");
+      //     return controller.loader
+      //         ? const Center(child: SizedBox())
+      //         : ExpandableFab(
+      //             distance: 70.0,
+      //             initialOpen: controller.flotClose,
+      //             children: [
+      //               ActionButton(
+      //                 onPressed: () {
+      //                   print("liked");
+      //                   print(
+      //                       "PRODUCT URL ============>${controller.getHomeRecentlyAddedProductsModel!.data![controller.selectedIndex].prouductUrl!}");
+      //                   launch(controller.getHomeRecentlyAddedProductsModel!
+      //                       .data![controller.selectedIndex].prouductUrl!
+      //                       .toString());
+      //                 },
+      //                 icon: Image.asset(
+      //                   AppIcons.browserIcons,
+      //                   color: AppColors.blueColor,
+      //                   height: 25,
+      //                 ),
+      //               ),
+      //               ActionButton(
+      //                 onPressed: () {
+      //                   print("share");
+      //                   // controller.share();
+      //                   Get.back();
+      //                 },
+      //                 icon: Image.asset(AppIcons.shareIcons),
+      //               ),
+      //               ActionButton(
+      //                 onPressed: controller.onTapBookMark,
+      //                 icon: controller.getHomeRecentlyAddedProductsModel!
+      //                             .data![controller.selectedIndex].bookId! ==
+      //                         false
+      //                     ? const Icon(Icons.bookmark_border)
+      //                     : const Icon(Icons.bookmark),
+      //               ),
+      //             ],
+      //           );
+      //   },
+      // ),
       body: Container(
         height: double.infinity,
         width: double.infinity,

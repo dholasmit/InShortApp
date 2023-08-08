@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../models/explore/explore_list_model.dart';
 import '../../../models/explore/explore_topic_model.dart';
+import '../../../models/explore/getprodectbycategory_model.dart';
 import '../../../services/Explore_screen_repo/explore_list_repo.dart';
 
 class ExploreController extends GetxController {
@@ -18,21 +18,23 @@ class ExploreController extends GetxController {
   ///
   /// category List
   ///
-  HomePageProductsModel? _homePageProductsModel;
-
-  HomePageProductsModel? get getHomePageProductsModel => _homePageProductsModel;
-
-  set setHomePageProductsModel(HomePageProductsModel? value) {
-    _homePageProductsModel = value;
-    update();
-  }
-
-  Future<void> exploreListData() async {
-    exploreLoader = true;
-    setHomePageProductsModel = await ExploreApi.getExploreList();
-    exploreLoader = false;
-    update(["exploreListData"]);
-  }
+  ///
+  ///
+  // HomePageProductsModel? _homePageProductsModel;
+  //
+  // HomePageProductsModel? get getHomePageProductsModel => _homePageProductsModel;
+  //
+  // set setHomePageProductsModel(HomePageProductsModel? value) {
+  //   _homePageProductsModel = value;
+  //   update();
+  // }
+  //
+  // Future<void> exploreListData() async {
+  //   exploreLoader = true;
+  //   setHomePageProductsModel = await ExploreApi.getExploreList();
+  //   exploreLoader = false;
+  //   update(["exploreListData"]);
+  // }
 
   ///
   /// category
@@ -51,6 +53,25 @@ class ExploreController extends GetxController {
     setExploreTopicListModel = await ExploreApi.getExploreTopic();
     exploreLoader = false;
     // update(["exploreData"]);
+  }
+
+  ///
+  List<GetProductsByCategoryModel>? _getProductsByCategoryModel;
+
+  List<GetProductsByCategoryModel>? get getProductsByCategoryModel =>
+      _getProductsByCategoryModel;
+
+  set setProductsByCategoryModel(List<GetProductsByCategoryModel>? value) {
+    _getProductsByCategoryModel = value;
+    update();
+  }
+
+  Future<void> getProductsByCategoryList({required int id}) async {
+    exploreLoader = true;
+    setProductsByCategoryModel =
+        await ExploreApi.getProductsByCategoryData(id: id);
+    exploreLoader = false;
+    update(["GetProductsByCategory"]);
   }
 
   ///
@@ -78,7 +99,8 @@ class ExploreController extends GetxController {
 
   @override
   void onInit() {
-    exploreListData();
+    //  exploreListData();
+    ///getProductsByCategoryList();
     exploreTopicListData();
 
     /// recentlyAddedProductsData();

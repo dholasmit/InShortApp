@@ -74,7 +74,7 @@ class _PopularScreenState extends State<PopularScreen> {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
-                              childAspectRatio: 0.8 / 1.5,
+                              childAspectRatio: 0.9 / 1.5,
                             ),
                             itemCount: popularTopicController
                                 .getAllCategoriesModel!.length,
@@ -112,8 +112,7 @@ class _PopularScreenState extends State<PopularScreen> {
                                         child: Text(
                                           popularTopicController
                                               .getAllCategoriesModel![index]
-                                              .pictureModel!
-                                              .alternateText
+                                              .name
                                               .toString(),
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
