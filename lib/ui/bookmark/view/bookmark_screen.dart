@@ -243,7 +243,7 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                   image: DecorationImage(
                     image: NetworkImage(img),
                     // image: AssetImage(AppImages.splashScreenImage),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),

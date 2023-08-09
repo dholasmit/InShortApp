@@ -221,84 +221,79 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         color: Colors.transparent,
                         child: GetBuilder<ExploreController>(
                           builder: (exploreController) {
-                            return exploreController.exploreLoader
-                                ? const Center(
-                                    child: CircularProgressIndicator())
-                                : ListView.builder(
-                                    itemCount: exploreController
-                                            .getExploreTopicListModel
-                                            ?.data
-                                            ?.length ??
-                                        0,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              exploreController.selectedIndex =
-                                                  index;
-                                              print(
-                                                exploreController
+                            return
+                                // exploreController.exploreLoader
+                                //   ? const Center(
+                                //       child: CircularProgressIndicator())
+                                //   :
+                                ListView.builder(
+                              itemCount: exploreController
+                                      .getExploreTopicListModel?.data?.length ??
+                                  0,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        exploreController.selectedIndex = index;
+                                        print(
+                                          exploreController
+                                              .getExploreTopicListModel!
+                                              .data![index]
+                                              .id
+                                              .toString(),
+                                        );
+                                        exploreController
+                                            .getProductsByCategoryList(
+                                                id: exploreController
                                                     .getExploreTopicListModel!
                                                     .data![index]
-                                                    .id
-                                                    .toString(),
-                                              );
-                                              exploreController
-                                                  .getProductsByCategoryList(
-                                                      id: exploreController
-                                                          .getExploreTopicListModel!
-                                                          .data![index]
-                                                          .id!);
-                                            });
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              border: Border.all(
-                                                color: index ==
-                                                        exploreController
-                                                            .selectedIndex
-                                                    ? AppColors.blueColor
-                                                    : Colors.transparent,
-                                              ),
-                                              color: index ==
-                                                      exploreController
-                                                          .selectedIndex
-                                                  ? Colors.white
-                                                  : AppColors
-                                                      .exploreTopicContainerColor,
-                                            ),
-                                            child: Center(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 20,
-                                                ),
-                                                child: Text(
+                                                    .id!);
+                                      });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                          color: index ==
                                                   exploreController
-                                                      .getExploreTopicListModel!
-                                                      .data![index]
-                                                      .name
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w700,
-                                                    color: AppColors.blueColor,
-                                                  ),
-                                                ),
-                                              ),
+                                                      .selectedIndex
+                                              ? AppColors.blueColor
+                                              : Colors.transparent,
+                                        ),
+                                        color: index ==
+                                                exploreController.selectedIndex
+                                            ? Colors.white
+                                            : AppColors
+                                                .exploreTopicContainerColor,
+                                      ),
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                          ),
+                                          child: Text(
+                                            exploreController
+                                                .getExploreTopicListModel!
+                                                .data![index]
+                                                .name
+                                                .toString(),
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                              color: AppColors.blueColor,
                                             ),
                                           ),
                                         ),
-                                      );
-                                    },
-                                  );
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                           },
                         ),
                       ),
@@ -307,48 +302,33 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     GetBuilder(
                       id: "GetProductsByCategory",
                       builder: (ExploreController exploreController) {
-                        return
-                            // exploreController.exploreLoader
-                            //   ? Column(
-                            //       children: [
-                            //         const Center(
-                            //           child: Text(
-                            //             "No Select Category",
-                            //             style: TextStyle(
-                            //               color: AppColors.blueColor,
-                            //               fontSize: 25,
-                            //               fontWeight: FontWeight.w500,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ],
-                            //     )
-                            //   :
-                            ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: exploreController
-                                  .getProductsByCategoryModel?.length ??
-                              0,
-                          itemBuilder: (BuildContext context, int index) {
-                            return exploreList(
-                              img: exploreController
-                                  .getProductsByCategoryModel![index]
-                                  .pictureModels![0]
-                                  .imageUrl
-                                  .toString(),
-                              title: exploreController
-                                  .getProductsByCategoryModel![index]
-                                  .productName
-                                  .toString(),
-                              text: exploreController
-                                  .getProductsByCategoryModel![index]
-                                  .shortDescription
-                                  .toString(),
-                              onTap: () {},
-                            );
-                          },
-                        );
+                        return exploreController.exploreLoader
+                            ? const Center(child: CircularProgressIndicator())
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: exploreController
+                                        .getProductsByCategoryModel?.length ??
+                                    0,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return exploreList(
+                                    img: exploreController
+                                        .getProductsByCategoryModel![index]
+                                        .pictureModels![0]
+                                        .imageUrl
+                                        .toString(),
+                                    title: exploreController
+                                        .getProductsByCategoryModel![index]
+                                        .productName
+                                        .toString(),
+                                    text: exploreController
+                                        .getProductsByCategoryModel![index]
+                                        .shortDescription
+                                        .toString(),
+                                    onTap: () {},
+                                  );
+                                },
+                              );
                       },
                     ),
                   ],

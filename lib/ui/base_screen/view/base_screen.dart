@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
+import 'package:inshorts_newj/ui/explore/controller/explore_controller.dart';
 
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
@@ -20,6 +21,7 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   BaseScreenController baseScreenController = Get.find<BaseScreenController>();
   BookMarkController bookMarkController = Get.find<BookMarkController>();
+  ExploreController exploreController = Get.find<ExploreController>();
   DateTime? currentBackPressTime;
 
   Future<bool> onWillPop() {
@@ -74,9 +76,17 @@ class _BaseScreenState extends State<BaseScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Get.find<BaseScreenController>().selectedTab = key;
-                          Get.find<BaseScreenController>().selectedTab == 2
-                              ? bookMarkController.bookMarkListData()
-                              : const SizedBox();
+                          if (Get.find<BaseScreenController>().selectedTab ==
+                              1) {
+                            exploreController.selectedIndex = 0;
+                            exploreController.getProductsByCategoryList(
+                                id: exploreController
+                                    .getExploreTopicListModel!.data![0].id!);
+                          } else if (Get.find<BaseScreenController>()
+                                  .selectedTab ==
+                              2) {
+                            bookMarkController.bookMarkListData();
+                          }
                         },
                         child: Container(
                           color: Colors.white,

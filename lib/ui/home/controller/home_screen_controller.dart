@@ -23,13 +23,16 @@ class HomeScreenController extends GetxController {
   bool loader = false;
   bool flotClose = false;
   int selectedIndex = 0;
+  int page = 1;
 
   Future<void> homeRecentlyAddedProductsData() async {
     loader = true;
     update(["flot", "product"]);
     setHomeRecentlyAddedProductsModel =
-        await HomeScreenApi.homeRecentlyAddedProducts();
+        await HomeScreenApi.homeRecentlyAddedProducts(page: page);
     loader = false;
+    pageEnd = false;
+
     update(["flot", "product"]);
   }
 
@@ -48,7 +51,23 @@ class HomeScreenController extends GetxController {
     }
   }
 
+  bool pageFirst = false;
+  bool pageEnd = false;
+
   void inChangeIndex(int index) {
+    if (pageEnd) {
+      page++;
+      homeRecentlyAddedProductsData();
+      return;
+    }
+    if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+      pageEnd = true;
+    } else if (index == 0) {
+      pageFirst = true;
+    } else {
+      pageFirst = false;
+      pageEnd = false;
+    }
     selectedIndex = index;
     flotClose = false;
     print("Index==> $selectedIndex");

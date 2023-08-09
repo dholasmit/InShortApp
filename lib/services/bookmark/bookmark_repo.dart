@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:inshorts_newj/custem_class/utils/globle.dart';
 
+import '../../custem_class/utils/local_storage.dart';
 import '../../models/bookmark/addbookmark_model.dart';
 import '../../models/bookmark/bookmark_model.dart';
 import '../../models/bookmark/remove_bookmark_model.dart';
@@ -15,8 +16,10 @@ class BookmarkApi {
   static Future bookmarkList() async {
     try {
       String customerID = userController.userModel?.customerGuid ?? "";
+      int languageId = LocalStorage.getLanguageType();
       print(customerID);
-      String url = "${APIRoutes.bookMarkList}$customerID&languageId=1";
+      String url =
+          "${APIRoutes.bookMarkList}$customerID&languageId=$languageId";
 
       http.Response? response = await HttpService.getApi(
         url: url,

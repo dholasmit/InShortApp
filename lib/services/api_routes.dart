@@ -30,6 +30,7 @@ class APIRoutes {
       "${baseUrl}GetHomePageCategory?languageId=${LocalStorage.getLanguageType}";
   static const String bookMarkList = "${baseUrl}GetBookMark?customerGuid=";
   static const String language2 = "${baseUrl}GetAllLanguages";
+
   static String recentlyAddedProducts =
       "${baseUrl}RecentlyAddedProducts?languageId=${LocalStorage.getLanguageType}";
   static const String removeBookMark = "${baseUrl}RemoveFromBookMark";

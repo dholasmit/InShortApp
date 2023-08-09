@@ -46,7 +46,7 @@ class ExploreApi {
       );
       if (response != null && response.statusCode == 200) {
         print(
-            "RESPONSE BODY================================> ${response.body}");
+            "RESPONSE BODY================================>$url1 ==> ${response.body}");
         return getProductsByCategoryModelFromJson(response.body);
       }
     } catch (e) {

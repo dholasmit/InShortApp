@@ -4,15 +4,18 @@ import 'package:http/http.dart' as http;
 import '../../custem_class/utils/globle.dart';
 import '../../custem_class/utils/local_storage.dart';
 import '../../models/home/recently_added_products_model.dart';
-import '../api_routes.dart';
 import '../http_service.dart';
 
 class HomeScreenApi {
-  static Future homeRecentlyAddedProducts() async {
+  static Future homeRecentlyAddedProducts({required int page}) async {
     try {
       int languageId = LocalStorage.getLanguageType();
-      //String data = "pageNumber=1";
-      String url = "${APIRoutes.homeScreenRecentlyAddedProducts}$languageId";
+
+      // String url = "${APIRoutes.homeScreenRecentlyAddedProducts}$languageId";
+      String url =
+          "https://panchat.in/api/client/RecentlyAddedProducts?languageId=$languageId&pageNumber=$page";
+      // String url =
+      //     "${APIRoutes.baseUrl}RecentlyAddedProducts?languageId=$languageId&pageNumber=$page";
       http.Response? response = await HttpService.getApi(
         url: url,
         header: {
