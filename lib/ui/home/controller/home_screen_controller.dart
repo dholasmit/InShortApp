@@ -22,6 +22,8 @@ class HomeScreenController extends GetxController {
 
   bool loader = false;
   bool flotClose = false;
+  bool pageFirst = false;
+  bool pageEnd = false;
   int selectedIndex = 0;
   int page = 1;
 
@@ -30,9 +32,15 @@ class HomeScreenController extends GetxController {
     update(["flot", "product"]);
     setHomeRecentlyAddedProductsModel =
         await HomeScreenApi.homeRecentlyAddedProducts(page: page);
+    // loader = false;
+    if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty) {
+      pageEnd = false;
+    } else {
+      pageEnd = true;
+    }
     loader = false;
-    pageEnd = false;
 
+    // pageEnd = false;
     update(["flot", "product"]);
   }
 
@@ -51,23 +59,52 @@ class HomeScreenController extends GetxController {
     }
   }
 
-  bool pageFirst = false;
-  bool pageEnd = false;
-
   void inChangeIndex(int index) {
-    if (pageEnd) {
+    if (getHomeRecentlyAddedProductsModel!.data!.isEmpty && pageEnd) {
+      page = 1;
+      homeRecentlyAddedProductsData();
+    } else if (pageEnd) {
       page++;
       homeRecentlyAddedProductsData();
       return;
     }
-    if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+    if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
+      page;
+      pageEnd = false;
+    } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
       pageEnd = true;
-    } else if (index == 0) {
+    } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty ||
+        index == 0) {
       pageFirst = true;
     } else {
       pageFirst = false;
       pageEnd = false;
     }
+    // if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
+    //   page;
+    //   pageEnd = false;
+    // } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+    //   pageEnd = true;
+    // } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty || index == 0) {
+    //   pageFirst = true;
+    // } else {
+    //   pageFirst = false;
+    //   pageEnd = false;
+    // }
+//////////////////////////////////////////////////////////////
+    // if (pageEnd) {
+    //   page++;
+    //   homeRecentlyAddedProductsData();
+    //   return;
+    // }
+    // if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+    //   pageEnd = true;
+    // } else if (index == 0) {
+    //   pageFirst = true;
+    // } else {
+    //   pageFirst = false;
+    //   pageEnd = false;
+    // }
     selectedIndex = index;
     flotClose = false;
     print("Index==> $selectedIndex");

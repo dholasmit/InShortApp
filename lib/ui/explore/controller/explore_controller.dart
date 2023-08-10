@@ -56,15 +56,23 @@ class ExploreController extends GetxController {
   }
 
   ///
-  List<GetProductsByCategoryModel>? _getProductsByCategoryModel;
+  GetProductsByCategoryModel? _getProductsByCategoryModel;
 
-  List<GetProductsByCategoryModel>? get getProductsByCategoryModel =>
+  GetProductsByCategoryModel? get getProductsByCategoryModel =>
       _getProductsByCategoryModel;
 
-  set setProductsByCategoryModel(List<GetProductsByCategoryModel>? value) {
+  set setProductsByCategoryModel(GetProductsByCategoryModel? value) {
     _getProductsByCategoryModel = value;
-    update();
-  }
+    update(["GetProductsByCategory"]);
+  } // List<GetProductsByCategoryModel>? _getProductsByCategoryModel;
+  //
+  // List<GetProductsByCategoryModel>? get getProductsByCategoryModel =>
+  //     _getProductsByCategoryModel;
+  //
+  // set setProductsByCategoryModel(List<GetProductsByCategoryModel>? value) {
+  //   _getProductsByCategoryModel = value;
+  //   update();
+  // }
 
   Future<void> getProductsByCategoryList({required int id}) async {
     exploreLoader = true;

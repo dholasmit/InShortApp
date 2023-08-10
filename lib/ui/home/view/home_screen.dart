@@ -79,6 +79,7 @@ class HomeScreen extends StatelessWidget {
                     itemCount: controller
                         .getHomeRecentlyAddedProductsModel!.data!.length,
                     autoplay: false,
+                    // transformer: PageT,
                     scrollDirection: Axis.horizontal,
                     onIndexChanged: controller.inChangeIndex,
                     itemBuilder: (BuildContext context, int index) {

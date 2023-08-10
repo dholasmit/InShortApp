@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 import 'package:inshorts_newj/ui/explore/controller/explore_controller.dart';
+import 'package:inshorts_newj/ui/home/controller/home_screen_controller.dart';
 
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
@@ -22,6 +23,7 @@ class _BaseScreenState extends State<BaseScreen> {
   BaseScreenController baseScreenController = Get.find<BaseScreenController>();
   BookMarkController bookMarkController = Get.find<BookMarkController>();
   ExploreController exploreController = Get.find<ExploreController>();
+  HomeScreenController homeScreenController = Get.find<HomeScreenController>();
   DateTime? currentBackPressTime;
 
   Future<bool> onWillPop() {
@@ -77,6 +79,11 @@ class _BaseScreenState extends State<BaseScreen> {
                         onTap: () {
                           Get.find<BaseScreenController>().selectedTab = key;
                           if (Get.find<BaseScreenController>().selectedTab ==
+                              0) {
+                            homeScreenController
+                                .homeRecentlyAddedProductsData();
+                          } else if (Get.find<BaseScreenController>()
+                                  .selectedTab ==
                               1) {
                             exploreController.selectedIndex = 0;
                             exploreController.getProductsByCategoryList(

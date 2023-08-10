@@ -118,9 +118,10 @@ class _FoldableOptionsState extends State<FoldableOptions>
                         Align(
                           alignment: firstAnim.value,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 10, top: 10),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
+                                print("BookMark Icon");
                                 homeScreenController.onTapBookMark();
                                 animationController.reverse();
                               },
@@ -145,6 +146,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
+                                print("Share Icon");
                                 animationController.reverse();
                               },
                               img: options.elementAt(1),
@@ -161,7 +163,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("liked");
+                                print("Web Icon");
                                 print(
                                     "PRODUCT URL ============>${homeScreenController.getHomeRecentlyAddedProductsModel!.data![homeScreenController.selectedIndex].prouductUrl!}");
                                 launch(homeScreenController

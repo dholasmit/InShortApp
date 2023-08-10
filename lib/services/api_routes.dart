@@ -20,24 +20,19 @@ class APIRoutes {
 
   /// Working Api
   /// baseurl 2
-  static String getAllCategories =
-      "${baseUrl2}getAllCategories?languageId=${LocalStorage.getLanguageType}";
+  static String getAllCategories = "${baseUrl2}getAllCategories?languageId=";
 
   // static const String exploreTopicList =
   //     "${baseUrl}RecentlyAddedProducts?languageId=2";
   static const String homeProductsList = "${baseUrl}HomePageProducts";
-  static String exploreTopicList =
-      "${baseUrl}GetHomePageCategory?languageId=${LocalStorage.getLanguageType}";
+  static String exploreTopicList = "${baseUrl}GetHomePageCategory?languageId=";
   static const String bookMarkList = "${baseUrl}GetBookMark?customerGuid=";
   static const String language2 = "${baseUrl}GetAllLanguages";
-
-  static String recentlyAddedProducts =
-      "${baseUrl}RecentlyAddedProducts?languageId=${LocalStorage.getLanguageType}";
   static const String removeBookMark = "${baseUrl}RemoveFromBookMark";
   static const String addBookMark = "${baseUrl}AddToBookMark";
   static String homeScreenRecentlyAddedProducts =
       "${baseUrl}RecentlyAddedProducts?languageId=";
   static const String setLanguage = "${baseUrl}SetLanguage";
   static String getProductsByCategory =
-      "${baseUrl}GetProductsByCategoryId?id=29&languageId=${LocalStorage.getLanguageType}";
+      "${baseUrl}GetProductsByCategoryId?id=29&languageId=";
 }

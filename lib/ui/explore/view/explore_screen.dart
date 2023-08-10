@@ -308,21 +308,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: exploreController
-                                        .getProductsByCategoryModel?.length ??
-                                    0,
+                                    .getProductsByCategoryModel!.data!.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return exploreList(
                                     img: exploreController
-                                        .getProductsByCategoryModel![index]
+                                        .getProductsByCategoryModel!
+                                        .data![index]
                                         .pictureModels![0]
                                         .imageUrl
                                         .toString(),
                                     title: exploreController
-                                        .getProductsByCategoryModel![index]
+                                        .getProductsByCategoryModel!
+                                        .data![index]
                                         .productName
                                         .toString(),
                                     text: exploreController
-                                        .getProductsByCategoryModel![index]
+                                        .getProductsByCategoryModel!
+                                        .data![index]
                                         .shortDescription
                                         .toString(),
                                     onTap: () {},

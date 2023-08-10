@@ -14,7 +14,7 @@ import 'custem_class/utils/routes.dart';
 void main() async {
   await GetStorage.init();
   await getInitialRoute();
-
+  LocalStorage.getLanguageType();
   runApp(const MyApp());
 }
 
