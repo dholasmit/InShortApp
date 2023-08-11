@@ -129,7 +129,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
                                           .getHomeRecentlyAddedProductsModel!
                                           .data![homeScreenController
                                               .selectedIndex]
-                                          .bookId! ==
+                                          .markAsNew! ==
                                       false
                                   ? AppIcons.unBookMarkIcons
                                   : AppIcons.bookMarkIcons,
@@ -165,7 +165,8 @@ class _FoldableOptionsState extends State<FoldableOptions>
                               onTap: () {
                                 print("Web Icon");
                                 print(
-                                    "PRODUCT URL ============>${homeScreenController.getHomeRecentlyAddedProductsModel!.data![homeScreenController.selectedIndex].prouductUrl!}");
+                                  "PRODUCT URL ============>${homeScreenController.getHomeRecentlyAddedProductsModel!.data![homeScreenController.selectedIndex].prouductUrl!}",
+                                );
                                 launch(homeScreenController
                                     .getHomeRecentlyAddedProductsModel!
                                     .data![homeScreenController.selectedIndex]

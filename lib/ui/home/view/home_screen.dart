@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
@@ -81,7 +82,9 @@ class HomeScreen extends StatelessWidget {
                     autoplay: false,
                     // transformer: PageT,
                     scrollDirection: Axis.horizontal,
-                    onIndexChanged: controller.inChangeIndex,
+                    controller: controller.pageController,
+                    onIndexChanged: controller.onChangeIndex,
+                    index: controller.selectedIndex,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: const EdgeInsets.only(
@@ -124,33 +127,52 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          controller
+                                  //   child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        controller
+                                            .getHomeRecentlyAddedProductsModel!
+                                            .data![index]
+                                            .name
+                                            .toString(),
+                                        // "Modi ji Newj",
+                                        style: const TextStyle(
+                                          color: AppColors.blueColor,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Html(
+                                        data: controller
+                                            .getHomeRecentlyAddedProductsModel!
+                                            .data![index]
+                                            .shortDescription
+                                            .toString(),
+                                      ),
+                                      const Spacer(),
+                                      InkWell(
+                                        onTap: () {
+                                          print("More News");
+                                          launch(controller
                                               .getHomeRecentlyAddedProductsModel!
                                               .data![index]
-                                              .name
-                                              .toString(),
-                                          // "Modi ji Newj",
+                                              .prouductUrl!
+                                              .toString());
+                                        },
+                                        child: Text(
+                                          "onTap for More news/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
                                           style: const TextStyle(
-                                            color: AppColors.blueColor,
-                                            fontSize: 16,
+                                            fontSize: 13,
+                                            color: Color(0XFFADADAD),
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        Html(
-                                          data: controller
-                                              .getHomeRecentlyAddedProductsModel!
-                                              .data![index]
-                                              .shortDescription
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
+                                  // ),
                                 ),
                               ],
                             ),

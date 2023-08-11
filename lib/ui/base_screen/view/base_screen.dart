@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
+import 'package:inshorts_newj/ui/base_setting/controller/base_setting_controller.dart';
 import 'package:inshorts_newj/ui/explore/controller/explore_controller.dart';
 import 'package:inshorts_newj/ui/home/controller/home_screen_controller.dart';
 
@@ -8,6 +9,7 @@ import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../custem_class/utils/globle.dart';
 import '../../bookmark/controller/book_mark_controller.dart';
+import '../../explore/controller/popular_topic_controller.dart';
 import '../controller/base_screen_controller.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -24,6 +26,10 @@ class _BaseScreenState extends State<BaseScreen> {
   BookMarkController bookMarkController = Get.find<BookMarkController>();
   ExploreController exploreController = Get.find<ExploreController>();
   HomeScreenController homeScreenController = Get.find<HomeScreenController>();
+  PopularTopicController popularTopicController =
+      Get.find<PopularTopicController>();
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
   DateTime? currentBackPressTime;
 
   Future<bool> onWillPop() {
@@ -89,10 +95,16 @@ class _BaseScreenState extends State<BaseScreen> {
                             exploreController.getProductsByCategoryList(
                                 id: exploreController
                                     .getExploreTopicListModel!.data![0].id!);
+                            exploreController.exploreTopicListData();
+                            popularTopicController.popularData();
                           } else if (Get.find<BaseScreenController>()
                                   .selectedTab ==
                               2) {
                             bookMarkController.bookMarkListData();
+                          } else if (Get.find<BaseScreenController>()
+                                  .selectedTab ==
+                              3) {
+                            baseSettingController.selectedIndex = -1;
                           }
                         },
                         child: Container(

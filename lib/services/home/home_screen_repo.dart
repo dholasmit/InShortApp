@@ -11,7 +11,6 @@ class HomeScreenApi {
     try {
       int languageId = LocalStorage.getLanguageType();
 
-      // String url = "${APIRoutes.homeScreenRecentlyAddedProducts}$languageId";
       String url =
           "https://panchat.in/api/client/RecentlyAddedProducts?languageId=$languageId&pageNumber=$page";
       // String url =

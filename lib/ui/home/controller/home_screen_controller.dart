@@ -1,4 +1,5 @@
 import 'package:flutter_share/flutter_share.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/bookmark/controller/book_mark_controller.dart';
 
@@ -25,30 +26,44 @@ class HomeScreenController extends GetxController {
   bool pageFirst = false;
   bool pageEnd = false;
   int selectedIndex = 0;
+  int prevIndex = 0;
   int page = 1;
+  SwiperController pageController = SwiperController();
 
-  Future<void> homeRecentlyAddedProductsData() async {
+  Future<void> homeRecentlyAddedProductsData({int? pageIndex}) async {
     loader = true;
     update(["flot", "product"]);
-    setHomeRecentlyAddedProductsModel =
-        await HomeScreenApi.homeRecentlyAddedProducts(page: page);
-    // loader = false;
-    if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty) {
-      pageEnd = false;
+    if (pageIndex == null) {
+      setHomeRecentlyAddedProductsModel =
+          await HomeScreenApi.homeRecentlyAddedProducts(page: 1);
     } else {
-      pageEnd = true;
+      HomeRecentlyAddedProductsModel data =
+          await HomeScreenApi.homeRecentlyAddedProducts(page: pageIndex);
+      _homeRecentlyAddedProductsModel!.data!.addAll(data.data!);
     }
     loader = false;
-
-    // pageEnd = false;
     update(["flot", "product"]);
   }
 
+  Future<void> onChangeIndex(int index) async {
+    if (selectedIndex == (page * 10) - 2 && prevIndex < selectedIndex) {
+      page = page + 1;
+      await homeRecentlyAddedProductsData(pageIndex: page);
+      pageController.move(index, animation: false);
+    }
+    prevIndex = selectedIndex;
+    selectedIndex = index;
+    flotClose = false;
+    print("Index==> $selectedIndex");
+    update(["flot", "product"]);
+  }
+
+  /// BookMark & UnBookMark
   Future<void> onTapBookMark() async {
     bool isBook =
-        getHomeRecentlyAddedProductsModel!.data![selectedIndex].bookId!;
+        getHomeRecentlyAddedProductsModel!.data![selectedIndex].markAsNew!;
 
-    getHomeRecentlyAddedProductsModel!.data![selectedIndex].bookId = !isBook;
+    getHomeRecentlyAddedProductsModel!.data![selectedIndex].markAsNew = !isBook;
     int id = getHomeRecentlyAddedProductsModel!.data![selectedIndex].id!;
     if (isBook == false) {
       await addBookMark(productId: id);
@@ -57,58 +72,6 @@ class HomeScreenController extends GetxController {
       removeBookMarkData();
       update(["flot", "product"]);
     }
-  }
-
-  void inChangeIndex(int index) {
-    if (getHomeRecentlyAddedProductsModel!.data!.isEmpty && pageEnd) {
-      page = 1;
-      homeRecentlyAddedProductsData();
-    } else if (pageEnd) {
-      page++;
-      homeRecentlyAddedProductsData();
-      return;
-    }
-    if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
-      page;
-      pageEnd = false;
-    } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
-      pageEnd = true;
-    } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty ||
-        index == 0) {
-      pageFirst = true;
-    } else {
-      pageFirst = false;
-      pageEnd = false;
-    }
-    // if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
-    //   page;
-    //   pageEnd = false;
-    // } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
-    //   pageEnd = true;
-    // } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty || index == 0) {
-    //   pageFirst = true;
-    // } else {
-    //   pageFirst = false;
-    //   pageEnd = false;
-    // }
-//////////////////////////////////////////////////////////////
-    // if (pageEnd) {
-    //   page++;
-    //   homeRecentlyAddedProductsData();
-    //   return;
-    // }
-    // if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
-    //   pageEnd = true;
-    // } else if (index == 0) {
-    //   pageFirst = true;
-    // } else {
-    //   pageFirst = false;
-    //   pageEnd = false;
-    // }
-    selectedIndex = index;
-    flotClose = false;
-    print("Index==> $selectedIndex");
-    update(["flot", "product"]);
   }
 
   /// Add BookMark
@@ -146,4 +109,54 @@ class HomeScreenController extends GetxController {
     homeRecentlyAddedProductsData();
     super.onInit();
   }
+//   void inChangeIndex(int index) {
+//     if (getHomeRecentlyAddedProductsModel!.data!.isEmpty && pageEnd) {
+//       page = 1;
+//       homeRecentlyAddedProductsData();
+//     } else if (pageEnd) {
+//       page++;
+//       homeRecentlyAddedProductsData();
+//       return;
+//     }
+//     if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
+//       pageEnd = false;
+//     } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+//       pageEnd = true;
+//     } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty ||
+//         index == 0) {
+//       pageFirst = true;
+//     } else {
+//       pageFirst = false;
+//       pageEnd = false;
+//     }
+//     // if (getHomeRecentlyAddedProductsModel!.data!.isEmpty) {
+//     //   page;
+//     //   pageEnd = false;
+//     // } else if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+//     //   pageEnd = true;
+//     // } else if (getHomeRecentlyAddedProductsModel!.data!.isNotEmpty || index == 0) {
+//     //   pageFirst = true;
+//     // } else {
+//     //   pageFirst = false;
+//     //   pageEnd = false;
+//     // }
+// //////////////////////////////////////////////////////////////
+//     // if (pageEnd) {
+//     //   page++;
+//     //   homeRecentlyAddedProductsData();
+//     //   return;
+//     // }
+//     // if (index + 1 == getHomeRecentlyAddedProductsModel!.data!.length) {
+//     //   pageEnd = true;
+//     // } else if (index == 0) {
+//     //   pageFirst = true;
+//     // } else {
+//     //   pageFirst = false;
+//     //   pageEnd = false;
+//     // }
+//     selectedIndex = index;
+//     flotClose = false;
+//     print("Index==> $selectedIndex");
+//     update(["flot", "product"]);
+//   }
 }
