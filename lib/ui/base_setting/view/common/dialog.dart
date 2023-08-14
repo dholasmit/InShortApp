@@ -181,8 +181,9 @@ nightModeDialog(BuildContext context) async {
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
-      return GetBuilder(
-        builder: (BaseSettingController baseSettingController) {
+      return GetBuilder<BaseSettingController>(
+        id: "DarkLightMode",
+        builder: (baseSettingController) {
           return Dialog(
             insetPadding: const EdgeInsets.symmetric(horizontal: 40),
             shape: const RoundedRectangleBorder(
@@ -252,10 +253,8 @@ nightModeDialog(BuildContext context) async {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 12),
                               child: GestureDetector(
-                                onTap: () {
-                                  baseSettingController.chooseModeList = index;
-                                  Get.back();
-                                },
+                                onTap: () => baseSettingController
+                                    .onChangeDarkLightMode(index),
                                 child: Container(
                                   color: Colors.transparent,
                                   child: Row(

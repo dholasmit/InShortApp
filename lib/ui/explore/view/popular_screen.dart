@@ -33,7 +33,10 @@ class _PopularScreenState extends State<PopularScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              // AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -41,6 +44,7 @@ class _PopularScreenState extends State<PopularScreen> {
           padding: const EdgeInsets.only(right: 20, left: 20, top: 40),
           child: Column(
             children: [
+              const SizedBox(height: 10),
               Row(
                 children: [
                   InkWell(
@@ -49,6 +53,8 @@ class _PopularScreenState extends State<PopularScreen> {
                     },
                     child: const Icon(
                       Icons.arrow_back_ios_new_outlined,
+                      color: AppColors.blueColor,
+                      // AppColors.black,
                     ),
                   ),
                   const Spacer(),

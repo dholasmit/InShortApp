@@ -45,3 +45,17 @@ class AppImages {
   static const String phoneIcon =
       "asseat/images/login_screen_images/pnone_icon.png";
 }
+
+/////////////////////////////////
+///NIGHT MODE IMAGES///
+/////////////////////////////////
+class AppNightModeImage {
+  static const appLogoNightMode =
+      "asseat/dark_them_images/splash_login_image/applogo_nightmode.png";
+  static const splashScreenNightMode =
+      "asseat/dark_them_images/splash_login_image/splashScreen_nightmode.png";
+  static const welcomeContainerNightMode =
+      "asseat/dark_them_images/splash_login_image/welcome_container.png";
+  static const bgWithContainerImageNightMode =
+      "asseat/dark_them_images/splash_login_image/background_nightmode.png";
+}

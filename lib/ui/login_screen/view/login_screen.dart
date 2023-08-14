@@ -35,7 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                AppNightModeImage.bgWithContainerImageNightMode,
+                // AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -49,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -57,7 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           disposeKeyboard();
                           Get.back();
                         },
-                        child: const Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new,
+                            color: AppNightModeColor.white
+                            // AppColors.black,
+                            ),
                       ),
                       InkWell(
                         onTap: () {
@@ -68,9 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text(
                           "Sign up",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: AppNightModeColor.white
+                              // AppColors.black,
+                              ),
                         ),
                       ),
                     ],
@@ -94,9 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Text(
                               "Start Your Journey With Us. And Enjoy This Wonderful App.",
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppNightModeColor.white
+                                  // AppColors.black,
+                                  ),
                             ),
                             const SizedBox(height: 20),
                             Center(
@@ -127,6 +138,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             Row(
                               children: [
                                 Checkbox(
+                                    side: const BorderSide(
+                                        color: AppNightModeColor.white
+                                        // AppColors.black,
+                                        ),
                                     value: loginController.checkValue,
                                     onChanged: (bool? value) {
                                       loginController.checkValue = value!;
@@ -134,9 +149,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const Text(
                                   "Remember me",
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                  ),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: AppNightModeColor.white
+                                      // AppColors.black,
+                                      ),
                                 ),
                                 const Spacer(),
                                 InkWell(
@@ -147,9 +164,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: const Text(
                                     "Forget password ?",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                        color: AppNightModeColor.white
+                                        // AppColors.black,
+                                        ),
                                   ),
                                 ),
                               ],
@@ -169,9 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Text(
                                   "OR",
                                   style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppNightModeColor.white
+                                      // AppColors.black,
+                                      ),
                                 ),
                                 SizedBox(width: 15),
                                 Expanded(
@@ -202,10 +223,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   text: TextSpan(
                                     text: "don’t have an account ?".tr,
                                     style: const TextStyle(
-                                      fontFamily: kAppFont,
-                                      fontSize: 14,
-                                      color: Colors.black,
-                                    ),
+                                        fontFamily: kAppFont,
+                                        fontSize: 14,
+                                        color: AppNightModeColor.white
+                                        // AppColors.black,
+                                        ),
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: " Sign Up ".tr,

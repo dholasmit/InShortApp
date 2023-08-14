@@ -25,7 +25,10 @@ class _CongressScreenState extends State<CongressScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              // AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -40,9 +43,12 @@ class _CongressScreenState extends State<CongressScreen> {
             const Text(
               "Congratulations!",
               style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 25,
-              ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25,
+                  color: AppNightModeColor.white
+                  // AppColors.black,
+
+                  ),
             ),
             const Text(
               "Your account is ready to use",

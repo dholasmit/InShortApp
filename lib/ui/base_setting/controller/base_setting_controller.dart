@@ -76,6 +76,10 @@ class BaseSettingController extends GetxController {
     "System",
   ];
 
+  Future<void> onChangeDarkLightMode(int index) async {
+    chooseModeList = index;
+  }
+
   /// Text Size Dialog Box Data
   int _chooseFontSize = 0;
 

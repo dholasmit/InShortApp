@@ -24,7 +24,10 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              // AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -230,7 +233,8 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
           height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
+            color: AppNightModeColor.exploreTopicListColor,
+            //AppNightModeColor.white,
           ),
           child: Row(
             children: [
@@ -269,7 +273,11 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         text,
                         maxLines: 2,
                         overflow: TextOverflow.clip,
-                        style: const TextStyle(fontSize: 12),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppNightModeColor.white,
+                          // AppColors.black,
+                        ),
                       ),
                       const Spacer(),
                       Row(

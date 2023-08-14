@@ -35,7 +35,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              // AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -94,9 +97,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             child: const Text(
                               "See all",
                               style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                              ),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: AppNightModeColor.white
+                                  // AppColors.black,
+                                  ),
                             ),
                           ),
                         ],
@@ -206,9 +211,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           Text(
                             "See all",
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: AppNightModeColor.white
+                                // AppColors.black,
+                                ),
                           ),
                         ],
                       ),
@@ -264,11 +271,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                               ? AppColors.blueColor
                                               : Colors.transparent,
                                         ),
-                                        color: index ==
-                                                exploreController.selectedIndex
-                                            ? Colors.white
-                                            : AppColors
-                                                .exploreTopicContainerColor,
+
+                                        ///tap color
+                                        color: AppColors.black,
+                                        // color: index ==
+                                        //         exploreController.selectedIndex
+                                        //     ? Colors.white
+                                        //     : AppColors
+                                        //         .exploreTopicContainerColor,
                                       ),
                                       child: Center(
                                         child: Padding(
@@ -357,7 +367,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             //height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
+              color: AppNightModeColor.exploreTopicListColor,
+              //AppNightModeColor.white,
             ),
             child: Row(
               children: [
@@ -395,7 +406,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           text,
                           maxLines: 2,
                           overflow: TextOverflow.clip,
-                          style: const TextStyle(fontSize: 11),
+                          style: const TextStyle(
+                            fontSize: 11, color: AppNightModeColor.white,
+                            // AppColors.black,
+                          ),
                         ),
 
                         /// const Spacer(),

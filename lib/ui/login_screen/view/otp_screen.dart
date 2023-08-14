@@ -34,7 +34,11 @@ class _OtpScreenState extends State<OtpScreen> {
           width: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                AppNightModeImage.bgWithContainerImageNightMode,
+
+                // AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -48,11 +52,15 @@ class _OtpScreenState extends State<OtpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
                     Get.back();
                   },
-                  child: const Icon(Icons.arrow_back_ios_new),
+                  child: const Icon(Icons.arrow_back_ios_new,
+                      color: AppNightModeColor.white
+                      // AppColors.black,
+                      ),
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -80,9 +88,12 @@ class _OtpScreenState extends State<OtpScreen> {
                         const Text(
                           "Enter the OTP sent to Email!",
                           style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: AppNightModeColor.white
+                              // AppColors.black,
+
+                              ),
                         ),
                         const SizedBox(height: 40),
                         OTPTextField(
@@ -91,7 +102,10 @@ class _OtpScreenState extends State<OtpScreen> {
                           width: MediaQuery.of(context).size.width,
                           fieldWidth: 50,
                           otpFieldStyle: OtpFieldStyle(borderColor: Colors.red),
-                          style: const TextStyle(fontSize: 17),
+                          style: const TextStyle(
+                            fontSize: 17, color: AppNightModeColor.white,
+                            // AppColors.black,
+                          ),
                           textFieldAlignment: MainAxisAlignment.spaceAround,
                           fieldStyle: FieldStyle.box,
                           onCompleted: (pin) {

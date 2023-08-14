@@ -34,7 +34,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           width: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                AppNightModeImage.bgWithContainerImageNightMode,
+                // AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -52,11 +55,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Get.back();
                         },
-                        child: const Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new,
+                            color: AppNightModeColor.white
+                            // AppColors.black,
+                            ),
                       ),
                       const SizedBox(height: 10),
                       Expanded(
@@ -85,9 +92,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               const Text(
                                 "Enter the Your New Password!",
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppNightModeColor.white
+                                    // AppColors.black,
+
+                                    ),
                               ),
                               const SizedBox(height: 40),
                               header(title: "New Password"),
@@ -163,12 +173,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       children: [
         Text(
           title,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
+          style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: AppNightModeColor.white
+              // AppColors.black,
+              ),
         ),
-        Text(
+        const Text(
           "*",
           style: TextStyle(
             color: Colors.red,

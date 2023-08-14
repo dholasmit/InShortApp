@@ -29,7 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              AppImages.splashScreenImage,
+              AppNightModeImage.splashScreenNightMode,
+              //   AppImages.splashScreenImage,
             ),
             fit: BoxFit.cover,
           ),
@@ -38,7 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Image.asset(
-              AppImages.appLogoBig,
+              AppNightModeImage.appLogoNightMode,
+              // AppImages.appLogoBig,
             ),
           ),
         ),

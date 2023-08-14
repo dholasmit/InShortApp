@@ -34,7 +34,10 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
           width: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                AppNightModeImage.bgWithContainerImageNightMode,
+                // AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -52,11 +55,15 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Get.back();
                         },
-                        child: const Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new,
+                            color: AppNightModeColor.white
+                            // AppColors.black,
+                            ),
                       ),
                       Expanded(
                         child: SingleChildScrollView(
@@ -76,9 +83,12 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                               const Text(
                                 "Don’t worry! it happens. Please enter the address associated with your account.",
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppNightModeColor.white
+                                    // AppColors.black,
+
+                                    ),
                               ),
                               const SizedBox(height: 70),
                               const Text(

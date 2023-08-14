@@ -19,7 +19,10 @@ class WelComeScreen extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              //AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -38,7 +41,10 @@ class WelComeScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(AppImages.welcomeContainer),
+                    image: AssetImage(
+                      AppNightModeImage.welcomeContainerNightMode,
+                      // AppImages.welcomeContainer,
+                    ),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.only(
@@ -66,6 +72,8 @@ class WelComeScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         "This App is free to use. Find here the Best Data Package for your stay in Wonderful  INshorts.",
                         style: TextStyle(
+                          color: AppNightModeColor.white,
+                          // AppColors.black
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),

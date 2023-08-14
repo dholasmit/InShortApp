@@ -32,7 +32,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                AppNightModeImage.bgWithContainerImageNightMode,
+                // AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),
@@ -50,15 +53,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Get.back();
                         },
-                        child: const Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new,
+                            color: AppNightModeColor.white
+                            // AppColors.black,
+                            ),
                       ),
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(height: 10),
                               const Text(
@@ -73,9 +81,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               const Text(
                                 "Sign up to get started!",
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppNightModeColor.white
+                                    // AppColors.black,
+                                    ),
                               ),
                               const SizedBox(height: 100),
                               RequestFormTextfield(
@@ -146,6 +156,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 children: [
                                   Checkbox(
                                       value: signUpController.isChecked,
+                                      side: const BorderSide(
+                                          color: AppNightModeColor.white
+                                          // AppColors.black,
+                                          ),
                                       onChanged: (bool? value) {
                                         signUpController.isChecked = value!;
                                       }),
@@ -154,7 +168,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       text: TextSpan(
                                         text: "I agree to ".tr,
                                         style: const TextStyle(
-                                            fontSize: 12, color: Colors.black),
+                                            fontSize: 12,
+                                            color: AppNightModeColor.white
+                                            // AppColors.black,
+                                            ),
                                         children: <TextSpan>[
                                           TextSpan(
                                             text: "Terms & Agreement".tr,
@@ -179,9 +196,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           TextSpan(
                                               text: " and ".tr,
                                               style: const TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.black,
-                                              )),
+                                                  fontSize: 12,
+                                                  color: AppNightModeColor.white
+                                                  // AppColors.black,
+                                                  )),
                                           TextSpan(
                                             text: "Privacy Policy".tr,
                                             recognizer: TapGestureRecognizer()
@@ -219,10 +237,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     text: TextSpan(
                                       text: "Already have an account ?".tr,
                                       style: const TextStyle(
-                                        //  fontFamily: kAppFont,
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                      ),
+                                          fontSize: 14,
+                                          color: AppNightModeColor.white
+                                          // AppColors.black,
+                                          ),
                                       children: <TextSpan>[
                                         TextSpan(
                                           text: " Sign In ".tr,

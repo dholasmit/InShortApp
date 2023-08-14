@@ -43,3 +43,25 @@ class NavigationTabContainModel {
     required this.name,
   });
 }
+
+bool isNightMode = true;
+
+///Light Them
+ThemeData lightThemeData(BuildContext context) {
+  return ThemeData.light().copyWith(
+    primaryColor: const Color(0xFF5B4B49),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: const Color(0xFF24A751),
+    ),
+  );
+}
+
+/// dark Theme
+ThemeData darkThemeData(BuildContext context) {
+  return ThemeData.dark().copyWith(
+    primaryColor: const Color(0xFFFF1D00),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: const Color(0xFF24A751),
+    ),
+  );
+}

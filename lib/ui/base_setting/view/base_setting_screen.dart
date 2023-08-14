@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../login_screen/view/login_screen.dart';
 import '../controller/base_setting_controller.dart';
@@ -30,9 +31,13 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.bgWithContainerImage),
+              image: AssetImage(
+                isNightMode
+                    ? AppNightModeImage.bgWithContainerImageNightMode
+                    : AppImages.bgWithContainerImage,
+              ),
               fit: BoxFit.cover,
             ),
           ),

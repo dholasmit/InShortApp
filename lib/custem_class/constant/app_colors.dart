@@ -6,4 +6,10 @@ class AppColors {
   static const choseTopicRoundColor = Color(0XFFCACACA);
   static const settingContainerColor = Color(0XFFEDF3FF);
   static const exploreTopicContainerColor = Color(0XFFEDF3FF);
+  static const black = Colors.black;
+}
+
+class AppNightModeColor {
+  static const white = Colors.white;
+  static const exploreTopicListColor = Color(0XFF646464);
 }

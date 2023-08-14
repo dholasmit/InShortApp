@@ -67,7 +67,10 @@ class HomeScreen extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.bgWithContainerImage),
+            image: AssetImage(
+              AppNightModeImage.bgWithContainerImageNightMode,
+              // AppImages.bgWithContainerImage,
+            ),
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -98,7 +101,8 @@ class HomeScreen extends StatelessWidget {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
+                            color: AppColors.black,
+                            // AppNightModeColor.white
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
