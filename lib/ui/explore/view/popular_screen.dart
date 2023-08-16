@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/popular_topic_controller.dart';
 
@@ -40,7 +41,7 @@ class _PopularScreenState extends State<PopularScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),

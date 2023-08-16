@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/book_mark_controller.dart';
@@ -31,7 +32,8 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
+                      //  baseSettingController.isNightMode
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -246,7 +248,8 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
           height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: baseSettingController.isNightMode
+            color: LocalStorage.getLightDarkMode()
+                // baseSettingController.isNightMode
                 ? AppNightModeColor.exploreTopicListColor
                 : AppNightModeColor.white,
           ),
@@ -289,7 +292,8 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontSize: 12,
-                          color: baseSettingController.isNightMode
+                          color: LocalStorage.getLightDarkMode()
+                              // baseSettingController.isNightMode
                               ? AppNightModeColor.white
                               : AppColors.black,
                         ),

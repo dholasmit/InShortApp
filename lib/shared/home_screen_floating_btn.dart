@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
 import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
+import 'package:inshorts_newj/custem_class/utils/local_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../ui/home/controller/home_screen_controller.dart';
@@ -39,7 +40,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LocalStorage.getLightDarkMode() ? Colors.black : Colors.white,
           border: Border.all(color: AppColors.blueColor, width: 1.5),
           borderRadius: const BorderRadius.all(
             Radius.circular(40),
@@ -66,7 +67,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LocalStorage.getLightDarkMode() ? Colors.black : Colors.white,
         border: Border.all(color: AppColors.blueColor, width: 1.5),
         borderRadius: const BorderRadius.all(
           Radius.circular(30),

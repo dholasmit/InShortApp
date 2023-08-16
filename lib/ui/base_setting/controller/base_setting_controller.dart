@@ -73,14 +73,14 @@ class BaseSettingController extends GetxController {
   List<String> modeList = [
     "Light",
     "Dark",
-    "System",
+    //  "System",
   ];
 
   bool _isNightMode = false;
 
   bool get isNightMode => _isNightMode;
 
-  set isNightMode(bool value) {
+  set setIsNightMode(bool value) {
     _isNightMode = value;
     update(["DarkLightMode"]);
   }

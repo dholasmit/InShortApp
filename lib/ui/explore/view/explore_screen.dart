@@ -6,6 +6,7 @@ import 'package:inshorts_newj/ui/explore/view/popular_screen.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/explore_controller.dart';
 
@@ -24,12 +25,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
       Get.find<BaseSettingController>();
 
   @override
-  void initState() {
-    //  exploreController.exploreListData();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // Get.put(ExploreController());
     return Scaffold(
@@ -42,7 +37,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
+                      // baseSettingController.isNightMode
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -106,7 +102,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
-                                    color: baseSettingController.isNightMode
+                                    color: LocalStorage.getLightDarkMode()
+                                        // baseSettingController.isNightMode
                                         ? AppNightModeColor.white
                                         : AppColors.black,
                                   ),
@@ -223,7 +220,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: baseSettingController.isNightMode
+                                  color: LocalStorage.getLightDarkMode()
+                                      // baseSettingController.isNightMode
+
                                       ? AppNightModeColor.white
                                       : AppColors.black,
                                 ),
@@ -395,7 +394,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             //height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: baseSettingController.isNightMode
+              color: LocalStorage.getLightDarkMode()
+                  // baseSettingController.isNightMode
                   ? AppNightModeColor.exploreTopicListColor
                   : AppNightModeColor.white,
             ),
@@ -437,7 +437,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           overflow: TextOverflow.clip,
                           style: TextStyle(
                             fontSize: 11,
-                            color: baseSettingController.isNightMode
+                            color: LocalStorage.getLightDarkMode()
+                                // baseSettingController.isNightMode
                                 ? AppNightModeColor.white
                                 : AppColors.black,
                           ),

@@ -115,4 +115,25 @@ class LocalStorage {
   static int getLanguageType() {
     return prefs.read("languageType") ?? 0;
   }
+
+////////////////////////////////////////////////////////////////////////////
+  /// Light and Dark ///
+////////////////////////////////////////////////////////////////////////////
+
+  static setLightDarkMode(bool value) {
+    prefs.write("DarkLightMode", value);
+  }
+
+  static bool getLightDarkMode() {
+    return prefs.read("DarkLightMode") ?? false;
+  }
+
+//// Dialog box int value
+  static intSetLightDarkMode(int value) {
+    prefs.write("IntSetLightDarkMode", value);
+  }
+
+  static int intGetLightDarkMode() {
+    return prefs.read("IntSetLightDarkMode") ?? 0;
+  }
 }

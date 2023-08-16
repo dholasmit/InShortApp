@@ -6,7 +6,7 @@ import 'package:inshorts_newj/shared/material_button.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
-import '../../../shared/dilog_box.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/image_picker_controller.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_screen/controller/base_screen_controller.dart';
@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    baseSettingController.isNightMode
+                    LocalStorage.getLightDarkMode()
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),

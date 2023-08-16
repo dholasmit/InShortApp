@@ -249,7 +249,7 @@ nightModeDialog(BuildContext context) async {
                         ),
                       ),
                       SizedBox(
-                        height: 150,
+                        height: 100,
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -263,13 +263,19 @@ nightModeDialog(BuildContext context) async {
                                 ///
                                 onTap: () {
                                   baseSettingController.chooseModeList = index;
+                                  LocalStorage.intSetLightDarkMode(
+                                      baseSettingController.chooseModeList);
 
                                   index == 0
-                                      ? baseSettingController.isNightMode =
-                                          false
+                                      ? LocalStorage.setLightDarkMode(
+                                          baseSettingController.setIsNightMode =
+                                              false,
+                                        )
                                       : index == 1
-                                          ? baseSettingController.isNightMode =
-                                              true
+                                          ? LocalStorage.setLightDarkMode(
+                                              baseSettingController
+                                                  .setIsNightMode = true,
+                                            )
                                           : const SizedBox();
                                   Get.back();
                                 },
@@ -284,9 +290,12 @@ nightModeDialog(BuildContext context) async {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                           border: Border.all(
-                                            color: baseSettingController
-                                                        .chooseModeList ==
+                                            color: LocalStorage
+                                                        .intGetLightDarkMode() ==
                                                     index
+                                                // baseSettingController
+                                                //     .chooseModeList ==
+                                                // index
                                                 ? Colors.blue
                                                 : Colors.black,
                                           ),

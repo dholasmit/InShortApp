@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/home_screen_floating_btn.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/home_screen_controller.dart';
@@ -75,7 +76,8 @@ class HomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
+                      // baseSettingController.isNightMode
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -109,7 +111,8 @@ class HomeScreen extends StatelessWidget {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: baseSettingController.isNightMode
+                                  color: LocalStorage.getLightDarkMode()
+                                      // baseSettingController.isNightMode
                                       ? AppColors.black
                                       : AppNightModeColor.white),
                               child: Padding(
@@ -165,8 +168,8 @@ class HomeScreen extends StatelessWidget {
                                                 .toString(),
                                             style: {
                                               "body": Style(
-                                                color: baseSettingController
-                                                        .isNightMode
+                                                color: LocalStorage
+                                                        .getLightDarkMode()
                                                     ? AppNightModeColor.white
                                                     : AppColors.black,
                                               ),

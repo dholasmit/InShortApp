@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import 'login_screen.dart';
@@ -33,7 +34,7 @@ class _CongressScreenState extends State<CongressScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -53,7 +54,7 @@ class _CongressScreenState extends State<CongressScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 25,
-                    color: baseSettingController.isNightMode
+                    color: LocalStorage.getLightDarkMode()
                         ? AppNightModeColor.white
                         : AppColors.black,
                   ),

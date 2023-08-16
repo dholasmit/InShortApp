@@ -8,6 +8,7 @@ import 'package:inshorts_newj/ui/home/controller/home_screen_controller.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../custem_class/utils/globle.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../bookmark/controller/book_mark_controller.dart';
 import '../../explore/controller/popular_topic_controller.dart';
 import '../controller/base_screen_controller.dart';
@@ -64,7 +65,7 @@ class _BaseScreenState extends State<BaseScreen> {
   }
 
   BottomAppBar bottomBar(BuildContext context) {
-    return baseSettingController.isNightMode
+    return LocalStorage.getLightDarkMode()
         ? BottomAppBar(
             color: Colors.white,
             elevation: 100,

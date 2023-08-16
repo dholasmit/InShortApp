@@ -8,6 +8,7 @@ import 'package:inshorts_newj/ui/login_screen/view/signup_screen.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    baseSettingController.isNightMode
+                    LocalStorage.getLightDarkMode()
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),
@@ -70,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
-                              color: baseSettingController.isNightMode
+                              color: LocalStorage.getLightDarkMode()
                                   ? AppNightModeColor.white
                                   : AppColors.black,
                             ),
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
-                                color: baseSettingController.isNightMode
+                                color: LocalStorage.getLightDarkMode()
                                     ? AppNightModeColor.white
                                     : AppColors.black,
                               ),
@@ -115,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
-                                    color: baseSettingController.isNightMode
+                                    color: LocalStorage.getLightDarkMode()
                                         ? AppNightModeColor.white
                                         : AppColors.black,
                                   ),
@@ -153,10 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   children: [
                                     Checkbox(
                                         side: BorderSide(
-                                          color:
-                                              baseSettingController.isNightMode
-                                                  ? AppNightModeColor.white
-                                                  : AppColors.black,
+                                          color: LocalStorage.getLightDarkMode()
+                                              ? AppNightModeColor.white
+                                              : AppColors.black,
                                         ),
                                         value: loginController.checkValue,
                                         onChanged: (bool? value) {
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 12,
-                                        color: baseSettingController.isNightMode
+                                        color: LocalStorage.getLightDarkMode()
                                             ? AppNightModeColor.white
                                             : AppColors.black,
                                       ),
@@ -184,10 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 12,
-                                          color:
-                                              baseSettingController.isNightMode
-                                                  ? AppNightModeColor.white
-                                                  : AppColors.black,
+                                          color: LocalStorage.getLightDarkMode()
+                                              ? AppNightModeColor.white
+                                              : AppColors.black,
                                         ),
                                       ),
                                     ),
@@ -210,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
-                                        color: baseSettingController.isNightMode
+                                        color: LocalStorage.getLightDarkMode()
                                             ? AppNightModeColor.white
                                             : AppColors.black,
                                       ),
@@ -246,10 +245,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         style: TextStyle(
                                           fontFamily: kAppFont,
                                           fontSize: 14,
-                                          color:
-                                              baseSettingController.isNightMode
-                                                  ? AppNightModeColor.white
-                                                  : AppColors.black,
+                                          color: LocalStorage.getLightDarkMode()
+                                              ? AppNightModeColor.white
+                                              : AppColors.black,
                                         ),
                                         children: <TextSpan>[
                                           TextSpan(

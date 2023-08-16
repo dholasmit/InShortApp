@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_images.dart';
 import 'package:inshorts_newj/ui/login_screen/view/welcome_screen.dart';
 
+import '../../../custem_class/utils/local_storage.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
                       ? AppNightModeImage.splashScreenNightMode
                       : AppImages.splashScreenImage,
                 ),

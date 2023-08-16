@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
@@ -20,10 +21,10 @@ class ForGotPasswordScreen extends StatefulWidget {
 }
 
 class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
-  ForgotPasswordController forgotPasswordController =
-      Get.find<ForgotPasswordController>();
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+  ForgotPasswordController forgotPasswordController =
+      Get.find<ForgotPasswordController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    baseSettingController.isNightMode
+                    LocalStorage.getLightDarkMode()
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),
@@ -69,7 +70,7 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
-                              color: baseSettingController.isNightMode
+                              color: LocalStorage.getLightDarkMode()
                                   ? AppNightModeColor.white
                                   : AppColors.black,
                             ),
@@ -94,7 +95,7 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: baseSettingController.isNightMode
+                                      color: LocalStorage.getLightDarkMode()
                                           ? AppNightModeColor.white
                                           : AppColors.black,
                                     ),

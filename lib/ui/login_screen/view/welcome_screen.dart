@@ -5,6 +5,7 @@ import 'package:inshorts_newj/ui/login_screen/view/login_screen.dart';
 import 'package:inshorts_newj/ui/login_screen/view/signup_screen.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 
@@ -26,7 +27,7 @@ class WelComeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  baseSettingController.isNightMode
+                  LocalStorage.getLightDarkMode()
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -49,7 +50,7 @@ class WelComeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                          baseSettingController.isNightMode
+                          LocalStorage.getLightDarkMode()
                               ? AppNightModeImage.welcomeContainerNightMode
                               : AppImages.welcomeContainer,
                         ),
@@ -80,7 +81,7 @@ class WelComeScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             "This App is free to use. Find here the Best Data Package for your stay in Wonderful  INshorts.",
                             style: TextStyle(
-                              color: baseSettingController.isNightMode
+                              color: LocalStorage.getLightDarkMode()
                                   ? AppNightModeColor.white
                                   : AppColors.black,
                               fontSize: 16,

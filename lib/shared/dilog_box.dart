@@ -4,6 +4,7 @@ import 'package:inshorts_newj/shared/material_button.dart';
 
 import '../custem_class/constant/app_colors.dart';
 import '../custem_class/constant/app_icons.dart';
+import '../custem_class/utils/local_storage.dart';
 import '../ui/base_setting/controller/base_setting_controller.dart';
 
 BaseSettingController baseSettingController = Get.find<BaseSettingController>();
@@ -212,7 +213,7 @@ dialog2({
                           ),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 150,
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
@@ -261,7 +262,7 @@ dialog2({
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 10),
+                                      const SizedBox(width: 10),
                                       Text(
                                         txt,
                                         style: const TextStyle(
@@ -305,9 +306,11 @@ logOutDialog(
         id: "DarkLightMode",
         builder: (BaseSettingController baseSettingController) {
           return Dialog(
-            backgroundColor: baseSettingController.isNightMode
-                ? AppColors.black
-                : AppNightModeColor.white,
+            backgroundColor:
+                //baseSettingController.isNightMode
+                LocalStorage.getLightDarkMode()
+                    ? AppColors.black
+                    : AppNightModeColor.white,
             insetPadding: const EdgeInsets.symmetric(horizontal: 20),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -365,7 +368,8 @@ logOutDialog(
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: baseSettingController.isNightMode
+                          color: LocalStorage.getLightDarkMode()
+                              // baseSettingController.isNightMode
                               ? AppNightModeColor.white
                               : AppColors.black,
                         ),

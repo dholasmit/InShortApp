@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
@@ -39,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    baseSettingController.isNightMode
+                    LocalStorage.getLightDarkMode()
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),
@@ -67,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
-                              color: baseSettingController.isNightMode
+                              color: LocalStorage.getLightDarkMode()
                                   ? AppNightModeColor.white
                                   : AppColors.black,
                             ),
@@ -92,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
-                                      color: baseSettingController.isNightMode
+                                      color: LocalStorage.getLightDarkMode()
                                           ? AppNightModeColor.white
                                           : AppColors.black,
                                     ),
@@ -176,10 +177,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Checkbox(
                                           value: signUpController.isChecked,
                                           side: BorderSide(
-                                            color: baseSettingController
-                                                    .isNightMode
-                                                ? AppNightModeColor.white
-                                                : AppColors.black,
+                                            color:
+                                                LocalStorage.getLightDarkMode()
+                                                    ? AppNightModeColor.white
+                                                    : AppColors.black,
                                           ),
                                           onChanged: (bool? value) {
                                             signUpController.isChecked = value!;
@@ -190,8 +191,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             text: "I agree to ".tr,
                                             style: TextStyle(
                                               fontSize: 12,
-                                              color: baseSettingController
-                                                      .isNightMode
+                                              color: LocalStorage
+                                                      .getLightDarkMode()
                                                   ? AppNightModeColor.white
                                                   : AppColors.black,
                                             ),
@@ -221,8 +222,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   text: " and ".tr,
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    color: baseSettingController
-                                                            .isNightMode
+                                                    color: LocalStorage
+                                                            .getLightDarkMode()
                                                         ? AppNightModeColor
                                                             .white
                                                         : AppColors.black,
@@ -266,10 +267,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           text: "Already have an account ?".tr,
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: baseSettingController
-                                                    .isNightMode
-                                                ? AppNightModeColor.white
-                                                : AppColors.black,
+                                            color:
+                                                LocalStorage.getLightDarkMode()
+                                                    ? AppNightModeColor.white
+                                                    : AppColors.black,
                                           ),
                                           children: <TextSpan>[
                                             TextSpan(

@@ -35,7 +35,8 @@ class _SettingScreenState extends State<SettingScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    baseSettingController.isNightMode
+                    LocalStorage.getLightDarkMode()
+                        // baseSettingController.isNightMode
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),
@@ -91,9 +92,19 @@ class _SettingScreenState extends State<SettingScreen> {
                           itemBuilder: (BuildContext context, int index) {
                             return settingCommonSell(
                               onTap: () {
+                                print({
+                                  "DARK NIGHT MODE VALUE ==> ${baseSettingController.setIsNightMode = LocalStorage.getLightDarkMode()}"
+                                });
                                 baseSettingController.selectedIndex = index;
                                 baseSettingController.chooseLanguage =
                                     LocalStorage.getLanguageType();
+                                baseSettingController.setIsNightMode =
+                                    LocalStorage.getLightDarkMode();
+                                baseSettingController.chooseModeList =
+                                    LocalStorage.intGetLightDarkMode();
+
+                                // baseSettingController.chooseLanguage =
+                                //     LocalStorage.getLightDarkMode();
                                 index == 0
                                     ? languageDialog(context)
                                     : index == 1
@@ -161,7 +172,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         ? AppColors.blueColor
                         : Colors.transparent,
                   ),
-                  color: baseSettingController.isNightMode
+                  color: LocalStorage.getLightDarkMode()
+
+                      // baseSettingController.isNightMode
                       ? AppNightModeColor.exploreTopicListColor
                       : AppColors.settingContainerColor,
                 ),
