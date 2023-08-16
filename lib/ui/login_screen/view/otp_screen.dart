@@ -9,6 +9,7 @@ import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/material_button.dart';
+import '../../base_setting/controller/base_setting_controller.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String routeName = "/OtpScreen";
@@ -22,6 +23,8 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   @override
   TextEditingController emailController = TextEditingController();
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,98 +32,108 @@ class _OtpScreenState extends State<OtpScreen> {
         onTap: () {
           disposeKeyboard();
         },
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                AppNightModeImage.bgWithContainerImageNightMode,
-
-                // AppImages.bgWithContainerImage,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 40,
-              left: 25,
-              right: 25,
-              bottom: 10,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(Icons.arrow_back_ios_new,
-                      color: AppNightModeColor.white
-                      // AppColors.black,
-                      ),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        const Text(
-                          "OTP ",
-                          maxLines: 2,
-                          style: TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const Text(
-                          "Verification!",
-                          maxLines: 2,
-                          style: TextStyle(
-                            color: AppColors.blueColor,
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const Text(
-                          "Enter the OTP sent to Email!",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: AppNightModeColor.white
-                              // AppColors.black,
-
-                              ),
-                        ),
-                        const SizedBox(height: 40),
-                        OTPTextField(
-                          keyboardType: TextInputType.number,
-                          length: 4,
-                          width: MediaQuery.of(context).size.width,
-                          fieldWidth: 50,
-                          otpFieldStyle: OtpFieldStyle(borderColor: Colors.red),
-                          style: const TextStyle(
-                            fontSize: 17, color: AppNightModeColor.white,
-                            // AppColors.black,
-                          ),
-                          textFieldAlignment: MainAxisAlignment.spaceAround,
-                          fieldStyle: FieldStyle.box,
-                          onCompleted: (pin) {
-                            print("Completed: " + pin);
-                          },
-                        ),
-                        const SizedBox(height: 250),
-                        signUpBtnOtp(),
-                      ],
-                    ),
+        child: GetBuilder<BaseSettingController>(
+          id: "DarkLightMode",
+          builder: (baseSettingController) {
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    baseSettingController.isNightMode
+                        ? AppNightModeImage.bgWithContainerImageNightMode
+                        : AppImages.bgWithContainerImage,
                   ),
-                )
-              ],
-            ),
-          ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  left: 25,
+                  right: 25,
+                  bottom: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: baseSettingController.isNightMode
+                            ? AppNightModeColor.white
+                            : AppColors.black,
+                      ),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            const Text(
+                              "OTP ",
+                              maxLines: 2,
+                              style: TextStyle(
+                                color: AppColors.blueColor,
+                                fontSize: 40,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const Text(
+                              "Verification!",
+                              maxLines: 2,
+                              style: TextStyle(
+                                color: AppColors.blueColor,
+                                fontSize: 40,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              "Enter the OTP sent to Email!",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: baseSettingController.isNightMode
+                                    ? AppNightModeColor.white
+                                    : AppColors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 40),
+                            OTPTextField(
+                              keyboardType: TextInputType.number,
+                              length: 4,
+                              width: MediaQuery.of(context).size.width,
+                              fieldWidth: 50,
+                              otpFieldStyle:
+                                  OtpFieldStyle(borderColor: Colors.red),
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: baseSettingController.isNightMode
+                                    ? AppNightModeColor.white
+                                    : AppColors.black,
+                              ),
+                              textFieldAlignment: MainAxisAlignment.spaceAround,
+                              fieldStyle: FieldStyle.box,
+                              onCompleted: (pin) {
+                                print("Completed: " + pin);
+                              },
+                            ),
+                            const SizedBox(height: 250),
+                            signUpBtnOtp(),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

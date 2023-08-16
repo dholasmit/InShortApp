@@ -12,4 +12,5 @@ class AppColors {
 class AppNightModeColor {
   static const white = Colors.white;
   static const exploreTopicListColor = Color(0XFF646464);
+  static const baseScreenColor = Color(0XFF1C1E21);
 }

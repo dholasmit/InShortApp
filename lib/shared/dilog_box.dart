@@ -302,8 +302,12 @@ logOutDialog(
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return GetBuilder(
+        id: "DarkLightMode",
         builder: (BaseSettingController baseSettingController) {
           return Dialog(
+            backgroundColor: baseSettingController.isNightMode
+                ? AppColors.black
+                : AppNightModeColor.white,
             insetPadding: const EdgeInsets.symmetric(horizontal: 20),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -356,11 +360,14 @@ logOutDialog(
                         ),
                       ),
                       const SizedBox(height: 50),
-                      const Text(
+                      Text(
                         "Are You sure Want to log out?",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
+                          color: baseSettingController.isNightMode
+                              ? AppNightModeColor.white
+                              : AppColors.black,
                         ),
                       ),
                       const SizedBox(height: 50),

@@ -10,6 +10,7 @@ import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_settings.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
+import '../../base_setting/controller/base_setting_controller.dart';
 import 'forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,6 +24,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginController loginController = Get.find<LoginController>();
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,234 +34,257 @@ class _LoginScreenState extends State<LoginScreen> {
         onTap: () {
           disposeKeyboard();
         },
-        child: Container(
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                AppNightModeImage.bgWithContainerImageNightMode,
-                // AppImages.bgWithContainerImage,
+        child: GetBuilder<BaseSettingController>(
+          id: "DarkLightMode",
+          builder: (baseSettingController) {
+            return Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    baseSettingController.isNightMode
+                        ? AppNightModeImage.bgWithContainerImageNightMode
+                        : AppImages.bgWithContainerImage,
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 40,
-              left: 25,
-              right: 25,
-              bottom: 10,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  left: 25,
+                  right: 25,
+                  bottom: 10,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      InkWell(
-                        onTap: () {
-                          disposeKeyboard();
-                          Get.back();
-                        },
-                        child: const Icon(Icons.arrow_back_ios_new,
-                            color: AppNightModeColor.white
-                            // AppColors.black,
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              disposeKeyboard();
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: baseSettingController.isNightMode
+                                  ? AppNightModeColor.white
+                                  : AppColors.black,
                             ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          disposeKeyboard();
+                          ),
+                          InkWell(
+                            onTap: () {
+                              disposeKeyboard();
 
-                          Get.toNamed(SignUpScreen.routeName);
-                        },
-                        child: const Text(
-                          "Sign up",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: AppNightModeColor.white
-                              // AppColors.black,
+                              Get.toNamed(SignUpScreen.routeName);
+                            },
+                            child: Text(
+                              "Sign up",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: baseSettingController.isNightMode
+                                    ? AppNightModeColor.white
+                                    : AppColors.black,
                               ),
-                        ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      GetBuilder(
+                        builder: (LoginController loginController) {
+                          return Form(
+                            key: loginController.loginFormKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "SIgn In",
+                                  style: TextStyle(
+                                    color: AppColors.blueColor,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "Start Your Journey With Us. And Enjoy This Wonderful App.",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: baseSettingController.isNightMode
+                                        ? AppNightModeColor.white
+                                        : AppColors.black,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                Center(
+                                  child:
+                                      Image.asset(AppImages.loginScreenAvatar),
+                                ),
+                                const SizedBox(height: 25),
+                                RequestFormTextfield(
+                                  formFieldType: RequestFormFieldType.email,
+                                  textCapitalization: TextCapitalization.none,
+                                  textInputAction: TextInputAction.next,
+                                  controller: loginController.emailController,
+                                  validator: (val) =>
+                                      validateEmail(val?.trim()),
+                                ),
+                                const SizedBox(height: 15),
+                                RequestFormTextfield(
+                                  formFieldType: RequestFormFieldType.password,
+                                  textCapitalization: TextCapitalization.none,
+                                  textInputAction: TextInputAction.done,
+                                  controller:
+                                      loginController.passwordController,
+                                  obscureText: true,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Enter Your Password';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                        side: BorderSide(
+                                          color:
+                                              baseSettingController.isNightMode
+                                                  ? AppNightModeColor.white
+                                                  : AppColors.black,
+                                        ),
+                                        value: loginController.checkValue,
+                                        onChanged: (bool? value) {
+                                          loginController.checkValue = value!;
+                                        }),
+                                    Text(
+                                      "Remember me",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                        color: baseSettingController.isNightMode
+                                            ? AppNightModeColor.white
+                                            : AppColors.black,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        disposeKeyboard();
+                                        Get.toNamed(
+                                            ForGotPasswordScreen.routeName);
+                                      },
+                                      child: Text(
+                                        "Forget password ?",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12,
+                                          color:
+                                              baseSettingController.isNightMode
+                                                  ? AppNightModeColor.white
+                                                  : AppColors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                signBtn(),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    const Expanded(
+                                      child: Divider(
+                                        thickness: 2,
+                                        color: AppColors.blueColor,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Text(
+                                      "OR",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                        color: baseSettingController.isNightMode
+                                            ? AppNightModeColor.white
+                                            : AppColors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 15),
+                                    const Expanded(
+                                      child: Divider(
+                                        thickness: 2,
+                                        color: AppColors.blueColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 15),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: googleBtn(),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Expanded(
+                                      child: appleIdBtn(),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    const Spacer(),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: "don’t have an account ?".tr,
+                                        style: TextStyle(
+                                          fontFamily: kAppFont,
+                                          fontSize: 14,
+                                          color:
+                                              baseSettingController.isNightMode
+                                                  ? AppNightModeColor.white
+                                                  : AppColors.black,
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: " Sign Up ".tr,
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                disposeKeyboard();
+
+                                                Get.toNamed(
+                                                    SignUpScreen.routeName);
+                                              },
+                                            style: const TextStyle(
+                                              fontFamily: kAppFont,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColors.blueColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
-                  GetBuilder(
-                    builder: (LoginController loginController) {
-                      return Form(
-                        key: loginController.loginFormKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "SIgn In",
-                              style: TextStyle(
-                                color: AppColors.blueColor,
-                                fontSize: 40,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              "Start Your Journey With Us. And Enjoy This Wonderful App.",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppNightModeColor.white
-                                  // AppColors.black,
-                                  ),
-                            ),
-                            const SizedBox(height: 20),
-                            Center(
-                              child: Image.asset(AppImages.loginScreenAvatar),
-                            ),
-                            const SizedBox(height: 25),
-                            RequestFormTextfield(
-                              formFieldType: RequestFormFieldType.email,
-                              textCapitalization: TextCapitalization.none,
-                              textInputAction: TextInputAction.next,
-                              controller: loginController.emailController,
-                              validator: (val) => validateEmail(val?.trim()),
-                            ),
-                            const SizedBox(height: 15),
-                            RequestFormTextfield(
-                              formFieldType: RequestFormFieldType.password,
-                              textCapitalization: TextCapitalization.none,
-                              textInputAction: TextInputAction.done,
-                              controller: loginController.passwordController,
-                              obscureText: true,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter Your Password';
-                                }
-                                return null;
-                              },
-                            ),
-                            Row(
-                              children: [
-                                Checkbox(
-                                    side: const BorderSide(
-                                        color: AppNightModeColor.white
-                                        // AppColors.black,
-                                        ),
-                                    value: loginController.checkValue,
-                                    onChanged: (bool? value) {
-                                      loginController.checkValue = value!;
-                                    }),
-                                const Text(
-                                  "Remember me",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: AppNightModeColor.white
-                                      // AppColors.black,
-                                      ),
-                                ),
-                                const Spacer(),
-                                InkWell(
-                                  onTap: () {
-                                    disposeKeyboard();
-                                    Get.toNamed(ForGotPasswordScreen.routeName);
-                                  },
-                                  child: const Text(
-                                    "Forget password ?",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        color: AppNightModeColor.white
-                                        // AppColors.black,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            signBtn(),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: const [
-                                Expanded(
-                                  child: Divider(
-                                    thickness: 2,
-                                    color: AppColors.blueColor,
-                                  ),
-                                ),
-                                SizedBox(width: 15),
-                                Text(
-                                  "OR",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppNightModeColor.white
-                                      // AppColors.black,
-                                      ),
-                                ),
-                                SizedBox(width: 15),
-                                Expanded(
-                                  child: Divider(
-                                    thickness: 2,
-                                    color: AppColors.blueColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 15),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: googleBtn(),
-                                ),
-                                const SizedBox(width: 20),
-                                Expanded(
-                                  child: appleIdBtn(),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const Spacer(),
-                                RichText(
-                                  text: TextSpan(
-                                    text: "don’t have an account ?".tr,
-                                    style: const TextStyle(
-                                        fontFamily: kAppFont,
-                                        fontSize: 14,
-                                        color: AppNightModeColor.white
-                                        // AppColors.black,
-                                        ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: " Sign Up ".tr,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            disposeKeyboard();
-
-                                            Get.toNamed(SignUpScreen.routeName);
-                                          },
-                                        style: const TextStyle(
-                                          fontFamily: kAppFont,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColors.blueColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

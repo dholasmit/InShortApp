@@ -5,6 +5,7 @@ import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/material_button.dart';
+import '../../base_setting/controller/base_setting_controller.dart';
 import 'login_screen.dart';
 
 class CongressScreen extends StatefulWidget {
@@ -17,54 +18,63 @@ class CongressScreen extends StatefulWidget {
 }
 
 class _CongressScreenState extends State<CongressScreen> {
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppNightModeImage.bgWithContainerImageNightMode,
-              // AppImages.bgWithContainerImage,
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Image.asset(AppImages.appLogoBig),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "Congratulations!",
-              style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25,
-                  color: AppNightModeColor.white
-                  // AppColors.black,
-
-                  ),
-            ),
-            const Text(
-              "Your account is ready to use",
-              style: TextStyle(
-                fontSize: 16,
-                color: AppColors.signupBTNColor,
+      body: GetBuilder<BaseSettingController>(
+        id: "DarkLightMode",
+        builder: (baseSettingController) {
+          return Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  baseSettingController.isNightMode
+                      ? AppNightModeImage.bgWithContainerImageNightMode
+                      : AppImages.bgWithContainerImage,
+                ),
+                fit: BoxFit.cover,
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: gotoHomepage(),
+            child: Column(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Image.asset(AppImages.appLogoBig),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Congratulations!",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 25,
+                    color: baseSettingController.isNightMode
+                        ? AppNightModeColor.white
+                        : AppColors.black,
+                  ),
+                ),
+                const Text(
+                  "Your account is ready to use",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.signupBTNColor,
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: gotoHomepage(),
+                ),
+                const SizedBox(height: 150),
+              ],
             ),
-            const SizedBox(height: 150),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

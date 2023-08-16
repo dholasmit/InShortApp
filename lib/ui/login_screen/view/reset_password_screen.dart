@@ -6,6 +6,7 @@ import '../../../custem_class/constant/app_functions.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
+import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/forgotpassword_controller.dart';
 import 'congress_screen.dart';
 
@@ -21,6 +22,8 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   ForgotPasswordController forgotPasswordController =
       Get.find<ForgotPasswordController>();
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,121 +32,130 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         onTap: () {
           disposeKeyboard();
         },
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                AppNightModeImage.bgWithContainerImageNightMode,
-                // AppImages.bgWithContainerImage,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 40,
-              left: 25,
-              right: 25,
-              bottom: 10,
-            ),
-            child: GetBuilder(
-              builder: (ForgotPasswordController forgotPasswordController) {
-                return Form(
-                  key: forgotPasswordController.resetPasswordFormKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: const Icon(Icons.arrow_back_ios_new,
-                            color: AppNightModeColor.white
-                            // AppColors.black,
-                            ),
-                      ),
-                      const SizedBox(height: 10),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Reset",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: AppColors.blueColor,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const Text(
-                                "Password",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: AppColors.blueColor,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const Text(
-                                "Enter the Your New Password!",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppNightModeColor.white
-                                    // AppColors.black,
-
-                                    ),
-                              ),
-                              const SizedBox(height: 40),
-                              header(title: "New Password"),
-                              const SizedBox(height: 5),
-                              RequestFormTextfield(
-                                formFieldType: RequestFormFieldType.newPassword,
-                                textCapitalization: TextCapitalization.none,
-                                textInputAction: TextInputAction.next,
-                                controller: forgotPasswordController
-                                    .newPasswordController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Enter Your Password';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(height: 25),
-                              header(title: "Confirm new password"),
-                              const SizedBox(height: 5),
-                              RequestFormTextfield(
-                                formFieldType:
-                                    RequestFormFieldType.confirmNewPassword,
-                                textCapitalization: TextCapitalization.none,
-                                textInputAction: TextInputAction.done,
-                                controller: forgotPasswordController
-                                    .newConfirmPasswordController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Enter Your Password';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(height: 200),
-                              signUpBtnReset(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+        child: GetBuilder<BaseSettingController>(
+          id: "DarkLightMode",
+          builder: (baseSettingController) {
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    baseSettingController.isNightMode
+                        ? AppNightModeImage.bgWithContainerImageNightMode
+                        : AppImages.bgWithContainerImage,
                   ),
-                );
-              },
-            ),
-          ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  left: 25,
+                  right: 25,
+                  bottom: 10,
+                ),
+                child: GetBuilder(
+                  builder: (ForgotPasswordController forgotPasswordController) {
+                    return Form(
+                      key: forgotPasswordController.resetPasswordFormKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 10),
+                          InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: baseSettingController.isNightMode
+                                  ? AppNightModeColor.white
+                                  : AppColors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Reset",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: AppColors.blueColor,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const Text(
+                                    "Password",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: AppColors.blueColor,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Enter the Your New Password!",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: baseSettingController.isNightMode
+                                          ? AppNightModeColor.white
+                                          : AppColors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 40),
+                                  header(title: "New Password"),
+                                  const SizedBox(height: 5),
+                                  RequestFormTextfield(
+                                    formFieldType:
+                                        RequestFormFieldType.newPassword,
+                                    textCapitalization: TextCapitalization.none,
+                                    textInputAction: TextInputAction.next,
+                                    controller: forgotPasswordController
+                                        .newPasswordController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Enter Your Password';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  const SizedBox(height: 25),
+                                  header(title: "Confirm new password"),
+                                  const SizedBox(height: 5),
+                                  RequestFormTextfield(
+                                    formFieldType:
+                                        RequestFormFieldType.confirmNewPassword,
+                                    textCapitalization: TextCapitalization.none,
+                                    textInputAction: TextInputAction.done,
+                                    controller: forgotPasswordController
+                                        .newConfirmPasswordController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Enter Your Password';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  const SizedBox(height: 200),
+                                  signUpBtnReset(),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -173,12 +185,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       children: [
         Text(
           title,
-          style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: AppNightModeColor.white
-              // AppColors.black,
-              ),
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: baseSettingController.isNightMode
+                ? AppNightModeColor.white
+                : AppColors.black,
+          ),
         ),
         const Text(
           "*",

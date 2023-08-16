@@ -7,12 +7,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
-import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../login_screen/view/login_screen.dart';
 import '../controller/base_setting_controller.dart';
 import 'common/dialog.dart';
-import 'notification_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -28,107 +26,114 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                isNightMode
-                    ? AppNightModeImage.bgWithContainerImageNightMode
-                    : AppImages.bgWithContainerImage,
+      body: GetBuilder<BaseSettingController>(
+        id: "DarkLightMode",
+        builder: (baseSettingController) {
+          return Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    baseSettingController.isNightMode
+                        ? AppNightModeImage.bgWithContainerImageNightMode
+                        : AppImages.bgWithContainerImage,
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: GetBuilder(
-            builder: (BaseSettingController baseSettingController) {
-              return Column(
-                children: [
-                  const SizedBox(height: 40),
-                  Row(
+              child: GetBuilder(
+                builder: (BaseSettingController baseSettingController) {
+                  return Column(
                     children: [
-                      const SizedBox(width: 20),
-                      Image.asset(
-                        AppImages.appLogo,
-                        height: 22,
-                        width: 60,
+                      const SizedBox(height: 40),
+                      Row(
+                        children: [
+                          const SizedBox(width: 20),
+                          Image.asset(
+                            AppImages.appLogo,
+                            height: 22,
+                            width: 60,
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "Settings",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 21,
+                              color: AppColors.blueColor,
+                            ),
+                          ),
+                          const SizedBox(width: 25),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(ProfileScreen.routeName);
+                            },
+                            child: Image.asset(
+                              AppIcons.profileIcons,
+                              color: AppColors.blueColor,
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                        ],
                       ),
-                      const Spacer(),
-                      const Text(
-                        "Settings",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 21,
-                          color: AppColors.blueColor,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Divider(
+                          thickness: 2,
+                          color: Colors.white,
                         ),
                       ),
-                      const SizedBox(width: 25),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Get.toNamed(ProfileScreen.routeName);
-                        },
-                        child: Image.asset(
-                          AppIcons.profileIcons,
-                          color: AppColors.blueColor,
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                    ],
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Divider(
-                      thickness: 2,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: baseSettingController.settingIcon.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return settingCommonSell(
-                          onTap: () {
-                            baseSettingController.selectedIndex = index;
-                            baseSettingController.chooseLanguage =
-                                LocalStorage.getLanguageType();
-                            index == 0
-                                ? languageDialog(context)
-                                : index == 1
-                                    ? Get.toNamed(NotificationScreen.routeName)
-                                    : index == 2
-                                        ? nightModeDialog(context)
-                                        : index == 3
-                                            ? textSizeDialog(context)
-                                            : index == 4
-                                                ? baseSettingController.share()
-                                                : index == 5
-                                                    ? const SizedBox()
-                                                    : index == 6
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: baseSettingController.settingIcon.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return settingCommonSell(
+                              onTap: () {
+                                baseSettingController.selectedIndex = index;
+                                baseSettingController.chooseLanguage =
+                                    LocalStorage.getLanguageType();
+                                index == 0
+                                    ? languageDialog(context)
+                                    : index == 1
+                                        // ? Get.toNamed(NotificationScreen.routeName)
+                                        ? const SizedBox()
+                                        : index == 2
+                                            ? nightModeDialog(context)
+                                            : index == 3
+                                                ? textSizeDialog(context)
+                                                : index == 4
+                                                    ? baseSettingController
+                                                        .share()
+                                                    : index == 5
                                                         ? const SizedBox()
-                                                        : index == 7
+                                                        : index == 6
+                                                            ? const SizedBox()
+                                                            : index == 7
 
-                                                            /// open in google chrome web
-                                                            ? termsCondition()
-                                                            : index == 8
-                                                                ? privacyPolicy()
-                                                                : index == 9
-                                                                    ? logOut()
-                                                                    : const SizedBox();
+                                                                /// open in google chrome web
+                                                                ? termsCondition()
+                                                                : index == 8
+                                                                    ? privacyPolicy()
+                                                                    : index == 9
+                                                                        ? logOut()
+                                                                        : const SizedBox();
+                              },
+                              index: index,
+                              ic: baseSettingController.settingIcon[index],
+                              name: baseSettingController.settingName[index],
+                            );
                           },
-                          index: index,
-                          ic: baseSettingController.settingIcon[index],
-                          name: baseSettingController.settingName[index],
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              );
-            },
-          )),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  );
+                },
+              ));
+        },
+      ),
     );
   }
 
@@ -156,7 +161,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         ? AppColors.blueColor
                         : Colors.transparent,
                   ),
-                  color: AppColors.settingContainerColor,
+                  color: baseSettingController.isNightMode
+                      ? AppNightModeColor.exploreTopicListColor
+                      : AppColors.settingContainerColor,
                 ),
                 child: Row(
                   children: [

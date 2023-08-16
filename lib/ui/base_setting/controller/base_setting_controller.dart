@@ -76,6 +76,15 @@ class BaseSettingController extends GetxController {
     "System",
   ];
 
+  bool _isNightMode = false;
+
+  bool get isNightMode => _isNightMode;
+
+  set isNightMode(bool value) {
+    _isNightMode = value;
+    update(["DarkLightMode"]);
+  }
+
   Future<void> onChangeDarkLightMode(int index) async {
     chooseModeList = index;
   }

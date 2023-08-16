@@ -21,6 +21,7 @@ globalVerbInit() {
 }
 
 int initialTab = 0;
+// bool isNightMode = false;
 final List<NavigationTabContainModel> navigationTabList = [
   NavigationTabContainModel(icon: AppIcons.homeIcons, name: "Home"),
   NavigationTabContainModel(icon: AppIcons.exploreIcons, name: "Explore"),
@@ -28,11 +29,11 @@ final List<NavigationTabContainModel> navigationTabList = [
       icon: AppIcons.baseScreenBookmarkIcons, name: "Bookmark"),
   NavigationTabContainModel(icon: AppIcons.settingIcons, name: "Settings"),
 ];
-List<Widget> navigationScreensWithHome = const [
+List<Widget> navigationScreensWithHome = [
   HomeScreen(),
-  ExploreScreen(),
-  BookmarkScreen(),
-  SettingScreen(),
+  const ExploreScreen(),
+  const BookmarkScreen(),
+  const SettingScreen(),
 ];
 
 class NavigationTabContainModel {
@@ -42,26 +43,4 @@ class NavigationTabContainModel {
     required this.icon,
     required this.name,
   });
-}
-
-bool isNightMode = true;
-
-///Light Them
-ThemeData lightThemeData(BuildContext context) {
-  return ThemeData.light().copyWith(
-    primaryColor: const Color(0xFF5B4B49),
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      secondary: const Color(0xFF24A751),
-    ),
-  );
-}
-
-/// dark Theme
-ThemeData darkThemeData(BuildContext context) {
-  return ThemeData.dark().copyWith(
-    primaryColor: const Color(0xFFFF1D00),
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      secondary: const Color(0xFF24A751),
-    ),
-  );
 }

@@ -7,10 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../shared/home_screen_floating_btn.dart';
+import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  BaseSettingController baseSettingController =
+      Get.find<BaseSettingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -62,131 +66,146 @@ class HomeScreen extends StatelessWidget {
       //           );
       //   },
       // ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppNightModeImage.bgWithContainerImageNightMode,
-              // AppImages.bgWithContainerImage,
+      body: GetBuilder<BaseSettingController>(
+        id: "DarkLightMode",
+        builder: (baseSettingController) {
+          return Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  baseSettingController.isNightMode
+                      ? AppNightModeImage.bgWithContainerImageNightMode
+                      : AppImages.bgWithContainerImage,
+                ),
+                fit: BoxFit.fitWidth,
+              ),
             ),
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-        child: GetBuilder<HomeScreenController>(
-          id: "product",
-          builder: (controller) {
-            return controller.loader
-                ? const Center(child: CircularProgressIndicator())
-                : Swiper(
-                    itemCount: controller
-                        .getHomeRecentlyAddedProductsModel!.data!.length,
-                    autoplay: false,
-                    // transformer: PageT,
-                    scrollDirection: Axis.horizontal,
-                    controller: controller.pageController,
-                    onIndexChanged: controller.onChangeIndex,
-                    index: controller.selectedIndex,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                          bottom: 25,
-                          top: 35,
-                        ),
-                        child: Container(
-                          height: 100,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: AppColors.black,
-                            // AppNightModeColor.white
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          controller
-                                              .getHomeRecentlyAddedProductsModel!
-                                              .data![index]
-                                              .pictureModels![0]
-                                              .imageUrl
-                                              .toString(),
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-                                      // color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Expanded(
-                                  //   child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        controller
-                                            .getHomeRecentlyAddedProductsModel!
-                                            .data![index]
-                                            .name
-                                            .toString(),
-                                        // "Modi ji Newj",
-                                        style: const TextStyle(
-                                          color: AppColors.blueColor,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      Html(
-                                        data: controller
-                                            .getHomeRecentlyAddedProductsModel!
-                                            .data![index]
-                                            .shortDescription
-                                            .toString(),
-                                      ),
-                                      const Spacer(),
-                                      InkWell(
-                                        onTap: () {
-                                          print("More News");
-                                          launch(controller
-                                              .getHomeRecentlyAddedProductsModel!
-                                              .data![index]
-                                              .prouductUrl!
-                                              .toString());
-                                        },
-                                        child: Text(
-                                          "onTap for More news/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
-                                          style: const TextStyle(
-                                            fontSize: 13,
-                                            color: Color(0XFFADADAD),
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  // ),
-                                ),
-                              ],
+            child: GetBuilder<HomeScreenController>(
+              id: "product",
+              builder: (controller) {
+                return controller.loader
+                    ? const Center(child: CircularProgressIndicator())
+                    : Swiper(
+                        itemCount: controller
+                            .getHomeRecentlyAddedProductsModel!.data!.length,
+                        autoplay: false,
+                        // transformer: PageT,
+                        scrollDirection: Axis.horizontal,
+                        controller: controller.pageController,
+                        onIndexChanged: controller.onChangeIndex,
+                        index: controller.selectedIndex,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              left: 30,
+                              right: 30,
+                              bottom: 25,
+                              top: 35,
                             ),
-                          ),
-                        ),
+                            child: Container(
+                              height: 100,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: baseSettingController.isNightMode
+                                      ? AppColors.black
+                                      : AppNightModeColor.white),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  //crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              controller
+                                                  .getHomeRecentlyAddedProductsModel!
+                                                  .data![index]
+                                                  .pictureModels![0]
+                                                  .imageUrl
+                                                  .toString(),
+                                            ),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          // color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Expanded(
+                                      //   child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            controller
+                                                .getHomeRecentlyAddedProductsModel!
+                                                .data![index]
+                                                .name
+                                                .toString(),
+                                            // "Modi ji Newj",
+                                            style: const TextStyle(
+                                              color: AppColors.blueColor,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Html(
+                                            data: controller
+                                                .getHomeRecentlyAddedProductsModel!
+                                                .data![index]
+                                                .shortDescription
+                                                .toString(),
+                                            style: {
+                                              "body": Style(
+                                                color: baseSettingController
+                                                        .isNightMode
+                                                    ? AppNightModeColor.white
+                                                    : AppColors.black,
+                                              ),
+                                            },
+                                          ),
+                                          const Spacer(),
+                                          InkWell(
+                                            onTap: () {
+                                              print("More News");
+                                              launch(controller
+                                                  .getHomeRecentlyAddedProductsModel!
+                                                  .data![index]
+                                                  .prouductUrl!
+                                                  .toString());
+                                            },
+                                            child: Text(
+                                              "onTap for More news/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
+                                              style: const TextStyle(
+                                                fontSize: 13,
+                                                color: Color(0XFFADADAD),
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      // ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       );
-                    },
-                  );
-          },
-        ),
+              },
+            ),
+          );
+        },
       ),
     );
   }

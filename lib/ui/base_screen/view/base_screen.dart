@@ -46,118 +46,260 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: onWillPop,
-      child: Scaffold(
-        body: GetBuilder(
-          builder: (BaseScreenController controller) => IndexedStack(
-            index: controller.selectedTab,
-            children: navigationScreensWithHome,
+        onWillPop: onWillPop,
+        child: Scaffold(
+          body: GetBuilder(
+            builder: (BaseScreenController controller) => IndexedStack(
+              index: controller.selectedTab,
+              children: navigationScreensWithHome,
+            ),
           ),
-        ),
-        bottomNavigationBar: bottomBar(context),
-      ),
-    );
+          bottomNavigationBar: GetBuilder<BaseSettingController>(
+            id: "DarkLightMode",
+            builder: (baseSettingController) {
+              return bottomBar(context);
+            },
+          ),
+        ));
   }
 
   BottomAppBar bottomBar(BuildContext context) {
-    return BottomAppBar(
-      color: Colors.white,
-      elevation: 100,
-      child: Container(
-        decoration: const BoxDecoration(
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.grey,
-            //     blurRadius: 10,
-            //   ),
-            // ],
-            ),
-        child: GetBuilder(
-          builder: (BaseScreenController controller) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: navigationTabList
-                .asMap()
-                .map(
-                  (key, value) => MapEntry(
-                    key,
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.find<BaseScreenController>().selectedTab = key;
-                          if (Get.find<BaseScreenController>().selectedTab ==
-                              0) {
-                            homeScreenController
-                                .homeRecentlyAddedProductsData();
-                          } else if (Get.find<BaseScreenController>()
-                                  .selectedTab ==
-                              1) {
-                            exploreController.selectedIndex = 0;
-                            exploreController.getProductsByCategoryList(
-                                id: exploreController
-                                    .getExploreTopicListModel!.data![0].id!);
-                            exploreController.exploreTopicListData();
-                            popularTopicController.popularData();
-                          } else if (Get.find<BaseScreenController>()
-                                  .selectedTab ==
-                              2) {
-                            bookMarkController.bookMarkListData();
-                          } else if (Get.find<BaseScreenController>()
-                                  .selectedTab ==
-                              3) {
-                            baseSettingController.selectedIndex = -1;
-                          }
-                        },
-                        child: Container(
-                          color: Colors.white,
-                          height: 55,
-                          child: Center(
-                            child: Container(
-                              height: 60,
-                              // width: MediaQuery.of(context).size.width / 4,
-                              decoration: const BoxDecoration(),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 5),
-                                  SizedBox(
-                                    height: 25,
-                                    width: 25,
-                                    child: Image.asset(
-                                      value.icon,
-                                      height: 20,
-                                      width: 20,
-                                      color: controller.selectedTab == key
-                                          ? AppColors.blueColor
-                                          : Colors.black,
+    return baseSettingController.isNightMode
+        ? BottomAppBar(
+            color: Colors.white,
+            elevation: 100,
+            child: GetBuilder<BaseSettingController>(
+              id: "DarkLightMode",
+              builder: (baseSettingController) {
+                return Container(
+                  decoration: BoxDecoration(
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey,
+                      //     blurRadius: 10,
+                      //   ),
+                      // ],
+                      ),
+                  child: GetBuilder(
+                    builder: (BaseScreenController controller) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: navigationTabList
+                          .asMap()
+                          .map(
+                            (key, value) => MapEntry(
+                              key,
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.find<BaseScreenController>()
+                                        .selectedTab = key;
+                                    if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        0) {
+                                      homeScreenController
+                                          .homeRecentlyAddedProductsData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        1) {
+                                      exploreController.selectedIndex = 0;
+                                      exploreController
+                                          .getProductsByCategoryList(
+                                              id: exploreController
+                                                  .getExploreTopicListModel!
+                                                  .data![0]
+                                                  .id!);
+                                      exploreController.exploreTopicListData();
+                                      popularTopicController.popularData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        2) {
+                                      bookMarkController.bookMarkListData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        3) {
+                                      baseSettingController.selectedIndex = -1;
+                                    }
+                                  },
+                                  child: Container(
+                                    color:
+                                        // baseSettingController.isNightMode
+                                        //     ?
+                                        AppNightModeColor.baseScreenColor,
+                                    //AppNightModeColor.white,
+                                    height: 55,
+                                    child: Center(
+                                      child: Container(
+                                        height: 60,
+                                        // width: MediaQuery.of(context).size.width / 4,
+                                        decoration: const BoxDecoration(),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            SizedBox(
+                                              height: 25,
+                                              width: 25,
+                                              child: Image.asset(
+                                                value.icon,
+                                                height: 20,
+                                                width: 20,
+                                                color: controller.selectedTab ==
+                                                        key
+                                                    // ? baseSettingController
+                                                    //         .isNightMode
+                                                    ? AppColors.blueColor
+                                                    // : Colors.black
+                                                    : AppNightModeColor.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              value.name.tr,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                fontFamily: kAppFont,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: controller.selectedTab ==
+                                                        key
+                                                    ? AppColors.blueColor
+                                                    //   : Colors.black,
+                                                    : AppNightModeColor.white,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Text(
-                                    value.name.tr,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      fontFamily: kAppFont,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: controller.selectedTab == key
-                                          ? AppColors.blueColor
-                                          : Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
+                          )
+                          .values
+                          .toList(),
                     ),
                   ),
-                )
-                .values
-                .toList(),
-          ),
-        ),
-      ),
-    );
+                );
+              },
+            ),
+          )
+        : BottomAppBar(
+            color: Colors.white,
+            elevation: 100,
+            child: GetBuilder<BaseSettingController>(
+              id: "DarkLightMode",
+              builder: (baseSettingController) {
+                return Container(
+                  decoration: BoxDecoration(
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey,
+                      //     blurRadius: 10,
+                      //   ),
+                      // ],
+                      ),
+                  child: GetBuilder(
+                    builder: (BaseScreenController controller) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: navigationTabList
+                          .asMap()
+                          .map(
+                            (key, value) => MapEntry(
+                              key,
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.find<BaseScreenController>()
+                                        .selectedTab = key;
+                                    if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        0) {
+                                      homeScreenController
+                                          .homeRecentlyAddedProductsData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        1) {
+                                      exploreController.selectedIndex = 0;
+                                      exploreController
+                                          .getProductsByCategoryList(
+                                              id: exploreController
+                                                  .getExploreTopicListModel!
+                                                  .data![0]
+                                                  .id!);
+                                      exploreController.exploreTopicListData();
+                                      popularTopicController.popularData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        2) {
+                                      bookMarkController.bookMarkListData();
+                                    } else if (Get.find<BaseScreenController>()
+                                            .selectedTab ==
+                                        3) {
+                                      baseSettingController.selectedIndex = -1;
+                                    }
+                                  },
+                                  child: Container(
+                                    color:
+                                        // baseSettingController.isNightMode
+                                        //     ?
+                                        //  AppNightModeColor.baseScreenColor,
+                                        AppNightModeColor.white,
+                                    height: 55,
+                                    child: Center(
+                                      child: Container(
+                                        height: 60,
+                                        // width: MediaQuery.of(context).size.width / 4,
+                                        decoration: const BoxDecoration(),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            SizedBox(
+                                              height: 25,
+                                              width: 25,
+                                              child: Image.asset(
+                                                value.icon,
+                                                height: 20,
+                                                width: 20,
+                                                color: controller.selectedTab ==
+                                                        key
+                                                    ? AppColors.blueColor
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                            Text(
+                                              value.name.tr,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                fontFamily: kAppFont,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: controller.selectedTab ==
+                                                        key
+                                                    ? AppColors.blueColor
+                                                    : Colors.black,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .values
+                          .toList(),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
   }
 }

@@ -29,7 +29,7 @@ final List<GetPage<dynamic>> routes = [
   GetPage(
       name: ForGotPasswordScreen.routeName,
       page: () => const ForGotPasswordScreen()),
-  GetPage(name: WelComeScreen.routeName, page: () => const WelComeScreen()),
+  GetPage(name: WelComeScreen.routeName, page: () => WelComeScreen()),
   GetPage(name: OtpScreen.routeName, page: () => const OtpScreen()),
   GetPage(name: CongressScreen.routeName, page: () => const CongressScreen()),
   GetPage(
@@ -46,5 +46,6 @@ final List<GetPage<dynamic>> routes = [
       name: EditProfileScreen.routeName, page: () => const EditProfileScreen()),
   GetPage(name: PopularScreen.routeName, page: () => const PopularScreen()),
   GetPage(
-      name: LanguageOptionScreen.routeName, page: () => LanguageOptionScreen()),
+      name: LanguageOptionScreen.routeName,
+      page: () => const LanguageOptionScreen()),
 ];
