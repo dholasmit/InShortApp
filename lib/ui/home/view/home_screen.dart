@@ -101,8 +101,8 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.only(
-                              left: 30,
-                              right: 30,
+                              left: 20,
+                              right: 20,
                               bottom: 25,
                               top: 35,
                             ),
@@ -112,7 +112,6 @@ class HomeScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: LocalStorage.getLightDarkMode()
-                                      // baseSettingController.isNightMode
                                       ? AppColors.black
                                       : AppNightModeColor.white),
                               child: Padding(
@@ -186,7 +185,7 @@ class HomeScreen extends StatelessWidget {
                                                   .toString());
                                             },
                                             child: Text(
-                                              "onTap for More news/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
+                                              "onTap for More Details/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
                                               style: const TextStyle(
                                                 fontSize: 13,
                                                 color: Color(0XFFADADAD),

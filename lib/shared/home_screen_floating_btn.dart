@@ -148,6 +148,13 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             child: floatingActionTypeButtonItem(
                               onTap: () {
                                 print("Share Icon");
+                                homeScreenController.share(
+                                    link: homeScreenController
+                                        .getHomeRecentlyAddedProductsModel!
+                                        .data![
+                                            homeScreenController.selectedIndex]
+                                        .prouductUrl!
+                                        .toString());
                                 animationController.reverse();
                               },
                               img: options.elementAt(1),

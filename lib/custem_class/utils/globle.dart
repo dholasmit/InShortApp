@@ -11,7 +11,8 @@ import '../../ui/login_screen/view/splash_screen.dart';
 import '../constant/app_icons.dart';
 
 UserController userController = Get.put(UserController());
-late AppImagePicker appImagePicker;
+late AppImagePicker appImagePicker =
+    AppImagePicker(); // Initializing the variable
 
 // String initialRoute = NewsScreen.routeName;
 String initialRoute = SplashScreen.routeName;

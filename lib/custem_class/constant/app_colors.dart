@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inshorts_newj/custem_class/utils/local_storage.dart';
 
 class AppColors {
   static const blueColor = Color(0XFF4D9FFF);
@@ -13,4 +14,8 @@ class AppNightModeColor {
   static const white = Colors.white;
   static const exploreTopicListColor = Color(0XFF646464);
   static const baseScreenColor = Color(0XFF1C1E21);
+}
+
+themColor() {
+  LocalStorage.getLightDarkMode() ? Colors.white : Colors.black;
 }

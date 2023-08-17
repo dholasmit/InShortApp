@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/base_setting/controller/edit_profile_controller.dart';
@@ -10,7 +8,6 @@ import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../../../shared/image_picker_controller.dart';
 import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_screen/controller/base_screen_controller.dart';
@@ -77,7 +74,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             const Spacer(),
                             const Text(
-                              "Profile",
+                              "Edit Profile",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 21,
@@ -113,7 +110,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: Column(
                                 children: [
                                   const SizedBox(height: 30),
-                                  profileDetails(context),
+                                  // profileDetails(context),
                                   // InkWell(
                                   //   onTap: () {
                                   //     // profileDetails(context);
@@ -175,7 +172,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                   const SizedBox(height: 70),
                                   materialButton(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.back();
+                                    },
                                     btnText: "Submit",
                                     color: AppColors.blueColor,
                                   ),
@@ -196,43 +195,43 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  Widget profileDetails(BuildContext context) {
-    return GetBuilder(builder: (ImagePickerController imagePickerController) {
-      return Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              appImagePicker.openDialog();
-
-              /// appImagePicker.openBottomSheet();
-            },
-            child: imagePickerController.image.isEmpty
-                ? Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Image.asset(
-                        AppIcons.editProfileIcons,
-                        color: AppColors.blueColor,
-                        height: 120,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Image.asset(
-                          AppIcons.cameraIcons,
-                        ),
-                      ),
-                    ],
-                  )
-                : CircleAvatar(
-                    radius: 60,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: FileImage(
-                      File(imagePickerController.image),
-                    ),
-                  ),
-          ),
-        ],
-      );
-    });
-  }
+// Widget profileDetails(BuildContext context) {
+//   return GetBuilder(builder: (ImagePickerController imagePickerController) {
+//     return Column(
+//       children: [
+//         GestureDetector(
+//           onTap: () {
+//             appImagePicker.openDialog();
+//
+//             /// appImagePicker.openBottomSheet();
+//           },
+//           child: imagePickerController.image.isEmpty
+//               ? Stack(
+//                   alignment: Alignment.bottomRight,
+//                   children: [
+//                     Image.asset(
+//                       AppIcons.editProfileIcons,
+//                       color: AppColors.blueColor,
+//                       height: 120,
+//                     ),
+//                     InkWell(
+//                       onTap: () {},
+//                       child: Image.asset(
+//                         AppIcons.cameraIcons,
+//                       ),
+//                     ),
+//                   ],
+//                 )
+//               : CircleAvatar(
+//                   radius: 60,
+//                   backgroundColor: Colors.transparent,
+//                   backgroundImage: FileImage(
+//                     File(imagePickerController.image),
+//                   ),
+//                 ),
+//         ),
+//       ],
+//     );
+//   });
+// }
 }

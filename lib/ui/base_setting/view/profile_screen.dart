@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_functions.dart';
 import 'package:inshorts_newj/shared/material_button.dart';
+import 'package:inshorts_newj/ui/base_setting/view/edit_profile_screen.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
-import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/image_picker_controller.dart';
-import '../../../shared/textfild_common.dart';
 import '../../base_screen/controller/base_screen_controller.dart';
 import '../controller/profile _controller.dart';
-import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = "/ProfileScreen";
@@ -96,78 +94,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Expanded(
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 30),
-                                  Stack(
-                                    alignment: Alignment.bottomRight,
-                                    children: [
-                                      Image.asset(
-                                        AppIcons.editProfileIcons,
-                                        color: AppColors.blueColor,
-                                        height: 120,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              EditProfileScreen.routeName);
-                                        },
-                                        child: Image.asset(
-                                          AppIcons.cameraIcons,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 30),
-                                  RequestFormTextfield(
-                                    formFieldType:
-                                        RequestFormFieldType.profileUserName,
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    textInputAction: TextInputAction.next,
-                                    controller: profileScreenController
-                                        .userNameController,
-                                  ),
-                                  const SizedBox(height: 15),
-                                  RequestFormTextfield(
-                                    formFieldType:
-                                        RequestFormFieldType.profileFullName,
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    textInputAction: TextInputAction.next,
-                                    controller: profileScreenController
-                                        .fullNameController,
-                                  ),
-                                  const SizedBox(height: 15),
-                                  RequestFormTextfield(
-                                    formFieldType:
-                                        RequestFormFieldType.profileEmail,
-                                    textCapitalization: TextCapitalization.none,
-                                    textInputAction: TextInputAction.next,
-                                    controller:
-                                        profileScreenController.emailController,
-                                  ),
-                                  const SizedBox(height: 15),
-                                  RequestFormTextfield(
-                                    formFieldType:
-                                        RequestFormFieldType.profilePhoneNumber,
-                                    textCapitalization: TextCapitalization.none,
-                                    textInputAction: TextInputAction.done,
-                                    controller: profileScreenController
-                                        .phoneNumberController,
-                                  ),
-                                  const SizedBox(height: 70),
-                                  materialButton(
-                                    onTap: () {},
-                                    btnText: "Submit",
-                                    color: AppColors.blueColor,
-                                  ),
-                                ],
-                              ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Column(
+                              children: [
+                                const Spacer(),
+                                profileSell(
+                                  ic: AppImages.userIcon,
+                                  txt: "Dhola",
+                                ),
+                                const SizedBox(height: 20),
+                                profileSell(
+                                  ic: AppImages.userIcon,
+                                  txt: "Smit",
+                                ),
+                                const SizedBox(height: 20),
+                                profileSell(
+                                  ic: AppImages.emailIcon,
+                                  txt: "smitdhola352@gmail.com",
+                                ),
+                                const SizedBox(height: 20),
+                                profileSell(
+                                  ic: AppImages.phoneIcon,
+                                  txt: "9106930007",
+                                ),
+                                const SizedBox(height: 50),
+
+                                materialButton(
+                                  onTap: () {
+                                    Get.toNamed(EditProfileScreen.routeName);
+                                  },
+                                  btnText: "Edit Profile",
+                                  color: AppColors.blueColor,
+                                ),
+                                const Spacer(),
+                                const Spacer(),
+                                // const SizedBox(height: 30),
+                                // Stack(
+                                //   alignment: Alignment.bottomRight,
+                                //   children: [
+                                //     Image.asset(
+                                //       AppIcons.editProfileIcons,
+                                //       color: AppColors.blueColor,
+                                //       height: 120,
+                                //     ),
+                                //     InkWell(
+                                //       onTap: () {
+                                //         Get.toNamed(
+                                //             EditProfileScreen.routeName);
+                                //       },
+                                //       child: Image.asset(
+                                //         AppIcons.cameraIcons,
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
+                                // const SizedBox(height: 30),
+                                // RequestFormTextfield(
+                                //   formFieldType:
+                                //       RequestFormFieldType.profileUserName,
+                                //   textCapitalization:
+                                //       TextCapitalization.words,
+                                //   textInputAction: TextInputAction.next,
+                                //   controller: profileScreenController
+                                //       .userNameController,
+                                // ),
+                                // const SizedBox(height: 15),
+                                // RequestFormTextfield(
+                                //   formFieldType:
+                                //       RequestFormFieldType.profileFullName,
+                                //   textCapitalization:
+                                //       TextCapitalization.words,
+                                //   textInputAction: TextInputAction.next,
+                                //   controller: profileScreenController
+                                //       .fullNameController,
+                                // ),
+                                // const SizedBox(height: 15),
+                                // RequestFormTextfield(
+                                //   formFieldType:
+                                //       RequestFormFieldType.profileEmail,
+                                //   textCapitalization: TextCapitalization.none,
+                                //   textInputAction: TextInputAction.next,
+                                //   controller:
+                                //       profileScreenController.emailController,
+                                // ),
+                                // const SizedBox(height: 15),
+                                // RequestFormTextfield(
+                                //   formFieldType:
+                                //       RequestFormFieldType.profilePhoneNumber,
+                                //   textCapitalization: TextCapitalization.none,
+                                //   textInputAction: TextInputAction.done,
+                                //   controller: profileScreenController
+                                //       .phoneNumberController,
+                                // ),
+                                // const SizedBox(height: 70),
+                              ],
                             ),
                           ),
                         )
@@ -179,6 +200,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           },
         ),
+      ),
+    );
+  }
+
+  profileSell({
+    required String ic,
+    required String txt,
+  }) {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: LocalStorage.getLightDarkMode()
+            ? AppNightModeColor.exploreTopicListColor
+            : Colors.white,
+      ),
+      child: Row(
+        children: [
+          const SizedBox(width: 10),
+          Image.asset(
+            ic,
+            color:
+                LocalStorage.getLightDarkMode() ? Colors.white : Colors.black,
+          ),
+          const SizedBox(width: 10),
+          Container(
+            height: 30,
+            width: 2,
+            color: AppColors.blueColor,
+          ),
+          const SizedBox(width: 10),
+          Text(
+            txt,
+            style: TextStyle(
+              color:
+                  LocalStorage.getLightDarkMode() ? Colors.white : Colors.black,
+              fontSize: 15,
+              //  fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
       ),
     );
   }

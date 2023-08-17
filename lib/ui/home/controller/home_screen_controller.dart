@@ -96,11 +96,12 @@ class HomeScreenController extends GetxController {
     );
   }
 
-  /// App share
-  Future<void> share() async {
+  /// ShareLink
+  Future<void> share({required String link}) async {
     await FlutterShare.share(
       title: 'In-ShortApp',
-      linkUrl: 'app link attached',
+      linkUrl: link,
+      // linkUrl: 'app link attached',
     );
   }
 
