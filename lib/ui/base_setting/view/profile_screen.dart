@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_functions.dart';
+import 'package:inshorts_newj/custem_class/utils/globle.dart';
 import 'package:inshorts_newj/shared/material_button.dart';
 import 'package:inshorts_newj/ui/base_setting/view/edit_profile_screen.dart';
 
@@ -99,6 +100,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 const Spacer(),
+
+                                /// login flow ma Proper Response nai Avato
                                 profileSell(
                                   ic: AppImages.userIcon,
                                   txt: "Dhola",
@@ -111,7 +114,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const SizedBox(height: 20),
                                 profileSell(
                                   ic: AppImages.emailIcon,
-                                  txt: "smitdhola352@gmail.com",
+                                  txt: userController.userModel!.emailId
+                                      .toString(),
                                 ),
                                 const SizedBox(height: 20),
                                 profileSell(

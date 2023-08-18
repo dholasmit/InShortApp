@@ -79,7 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           InkWell(
                             onTap: () {
                               disposeKeyboard();
-
                               Get.toNamed(SignUpScreen.routeName);
                             },
                             child: Text(

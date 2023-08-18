@@ -7,6 +7,7 @@ import '../../ui/base_setting/view/notification_screen.dart';
 import '../../ui/base_setting/view/profile_screen.dart';
 import '../../ui/choose_news_screen/view/choose_topic_screen.dart';
 import '../../ui/explore/view/popular_screen.dart';
+import '../../ui/home/view/home_images.dart';
 import '../../ui/login_screen/view/congress_screen.dart';
 import '../../ui/login_screen/view/forgotpassword_screen.dart';
 import '../../ui/login_screen/view/login_screen.dart';
@@ -45,6 +46,7 @@ final List<GetPage<dynamic>> routes = [
   GetPage(
       name: EditProfileScreen.routeName, page: () => const EditProfileScreen()),
   GetPage(name: PopularScreen.routeName, page: () => const PopularScreen()),
+  GetPage(name: HomeScreenImages.routeName, page: () => HomeScreenImages()),
   GetPage(
       name: LanguageOptionScreen.routeName,
       page: () => const LanguageOptionScreen()),

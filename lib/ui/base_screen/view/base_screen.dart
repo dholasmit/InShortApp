@@ -222,6 +222,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         1) {
+                                      exploreController.exploreLoader = true;
                                       exploreController.selectedIndex = 0;
                                       exploreController
                                           .getProductsByCategoryList(
@@ -231,6 +232,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                                   .id!);
                                       exploreController.exploreTopicListData();
                                       popularTopicController.popularData();
+                                      exploreController.exploreLoader = false;
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         2) {
@@ -239,6 +241,8 @@ class _BaseScreenState extends State<BaseScreen> {
                                             .selectedTab ==
                                         3) {
                                       baseSettingController.selectedIndex = -1;
+                                      baseSettingController.languageListData();
+                                      LocalStorage.getLanguageType();
                                     }
                                   },
                                   child: Container(

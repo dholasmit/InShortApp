@@ -82,7 +82,8 @@ languageDialog(BuildContext context) async {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: baseSettingController
-                              .getLanguageModel2!.data!.length,
+                                  .getLanguageModel2?.data?.length ??
+                              0,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(
@@ -119,14 +120,16 @@ languageDialog(BuildContext context) async {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                           border: Border.all(
-                                            color: baseSettingController
-                                                        .chooseLanguage ==
-                                                    baseSettingController
-                                                        .getLanguageModel2!
-                                                        .data![index]
-                                                        .id!
-                                                ? Colors.blue
-                                                : Colors.black,
+                                            color:
+                                                // baseSettingController
+                                                //             .chooseLanguage ==
+                                                LocalStorage.getLanguageType() ==
+                                                        baseSettingController
+                                                            .getLanguageModel2!
+                                                            .data![index]
+                                                            .id!
+                                                    ? Colors.blue
+                                                    : Colors.black,
                                           ),
                                           color: Colors.white,
                                         ),
@@ -137,14 +140,16 @@ languageDialog(BuildContext context) async {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),
-                                              color: baseSettingController
-                                                          .chooseLanguage ==
-                                                      baseSettingController
-                                                          .getLanguageModel2!
-                                                          .data![index]
-                                                          .id!
-                                                  ? Colors.blue
-                                                  : Colors.white,
+                                              color:
+                                                  // baseSettingController
+                                                  //             .chooseLanguage ==
+                                                  LocalStorage.getLanguageType() ==
+                                                          baseSettingController
+                                                              .getLanguageModel2!
+                                                              .data![index]
+                                                              .id!
+                                                      ? Colors.blue
+                                                      : Colors.white,
                                             ),
                                           ),
                                         ),
@@ -308,8 +313,8 @@ nightModeDialog(BuildContext context) async {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),
-                                              color: baseSettingController
-                                                          .chooseModeList ==
+                                              color: LocalStorage
+                                                          .intGetLightDarkMode() ==
                                                       index
                                                   ? Colors.blue
                                                   : Colors.white,
