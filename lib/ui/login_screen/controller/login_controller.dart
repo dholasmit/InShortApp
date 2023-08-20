@@ -35,7 +35,7 @@ class LoginController extends GetxController {
       emailController.clear();
       passwordController.clear();
       checkValue = false;
-      Get.toNamed(BaseScreen.routeName);
+      Get.offAllNamed(BaseScreen.routeName);
       // Get.toNamed(LanguageOptionScreen.routeName);
     }
   }

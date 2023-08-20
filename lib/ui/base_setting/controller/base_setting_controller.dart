@@ -57,7 +57,7 @@ class BaseSettingController extends GetxController {
 
   set chooseLanguage(int value) {
     _chooseLanguage = value;
-    update();
+    update(["language"]);
   }
 
   /// Night Mode Dialog Box Data

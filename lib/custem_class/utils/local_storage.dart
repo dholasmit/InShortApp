@@ -113,7 +113,7 @@ class LocalStorage {
   }
 
   static int getLanguageType() {
-    return prefs.read("languageType") ?? 0;
+    return prefs.read("languageType") ?? 1;
   }
 
 ////////////////////////////////////////////////////////////////////////////

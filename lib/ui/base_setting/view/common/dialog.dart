@@ -13,7 +13,7 @@ languageDialog(BuildContext context) async {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return GetBuilder(
-        id: "DarkLightMode",
+        id: "language",
         builder: (BaseSettingController baseSettingController) {
           return Dialog(
             backgroundColor: baseSettingController.isNightMode
@@ -90,9 +90,9 @@ languageDialog(BuildContext context) async {
                                   horizontal: 20, vertical: 12),
                               child: GestureDetector(
                                 onTap: () {
-                                  baseSettingController.chooseLanguage =
-                                      baseSettingController
-                                          .getLanguageModel2!.data![index].id!;
+                                  baseSettingController.chooseLanguage = index;
+                                  // baseSettingController
+                                  //     .getLanguageModel2!.data![index].id!;
 
                                   LocalStorage.setLanguageType(
                                       baseSettingController.chooseLanguage);
@@ -123,11 +123,12 @@ languageDialog(BuildContext context) async {
                                             color:
                                                 // baseSettingController
                                                 //             .chooseLanguage ==
-                                                LocalStorage.getLanguageType() ==
+                                                (LocalStorage
+                                                            .getLanguageType() ==
                                                         baseSettingController
                                                             .getLanguageModel2!
                                                             .data![index]
-                                                            .id!
+                                                            .id!)
                                                     ? Colors.blue
                                                     : Colors.black,
                                           ),

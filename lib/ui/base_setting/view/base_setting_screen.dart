@@ -98,6 +98,9 @@ class _SettingScreenState extends State<SettingScreen> {
                                 baseSettingController.selectedIndex = index;
                                 baseSettingController.chooseLanguage =
                                     LocalStorage.getLanguageType();
+
+                                print(
+                                    "${baseSettingController.chooseLanguage}");
                                 baseSettingController.setIsNightMode =
                                     LocalStorage.getLightDarkMode();
                                 baseSettingController.chooseModeList =
