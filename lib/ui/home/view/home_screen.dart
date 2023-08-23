@@ -9,6 +9,7 @@ import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/home_screen_floating_btn.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
+import '../../explore/controller/explore_controller.dart';
 import '../controller/home_screen_controller.dart';
 import 'home_images.dart';
 
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+  ExploreController exploreController = Get.find<ExploreController>();
 
   @override
   Widget build(BuildContext context) {

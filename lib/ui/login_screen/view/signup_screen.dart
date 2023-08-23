@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
@@ -202,14 +203,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 recognizer:
                                                     TapGestureRecognizer()
                                                       ..onTap = () async {
-                                                        // var url = aboutScreenController
-                                                        //     .appDetailDataModel!
-                                                        //     .termsAndConditions;
-                                                        // if (await canLaunch(url)) {
-                                                        //   await launch(url);
-                                                        // } else {
-                                                        //   throw "Failed to open LinkedIn";
-                                                        // }
+                                                        var url =
+                                                            baseSettingController
+                                                                .termsCondition;
+                                                        if (await canLaunch(
+                                                            url)) {
+                                                          await launch(url);
+                                                        } else {
+                                                          throw "Error";
+                                                        }
                                                       },
                                                 style: const TextStyle(
                                                   fontSize: 12,
@@ -233,14 +235,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 recognizer:
                                                     TapGestureRecognizer()
                                                       ..onTap = () async {
-                                                        // var url = aboutScreenController
-                                                        //     .appDetailDataModel!
-                                                        //     .privacyPolicy;
-                                                        // if (await canLaunch(url)) {
-                                                        //   await launch(url);
-                                                        // } else {
-                                                        //   throw "Failed to open LinkedIn";
-                                                        // }
+                                                        var url =
+                                                            baseSettingController
+                                                                .privacyPolicy;
+                                                        if (await canLaunch(
+                                                            url)) {
+                                                          await launch(url);
+                                                        } else {
+                                                          throw "Error";
+                                                        }
                                                       },
                                                 style: const TextStyle(
                                                   height: 1.2,

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_colors.dart';
+import 'package:inshorts_newj/ui/explore/controller/explore_controller.dart';
 
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
+import '../../base_screen/controller/base_screen_controller.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
+import '../../home/view/home_popular_topic_screen_data.dart';
 import '../controller/popular_topic_controller.dart';
 
 class PopularScreen extends StatefulWidget {
@@ -21,6 +24,7 @@ class _PopularScreenState extends State<PopularScreen> {
       Get.find<PopularTopicController>();
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+  ExploreController exploreController = Get.find<ExploreController>();
 
   @override
   void initState() {
@@ -95,50 +99,76 @@ class _PopularScreenState extends State<PopularScreen> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.transparent,
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: 130,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                  popularTopicController
-                                                      .getAllCategoriesModel![
-                                                          index]
-                                                      .pictureModel!
-                                                      .imageUrl
-                                                      .toString(),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        print("index======>$index");
+                                        exploreController
+                                            .getProductsByCategoryList(
+                                                id: popularTopicController
+                                                    .getAllCategoriesModel![
+                                                        index]
+                                                    .id!)
+                                            .then((value) => {
+                                                  Get.find<BaseScreenController>()
+                                                          .selectedTab ==
+                                                      0,
+                                                  Get.toNamed(
+                                                      HomePopularTopicData
+                                                          .routeName),
+                                                });
+
+                                        ///
+                                        ///
+                                        ///
+                                        ///
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.transparent,
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 130,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                    popularTopicController
+                                                        .getAllCategoriesModel![
+                                                            index]
+                                                        .pictureModel!
+                                                        .imageUrl
+                                                        .toString(),
+                                                  ),
+                                                  // image: AssetImage(img[index]),
+                                                  fit: BoxFit.cover,
                                                 ),
-                                                // image: AssetImage(img[index]),
-                                                fit: BoxFit.cover,
                                               ),
                                             ),
-                                          ),
-                                          // const SizedBox(height: 5),
-                                          Expanded(
-                                            child: Text(
-                                              popularTopicController
-                                                  .getAllCategoriesModel![index]
-                                                  .name
-                                                  .toString(),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w700,
-                                                color: AppColors.blueColor,
+                                            // const SizedBox(height: 5),
+                                            Expanded(
+                                              child: Text(
+                                                popularTopicController
+                                                    .getAllCategoriesModel![
+                                                        index]
+                                                    .name
+                                                    .toString(),
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: AppColors.blueColor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );

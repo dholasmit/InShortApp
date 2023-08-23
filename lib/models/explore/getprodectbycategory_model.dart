@@ -55,6 +55,7 @@ class GetProductsByCategoryModel {
 }
 
 class Datum {
+  String? createdXTimeAgo;
   String? productName;
   String? fullDescription;
   String? sku;
@@ -68,6 +69,7 @@ class Datum {
   List<PictureModel>? pictureModels;
 
   Datum({
+    this.createdXTimeAgo,
     this.productName,
     this.fullDescription,
     this.sku,
@@ -82,6 +84,7 @@ class Datum {
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        createdXTimeAgo: json["CreatedXTimeAgo"],
         productName: json["ProductName"],
         fullDescription: json["FullDescription"],
         sku: json["SKU"],
@@ -99,6 +102,7 @@ class Datum {
       );
 
   Map<String, dynamic> toJson() => {
+        "CreatedXTimeAgo": createdXTimeAgo,
         "ProductName": productName,
         "FullDescription": fullDescription,
         "SKU": sku,

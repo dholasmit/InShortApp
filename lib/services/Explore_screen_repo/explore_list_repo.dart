@@ -31,11 +31,14 @@ class ExploreApi {
   //   }
   // }
 
-  static Future getProductsByCategoryData({required int id}) async {
+  static Future getProductsByCategoryData({
+    required int id,
+    required int page,
+  }) async {
     try {
       int languageId = LocalStorage.getLanguageType();
       String url1 =
-          "https://panchat.in/api/client/GetProductsByCategoryId?id=$id&languageId=$languageId";
+          "https://panchat.in/api/client/GetProductsByCategoryId?id=$id&languageId=$languageId&pageNumber=$page";
       String url = APIRoutes.getProductsByCategory;
 
       http.Response? response = await HttpService.getApi(
