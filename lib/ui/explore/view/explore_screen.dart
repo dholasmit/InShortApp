@@ -8,6 +8,7 @@ import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
+import '../../home/view/home_popular_topic_screen_data.dart';
 import '../controller/explore_controller.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -133,66 +134,94 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                             padding: const EdgeInsets.symmetric(
                                               horizontal: 10,
                                             ),
-                                            child: Container(
-                                              height: 150,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                  image: NetworkImage(
-                                                    popularTopicController
-                                                        .getAllCategoriesModel![
-                                                            index]
-                                                        .pictureModel!
-                                                        .imageUrl
-                                                        .toString(),
-                                                  ),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              child: Column(
-                                                children: [
-                                                  const Spacer(),
-                                                  Container(
-                                                    width: double.infinity,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomRight:
-                                                            Radius.circular(10),
-                                                        bottomLeft:
-                                                            Radius.circular(10),
-                                                      ),
-                                                      color: Color(0XFF455077),
-                                                    ),
-                                                    child: Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                        horizontal: 10,
-                                                      ),
-                                                      child: Text(
-                                                        popularTopicController
+                                            child: InkWell(
+                                              onTap: () {
+                                                print("index======>$index");
+                                                exploreController
+                                                    .getProductsByCategoryList(
+                                                        id: popularTopicController
                                                             .getAllCategoriesModel![
                                                                 index]
-                                                            .name
-                                                            .toString(),
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 12,
+                                                            .id!)
+                                                    .then((value) => {
+                                                          Get.toNamed(
+                                                            HomePopularTopicData
+                                                                .routeName,
+                                                            arguments:
+                                                                popularTopicController
+                                                                    .getAllCategoriesModel![
+                                                                        index]
+                                                                    .name
+                                                                    .toString(),
+                                                          ),
+                                                        });
+                                              },
+                                              child: Container(
+                                                height: 150,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      popularTopicController
+                                                          .getAllCategoriesModel![
+                                                              index]
+                                                          .pictureModel!
+                                                          .imageUrl
+                                                          .toString(),
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    const Spacer(),
+                                                    Container(
+                                                      width: double.infinity,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                        ),
+                                                        color:
+                                                            Color(0XFF455077),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          horizontal: 10,
+                                                        ),
+                                                        child: Text(
+                                                          popularTopicController
+                                                              .getAllCategoriesModel![
+                                                                  index]
+                                                              .name
+                                                              .toString(),
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 12,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                ],
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           );

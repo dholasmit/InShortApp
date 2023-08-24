@@ -90,9 +90,10 @@ languageDialog(BuildContext context) async {
                                   horizontal: 20, vertical: 12),
                               child: GestureDetector(
                                 onTap: () {
-                                  baseSettingController.chooseLanguage = index;
-                                  // baseSettingController
-                                  //     .getLanguageModel2!.data![index].id!;
+                                  baseSettingController.chooseLanguage =
+                                      // index;
+                                      baseSettingController
+                                          .getLanguageModel2!.data![index].id!;
 
                                   LocalStorage.setLanguageType(
                                       baseSettingController.chooseLanguage);
@@ -120,17 +121,16 @@ languageDialog(BuildContext context) async {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                           border: Border.all(
-                                            color:
-                                                // baseSettingController
-                                                //             .chooseLanguage ==
-                                                (LocalStorage
-                                                            .getLanguageType() ==
-                                                        baseSettingController
-                                                            .getLanguageModel2!
-                                                            .data![index]
-                                                            .id!)
-                                                    ? Colors.blue
-                                                    : Colors.black,
+                                            color: baseSettingController
+                                                        .chooseLanguage ==
+                                                    // (LocalStorage
+                                                    //             .getLanguageType() ==
+                                                    baseSettingController
+                                                        .getLanguageModel2!
+                                                        .data![index]
+                                                        .id!
+                                                ? Colors.blue
+                                                : Colors.black,
                                           ),
                                           color: Colors.white,
                                         ),
@@ -141,16 +141,15 @@ languageDialog(BuildContext context) async {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),
-                                              color:
-                                                  // baseSettingController
-                                                  //             .chooseLanguage ==
-                                                  LocalStorage.getLanguageType() ==
-                                                          baseSettingController
-                                                              .getLanguageModel2!
-                                                              .data![index]
-                                                              .id!
-                                                      ? Colors.blue
-                                                      : Colors.white,
+                                              color: baseSettingController
+                                                          .chooseLanguage ==
+                                                      // LocalStorage.getLanguageType() ==
+                                                      baseSettingController
+                                                          .getLanguageModel2!
+                                                          .data![index]
+                                                          .id!
+                                                  ? Colors.blue
+                                                  : Colors.white,
                                             ),
                                           ),
                                         ),

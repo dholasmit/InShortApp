@@ -18,6 +18,8 @@ import 'home_popular_topic_floating_button.dart';
 class HomePopularTopicData extends StatelessWidget {
   static const String routeName = "/HomePopularTopicData";
 
+  String txt = Get.arguments;
+
   HomePopularTopicData({Key? key}) : super(key: key);
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
@@ -41,14 +43,14 @@ class HomePopularTopicData extends StatelessWidget {
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
               ),
             ),
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 30,
+                    top: 50,
                     left: 20,
                     right: 20,
                   ),
@@ -60,11 +62,25 @@ class HomePopularTopicData extends StatelessWidget {
                           Get.toNamed(BaseScreen.routeName);
                           homeScreenController.homeRecentlyAddedProductsData();
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_back_ios_new_outlined,
-                          color: AppColors.blueColor,
+                          color: LocalStorage.getLightDarkMode()
+                              ? AppNightModeColor.white
+                              : AppColors.black,
                         ),
                       ),
+                      const Spacer(),
+                      Text(
+                        txt,
+                        style: TextStyle(
+                          color: LocalStorage.getLightDarkMode()
+                              ? AppNightModeColor.white
+                              : AppColors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      const Spacer(),
                     ],
                   ),
                 ),
@@ -84,7 +100,7 @@ class HomePopularTopicData extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               controller: exploreController.pageController,
                               onIndexChanged: exploreController.onChangeIndex,
-                              index: exploreController.selectedIndex,
+                              index: exploreController.selectedIndex1,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(

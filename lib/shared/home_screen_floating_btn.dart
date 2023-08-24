@@ -8,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../ui/home/controller/home_screen_controller.dart';
 
 class FoldableOptions extends StatefulWidget {
+  const FoldableOptions({Key? key}) : super(key: key);
+
   @override
   _FoldableOptionsState createState() => _FoldableOptionsState();
 }

@@ -5,7 +5,6 @@ import 'package:inshorts_newj/ui/explore/controller/explore_controller.dart';
 
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../../base_screen/controller/base_screen_controller.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../../home/view/home_popular_topic_screen_data.dart';
 import '../controller/popular_topic_controller.dart';
@@ -109,18 +108,17 @@ class _PopularScreenState extends State<PopularScreen> {
                                                         index]
                                                     .id!)
                                             .then((value) => {
-                                                  Get.find<BaseScreenController>()
-                                                          .selectedTab ==
-                                                      0,
                                                   Get.toNamed(
-                                                      HomePopularTopicData
-                                                          .routeName),
+                                                    HomePopularTopicData
+                                                        .routeName,
+                                                    arguments:
+                                                        popularTopicController
+                                                            .getAllCategoriesModel![
+                                                                index]
+                                                            .name
+                                                            .toString(),
+                                                  ),
                                                 });
-
-                                        ///
-                                        ///
-                                        ///
-                                        ///
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(

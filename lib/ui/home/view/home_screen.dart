@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FoldableOptions(),
+      floatingActionButton: const FoldableOptions(),
       body: GetBuilder<BaseSettingController>(
         id: "DarkLightMode",
         builder: (baseSettingController) {
@@ -46,8 +46,9 @@ class HomeScreen extends StatelessWidget {
                 return controller.loader
                     ? const Center(child: CircularProgressIndicator())
                     : Swiper(
-                        itemCount: controller
-                            .getHomeRecentlyAddedProductsModel!.data!.length,
+                        itemCount: controller.getHomeRecentlyAddedProductsModel
+                                ?.data?.length ??
+                            0,
                         autoplay: false,
                         // transformer: PageT,
                         scrollDirection: Axis.horizontal,

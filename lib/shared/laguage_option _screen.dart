@@ -21,6 +21,11 @@ class LanguageOptionScreen extends StatefulWidget {
 class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+  @override
+  void initState() {
+    baseSettingController.languageListData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +73,8 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: baseSettingController
-                                    .getLanguageModel2!.data!.length,
+                                        .getLanguageModel2?.data?.length ??
+                                    0,
                                 itemBuilder: (BuildContext context, int index) {
                                   return languageCommonContainer(
                                     onTap: () {
@@ -208,7 +214,7 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
           ),
         ),
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
     ]);
   }
 }

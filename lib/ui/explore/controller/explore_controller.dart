@@ -1,11 +1,16 @@
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/explore/controller/popular_topic_controller.dart';
 
+import '../../../custem_class/utils/globle.dart';
+import '../../../models/bookmark/addbookmark_model.dart';
 import '../../../models/explore/all_categories_model.dart';
 import '../../../models/explore/explore_topic_model.dart';
 import '../../../models/explore/getprodectbycategory_model.dart';
 import '../../../services/Explore_screen_repo/explore_list_repo.dart';
+import '../../../services/bookmark/bookmark_repo.dart';
+import '../../bookmark/controller/book_mark_controller.dart';
 
 class ExploreController extends GetxController {
   bool exploreLoader = false;
@@ -69,22 +74,22 @@ class ExploreController extends GetxController {
     selectedIndex1 = index;
     flotClose = false;
     print("Index==> $selectedIndex1");
-    update(["flot", "product"]);
+    update(["flotPopular", "productPopular"]);
   }
 
   Future<void> homeRecentlyAddedProductsData({int? pageIndex}) async {
     loader = true;
-    update(["flot", "product"]);
+    update(["flotPopular", "productPopular"]);
     if (pageIndex == null) {
       setExploreTopicListModel = await ExploreApi.getProductsByCategoryData(
-          id: getAllCategoriesModel![selectedIndex].id!, page: page);
+          id: getAllCategoriesModel![selectedIndex1].id!, page: page);
     } else {
       ExploreTopicListModel data = await ExploreApi.getProductsByCategoryData(
-          id: getAllCategoriesModel![selectedIndex].id!, page: pageIndex);
+          id: getAllCategoriesModel![selectedIndex1].id!, page: pageIndex);
       _exploreTopicListModel!.data!.addAll(data.data!);
     }
     loader = false;
-    update(["flot", "product"]);
+    update(["flotPopular", "productPopular"]);
   }
 
   ///
@@ -121,6 +126,54 @@ class ExploreController extends GetxController {
         await ExploreApi.getProductsByCategoryData(id: id, page: page);
     exploreLoader = false;
     update(["GetProductsByCategory"]);
+  }
+
+  /// Add BookMark
+  Future<void> addBookMark({
+    required int productId,
+  }) async {
+    AddBookMarkModel? addBookMarkModel = await BookmarkApi.addBookmarkRepo(
+      CustomerGUID: userController.userModel!.customerGuid.toString(),
+      ProductId: productId,
+    );
+
+    if (addBookMarkModel != null) {
+      return;
+    }
+  }
+
+  Future<void> onTapBookMark() async {
+    bool isBook = getProductsByCategoryModel!.data![selectedIndex1].markAsNew!;
+    // getHomeRecentlyAddedProductsModel!.data![selectedIndex].markAsNew!;
+
+    getProductsByCategoryModel!.data![selectedIndex1].markAsNew = !isBook;
+    int id = getProductsByCategoryModel!.data![selectedIndex1].id!;
+    if (isBook == false) {
+      await addBookMark(productId: id);
+      update(["flotPopular", "productPopular"]);
+    } else {
+      removeBookMarkData();
+      update(["flotPopular", "productPopular"]);
+    }
+  }
+
+  /// removeBook Mark API
+  BookMarkController bookMarkController = Get.find<BookMarkController>();
+
+  removeBookMarkData() {
+    return bookMarkController.removeBookMark(
+      CustomerGUID: bookMarkController.bookMarkModel?.data?.customerGuid ?? "",
+      ItemIds: getProductsByCategoryModel!.data![selectedIndex1].id!,
+    );
+  }
+
+  /// ShareLink
+  Future<void> share({required String link}) async {
+    await FlutterShare.share(
+      title: 'In-ShortApp',
+      linkUrl: link,
+      // linkUrl: 'app link attached',
+    );
   }
 
   ///

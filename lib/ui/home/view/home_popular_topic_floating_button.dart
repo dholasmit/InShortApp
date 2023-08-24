@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_icons.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../controller/home_screen_controller.dart';
+import '../../explore/controller/explore_controller.dart';
 
 class HomePopularTopicFloatingButton extends StatefulWidget {
   const HomePopularTopicFloatingButton({Key? key}) : super(key: key);
@@ -99,10 +99,10 @@ class _HomePopularTopicFloatingButtonState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeScreenController>(
-      id: "flot",
-      builder: (homeScreenController) {
-        return homeScreenController.loader
+    return GetBuilder<ExploreController>(
+      id: "flotPopular",
+      builder: (exploreController) {
+        return exploreController.loader
             ? const SizedBox()
             : Container(
                 width: 130,
@@ -120,14 +120,14 @@ class _HomePopularTopicFloatingButtonState
                             child: floatingActionTypeButtonItem(
                               onTap: () {
                                 print("BookMark Icon");
-                                homeScreenController.onTapBookMark();
+                                exploreController.onTapBookMark();
                                 animationController.reverse();
                               },
-                              img: homeScreenController
-                                          .getHomeRecentlyAddedProductsModel!
-                                          .data![homeScreenController
-                                              .selectedIndex]
-                                          .markAsNew! ==
+                              img: exploreController
+                                          .getProductsByCategoryModel!
+                                          .data![
+                                              exploreController.selectedIndex1]
+                                          .markAsNew ==
                                       false
                                   ? AppIcons.unBookMarkIcons
                                   : AppIcons.bookMarkIcons,
@@ -145,12 +145,11 @@ class _HomePopularTopicFloatingButtonState
                             child: floatingActionTypeButtonItem(
                               onTap: () {
                                 print("Share Icon");
-                                homeScreenController.share(
-                                    link: homeScreenController
-                                        .getHomeRecentlyAddedProductsModel!
-                                        .data![
-                                            homeScreenController.selectedIndex]
-                                        .prouductUrl!
+                                exploreController.share(
+                                    link: exploreController
+                                        .getProductsByCategoryModel!
+                                        .data![exploreController.selectedIndex1]
+                                        .productUrl
                                         .toString());
                                 animationController.reverse();
                               },
@@ -170,12 +169,12 @@ class _HomePopularTopicFloatingButtonState
                               onTap: () {
                                 print("Web Icon");
                                 print(
-                                  "PRODUCT URL ============>${homeScreenController.getHomeRecentlyAddedProductsModel!.data![homeScreenController.selectedIndex].prouductUrl!}",
+                                  "PRODUCT URL ============>${exploreController.getProductsByCategoryModel!.data![exploreController.selectedIndex1].productUrl}",
                                 );
-                                launch(homeScreenController
-                                    .getHomeRecentlyAddedProductsModel!
-                                    .data![homeScreenController.selectedIndex]
-                                    .prouductUrl!
+                                launch(exploreController
+                                    .getProductsByCategoryModel!
+                                    .data![exploreController.selectedIndex1]
+                                    .productUrl
                                     .toString());
                                 animationController.reverse();
                               },
