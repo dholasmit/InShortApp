@@ -77,6 +77,7 @@ class HomePopularTopicData extends StatelessWidget {
                               ? AppNightModeColor.white
                               : AppColors.black,
                           fontSize: 18,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(width: 15),

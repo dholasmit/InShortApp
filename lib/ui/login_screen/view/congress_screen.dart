@@ -84,11 +84,6 @@ class _CongressScreenState extends State<CongressScreen> {
     return materialButton(
       onTap: () {
         disposeKeyboard();
-        // Get.back();
-        // Get.back();
-        // Get.back();
-        // Get.back();
-        // Get.back();
         Get.toNamed(LoginScreen.routeName);
       },
       color: AppColors.blueColor,

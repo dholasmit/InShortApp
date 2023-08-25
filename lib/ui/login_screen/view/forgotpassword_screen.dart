@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inshorts_newj/ui/login_screen/view/reset_password_screen.dart';
 
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_functions.dart';
@@ -9,7 +10,6 @@ import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/forgotpassword_controller.dart';
-import 'otp_screen.dart';
 
 class ForGotPasswordScreen extends StatefulWidget {
   static const String routeName = "/ForGotPasswordScreen";
@@ -82,7 +82,16 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
                                 children: [
                                   const SizedBox(height: 10),
                                   const Text(
-                                    "Forgot Password ?",
+                                    "Forgot",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: AppColors.blueColor,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const Text(
+                                    "Password ?",
                                     maxLines: 2,
                                     style: TextStyle(
                                       color: AppColors.blueColor,
@@ -141,13 +150,9 @@ class _ForGotPasswordScreenState extends State<ForGotPasswordScreen> {
     return materialButton(
       onTap: () {
         disposeKeyboard();
-
-        /// remove this line after API
-        Get.toNamed(OtpScreen.routeName);
-
-        ///
         if (forgotPasswordController.forgotFormKey.currentState!.validate()) {
-          Get.back();
+          // Get.toNamed(OtpScreen.routeName);
+          Get.toNamed(ResetPasswordScreen.routeName);
         }
       },
       color: AppColors.blueColor,

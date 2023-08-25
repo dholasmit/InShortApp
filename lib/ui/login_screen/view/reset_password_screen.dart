@@ -9,7 +9,6 @@ import '../../../shared/material_button.dart';
 import '../../../shared/textfild_common.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../controller/forgotpassword_controller.dart';
-import 'congress_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   static const String routeName = "/ResetPasswordScreen";
@@ -110,7 +109,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     ),
                                   ),
                                   const SizedBox(height: 40),
-                                  header(title: "New Password"),
+                                  header(title: "Old Password"),
                                   const SizedBox(height: 5),
                                   RequestFormTextfield(
                                     formFieldType:
@@ -118,7 +117,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     textCapitalization: TextCapitalization.none,
                                     textInputAction: TextInputAction.next,
                                     controller: forgotPasswordController
-                                        .newPasswordController,
+                                        .oldPasswordController,
+                                    obscureText: true,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Enter Your Password';
@@ -127,7 +127,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     },
                                   ),
                                   const SizedBox(height: 25),
-                                  header(title: "Confirm new password"),
+                                  header(title: "New password"),
                                   const SizedBox(height: 5),
                                   RequestFormTextfield(
                                     formFieldType:
@@ -135,7 +135,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     textCapitalization: TextCapitalization.none,
                                     textInputAction: TextInputAction.done,
                                     controller: forgotPasswordController
-                                        .newConfirmPasswordController,
+                                        .newPasswordController,
+                                    obscureText: true,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Enter Your Password';
@@ -166,15 +167,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return materialButton(
       onTap: () {
         disposeKeyboard();
-
-        /// remove this line after API
-        Get.toNamed(CongressScreen.routeName);
-
-        ///
-        // if (forgotPasswordController.resetPasswordFormKey.currentState!
-        //     .validate()) {
-        //   Get.back();
-        // }
+        if (forgotPasswordController.resetPasswordFormKey.currentState!
+            .validate()) {
+          forgotPasswordController.forGotPassData();
+        }
       },
       color: AppColors.blueColor,
       btnText: "Submit",
