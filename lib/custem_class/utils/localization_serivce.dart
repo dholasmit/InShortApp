@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,7 @@ class LocalizationService extends Translations {
       locale = ui.window.locale;
       Locale? temp = _getLocale(locale.languageCode);
       locale = temp ?? fallbackLocale;
-      print(
+      debugPrint(
           "CURRNT LOCALE $langsIndex ${locale.countryCode} ${locale.languageCode}");
     }
   }
@@ -38,7 +39,9 @@ class LocalizationService extends Translations {
   // Gets locale from language, and updates the locale
   static void changeLocale(String lang) {
     final tempLocale = _getLocaleFromLanguage(lang);
-    print("changeLocale $tempLocale");
+    if (kDebugMode) {
+      print("changeLocale $tempLocale");
+    }
     if (tempLocale != null) {
       locale = tempLocale;
       Get.updateLocale(tempLocale);

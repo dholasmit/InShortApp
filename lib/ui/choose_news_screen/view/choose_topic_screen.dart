@@ -99,7 +99,7 @@ class _ChooseTopicScreenState extends State<ChooseTopicScreen> {
                             itemBuilder: (BuildContext context, index) {
                               return GestureDetector(
                                 onTap: () {
-                                  print("Demo");
+                                  debugPrint("Demo");
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

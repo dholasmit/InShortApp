@@ -22,7 +22,7 @@ class LanguageApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print("RESPONSE BODY=================> $url ====>${response.body}");
+        debugPrint("RESPONSE BODY=================> $url ====>${response.body}");
         return languageModel2FromJson(response.body);
       }
     } catch (e) {
@@ -36,16 +36,16 @@ class LanguageApi {
   ///  set Language API
 
   static Future setLanguageApi({
-    required String CustomerGuid,
-    required int LanguageId,
+    required String customerGuid,
+    required int languageId,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.setLanguage,
       requestType: RequestType.Post,
       body: jsonEncode(
         {
-          "CustomerGuid": CustomerGuid,
-          "LanguageId": LanguageId,
+          "CustomerGuid": customerGuid,
+          "LanguageId": languageId,
         },
       ),
     );

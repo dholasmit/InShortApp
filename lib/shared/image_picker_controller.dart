@@ -167,9 +167,9 @@ class AppImagePicker {
                 Get.back();
               },
               tileColor: Colors.white,
-              title: Row(
+              title: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     "Cancel",
                   ),

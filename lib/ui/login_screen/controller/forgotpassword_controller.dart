@@ -16,9 +16,9 @@ class ForgotPasswordController extends GetxController {
 
   Future forGotPassData() async {
     var response = await ForGotPassWordRepo.forgotPassWord(
-      emailid: emailController.text.trim(),
-      OldPassword: oldPasswordController.text.trim(),
-      NewPassword: newPasswordController.text.trim(),
+      emailId: emailController.text.trim(),
+      oldPassword: oldPasswordController.text.trim(),
+      newPassword: newPasswordController.text.trim(),
     );
     if (response != null) {
       forgotPasswordModel = ForgotPasswordModel.fromJson(response);

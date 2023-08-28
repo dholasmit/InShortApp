@@ -74,9 +74,9 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
-                        Stack(
+                        const Stack(
                           alignment: Alignment.center,
-                          children: const [
+                          children: [
                             CircleAvatar(
                               backgroundColor: AppColors.blueColor,
                               radius: 22,
@@ -196,12 +196,12 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                                               //     ///REMOVE BOOKMARK
                                               //     :
                                               bookMarkController.removeBookMark(
-                                                CustomerGUID: bookMarkController
+                                                customerGUID: bookMarkController
                                                         .bookMarkModel
                                                         ?.data
                                                         ?.customerGuid ??
                                                     "",
-                                                ItemIds: bookMarkController
+                                                itemIds: bookMarkController
                                                         .bookMarkModel
                                                         ?.data
                                                         ?.items?[index]
@@ -245,7 +245,11 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
     return Column(
       children: [
         Container(
-          height: 140,
+          height: baseSettingController.fontsStyle(
+            defaultSize: 140,
+            mediumSize: 170,
+            largeSize: 200,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: LocalStorage.getLightDarkMode()
@@ -280,9 +284,13 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 14,
+                          fontSize: baseSettingController.fontsStyle(
+                            defaultSize: 14,
+                            mediumSize: 17,
+                            largeSize: 20,
+                          ),
                           color: AppColors.blueColor,
                         ),
                       ),
@@ -291,9 +299,12 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                         maxLines: 2,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: baseSettingController.fontsStyle(
+                            defaultSize: 12,
+                            mediumSize: 15,
+                            largeSize: 18,
+                          ),
                           color: LocalStorage.getLightDarkMode()
-                              // baseSettingController.isNightMode
                               ? AppNightModeColor.white
                               : AppColors.black,
                         ),
@@ -309,10 +320,17 @@ class _BookmarkScrrenState extends State<BookmarkScreen> {
                                 ? const Icon(
                                     Icons.bookmark_border,
                                     color: AppColors.blueColor,
+                                    size: 20,
                                   )
-                                : const Icon(
+                                : Icon(
                                     Icons.bookmark,
                                     color: AppColors.blueColor,
+                                    // size: 25,
+                                    size: baseSettingController.fontsStyle(
+                                      defaultSize: 25,
+                                      mediumSize: 28,
+                                      largeSize: 31,
+                                    ),
                                   ),
                           ),
                         ],

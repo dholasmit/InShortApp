@@ -17,7 +17,7 @@ class BookmarkApi {
     try {
       String customerID = userController.userModel?.customerGuid ?? "";
       int languageId = LocalStorage.getLanguageType();
-      print(customerID);
+      debugPrint(customerID);
       String url =
           "${APIRoutes.bookMarkList}$customerID&languageId=$languageId";
 
@@ -29,7 +29,7 @@ class BookmarkApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print(
+        debugPrint(
             "RESPONSE BODY==========================  $url ======> ${response.body}");
 
         return bookMarkModelFromJson(response.body);
@@ -45,16 +45,16 @@ class BookmarkApi {
   /// REMOVE BOOKMARK DATA
   ///
   static Future removeBookmarkRepo({
-    required String CustomerGUID,
-    required int ItemIds,
+    required String customerGUID,
+    required int itemIds,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.removeBookMark,
       requestType: RequestType.Post,
       body: jsonEncode(
         {
-          "CustomerGUID": CustomerGUID,
-          "ItemIds": ItemIds,
+          "CustomerGUID": customerGUID,
+          "ItemIds": itemIds,
         },
       ),
     );
@@ -66,16 +66,16 @@ class BookmarkApi {
   }
 
   static Future addBookmarkRepo({
-    required String CustomerGUID,
-    required int ProductId,
+    required String customerGUID,
+    required int productId,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.addBookMark,
       requestType: RequestType.Post,
       body: jsonEncode(
         {
-          "CustomerGUID": CustomerGUID,
-          "ProductId": ProductId,
+          "CustomerGUID": customerGUID,
+          "ProductId": productId,
         },
       ),
     );

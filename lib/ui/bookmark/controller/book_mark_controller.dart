@@ -35,13 +35,13 @@ class BookMarkController extends GetxController {
 
   /// removeBookMark
   Future<void> removeBookMark({
-    required String CustomerGUID,
-    required int ItemIds,
+    required String customerGUID,
+    required int itemIds,
   }) async {
     RemoveBookmarkModel? removeBookmarkModel =
         await BookmarkApi.removeBookmarkRepo(
-      CustomerGUID: CustomerGUID,
-      ItemIds: ItemIds,
+      customerGUID: customerGUID,
+      itemIds: itemIds,
     );
 
     if (removeBookmarkModel != null) {

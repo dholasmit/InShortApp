@@ -16,6 +16,7 @@ void main() async {
   await getInitialRoute();
   LocalStorage.getLanguageType();
   LocalStorage.getLightDarkMode();
+  LocalStorage.getFontSize();
   // LocalStorage.intGetLightDarkMode();
 
   runApp(const MyApp());

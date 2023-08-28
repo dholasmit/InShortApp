@@ -51,7 +51,7 @@ class MenuScreenController extends GetxController {
     if (response.statusCode == 200) {
       categoriesModel = CategoriesModel.fromJson(jsonDecode(response.body));
       update();
-      print("RESPONSE ==========>  ${response.body}");
+      debugPrint("RESPONSE ==========>  ${response.body}");
     } else {
       throw Exception('Failed to load album');
     }

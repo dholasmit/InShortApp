@@ -206,9 +206,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                         var url =
                                                             baseSettingController
                                                                 .termsCondition;
-                                                        if (await canLaunch(
-                                                            url)) {
-                                                          await launch(url);
+                                                        if (await canLaunchUrl(
+                                                            Uri.parse(url))) {
+                                                          await launchUrl(Uri.parse(url));
                                                         } else {
                                                           throw "Error";
                                                         }
@@ -228,8 +228,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                             .getLightDarkMode()
                                                         ? AppNightModeColor
                                                             .white
-                                                        : AppColors.black,
-                                                  )),
+                                                      : AppColors.black,
+                                                ),
+                                              ),
                                               TextSpan(
                                                 text: "Privacy Policy".tr,
                                                 recognizer:
@@ -238,9 +239,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                         var url =
                                                             baseSettingController
                                                                 .privacyPolicy;
-                                                        if (await canLaunch(
-                                                            url)) {
-                                                          await launch(url);
+                                                        if (await canLaunchUrl(Uri.parse(url))) {
+                                                          await launchUrl(Uri.parse(url));
                                                         } else {
                                                           throw "Error";
                                                         }
@@ -338,6 +338,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 class AlwaysActiveBorderSide extends MaterialStateBorderSide {
   @override
-  BorderSide? resolve(_) =>
+  BorderSide? resolve(states) =>
       const BorderSide(color: AppColors.signupBTNColor, width: 1.3);
 }

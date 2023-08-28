@@ -5,7 +5,7 @@ import 'package:inshorts_newj/custem_class/utils/globle.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../models/login_screen_model/user_model.dart';
 import '../../../services/login_screen_repo/signup_repo.dart';
-import '../../../shared/laguage_option _screen.dart';
+import '../../../shared/laguage_option_screen.dart';
 
 class SignUpController extends GetxController {
   final signFormKey = GlobalKey<FormState>();

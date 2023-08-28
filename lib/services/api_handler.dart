@@ -10,7 +10,7 @@ import 'package:mime_type/mime_type.dart';
 
 import '../custem_class/constant/app_functions.dart';
 import '../custem_class/utils/globle.dart';
-import 'over&loding.dart';
+import 'over_loading.dart';
 
 enum RequestType { Get, Post }
 
@@ -68,6 +68,7 @@ class API {
     } catch (e) {
       debugPrint("ERROR FROM API CLASS $e");
     }
+    return null;
   }
 
   static Future multiPartAPIHandler(
@@ -99,7 +100,7 @@ class API {
               {"Authorization": "Bearer ${userController.userModel!.token}"});
         }
         log("HEADER ===> $header");
-        if (header != null) request.headers.addAll(header);
+        request.headers.addAll(header);
         if (field != null) request.fields.addAll(field);
 
         if (fileImage != null) {

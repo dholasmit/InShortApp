@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/home/controller/home_screen_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,22 +8,29 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../../base_screen/controller/base_screen_controller.dart';
-import '../../base_screen/view/base_screen.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../../explore/controller/explore_controller.dart';
 import 'home_images.dart';
 import 'home_popular_topic_floating_button.dart';
 
-class HomePopularTopicData extends StatelessWidget {
+class HomePopularTopicData extends StatefulWidget {
   static const String routeName = "/HomePopularTopicData";
 
+
+  const HomePopularTopicData({Key? key}) : super(key: key);
+
+  @override
+  State<HomePopularTopicData> createState() => _HomePopularTopicDataState();
+}
+
+class _HomePopularTopicDataState extends State<HomePopularTopicData> {
   String txt = Get.arguments;
 
-  HomePopularTopicData({Key? key}) : super(key: key);
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+
   ExploreController exploreController = Get.find<ExploreController>();
+
   HomeScreenController homeScreenController = Get.find<HomeScreenController>();
 
   @override
@@ -58,9 +65,10 @@ class HomePopularTopicData extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.find<BaseScreenController>().selectedTab = 0;
-                          Get.toNamed(BaseScreen.routeName);
-                          homeScreenController.homeRecentlyAddedProductsData();
+                          Get.back();
+                          // Get.find<BaseScreenController>().selectedTab = 0;
+                          // Get.toNamed(BaseScreen.routeName);
+                          // homeScreenController.homeRecentlyAddedProductsData();
                         },
                         child: Icon(
                           Icons.arrow_back_ios_new_outlined,
@@ -76,7 +84,12 @@ class HomePopularTopicData extends StatelessWidget {
                           color: LocalStorage.getLightDarkMode()
                               ? AppNightModeColor.white
                               : AppColors.black,
-                          fontSize: 18,
+                          // fontSize: 18,
+                          fontSize: baseSettingController.fontsStyle(
+                            defaultSize: 15,
+                            mediumSize: 18,
+                            largeSize: 20,
+                          ),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -112,13 +125,13 @@ class HomePopularTopicData extends StatelessWidget {
                                   ),
                                   child: GestureDetector(
                                     onVerticalDragStart: (details) {
-                                      launch(
+                                      launchUrl(Uri.parse(
                                         exploreController
                                             .getProductsByCategoryModel!
                                             .data![index]
                                             .productUrl
                                             .toString(),
-                                      );
+                                      ));
                                     },
                                     child: Container(
                                       height: 100,
@@ -183,10 +196,16 @@ class HomePopularTopicData extends StatelessWidget {
                                                         .productName
                                                         .toString(),
                                                     // "Modi ji Newj",
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       color:
                                                           AppColors.blueColor,
-                                                      fontSize: 16,
+                                                      fontSize:
+                                                          baseSettingController
+                                                              .fontsStyle(
+                                                        defaultSize: 15,
+                                                        mediumSize: 18,
+                                                        largeSize: 20,
+                                                      ),
                                                     ),
                                                   ),
                                                   Html(
@@ -208,19 +227,24 @@ class HomePopularTopicData extends StatelessWidget {
                                                   const Spacer(),
                                                   InkWell(
                                                     onTap: () {
-                                                      print("More News");
-                                                      launch(exploreController
+                                                      launchUrl(Uri.parse(exploreController
                                                           .getProductsByCategoryModel!
                                                           .data![index]
                                                           .productUrl
-                                                          .toString());
+                                                          .toString()));
                                                     },
                                                     child: Text(
                                                       "onTap for More Details/${exploreController.getProductsByCategoryModel!.data![index].createdXTimeAgo} ago",
-                                                      style: const TextStyle(
-                                                        fontSize: 13,
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            baseSettingController
+                                                                .fontsStyle(
+                                                          defaultSize: 13,
+                                                          mediumSize: 16,
+                                                          largeSize: 19,
+                                                        ),
                                                         color:
-                                                            Color(0XFFADADAD),
+                                                            const Color(0XFFADADAD),
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),

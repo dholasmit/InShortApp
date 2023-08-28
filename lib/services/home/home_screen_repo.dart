@@ -23,7 +23,7 @@ class HomeScreenApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print("RESPONSE BODY=================> $url ====>${response.body}");
+        debugPrint("RESPONSE BODY=================> $url ====>${response.body}");
         return homeRecentlyAddedProductsModelFromJson(response.body);
       }
     } catch (e) {

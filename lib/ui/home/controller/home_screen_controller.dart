@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/bookmark/controller/book_mark_controller.dart';
 
@@ -54,7 +55,7 @@ class HomeScreenController extends GetxController {
     prevIndex = selectedIndex;
     selectedIndex = index;
     flotClose = false;
-    print("Index==> $selectedIndex");
+    debugPrint("Index==> $selectedIndex");
     update(["flot", "product"]);
   }
 
@@ -79,8 +80,8 @@ class HomeScreenController extends GetxController {
     required int productId,
   }) async {
     AddBookMarkModel? addBookMarkModel = await BookmarkApi.addBookmarkRepo(
-      CustomerGUID: userController.userModel!.customerGuid.toString(),
-      ProductId: productId,
+      customerGUID: userController.userModel!.customerGuid.toString(),
+      productId: productId,
     );
 
     if (addBookMarkModel != null) {
@@ -91,8 +92,8 @@ class HomeScreenController extends GetxController {
   /// removeBook Mark API
   removeBookMarkData() {
     return bookMarkController.removeBookMark(
-      CustomerGUID: bookMarkController.bookMarkModel?.data?.customerGuid ?? "",
-      ItemIds: getHomeRecentlyAddedProductsModel!.data![selectedIndex].id!,
+      customerGUID: bookMarkController.bookMarkModel?.data?.customerGuid ?? "",
+      itemIds: getHomeRecentlyAddedProductsModel!.data![selectedIndex].id!,
     );
   }
 

@@ -346,8 +346,12 @@ logOutDialog(
                               ),
                               Text(
                                 title,
-                                style: const TextStyle(
-                                  fontSize: 17,
+                                style: TextStyle(
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 17,
+                                    mediumSize: 20,
+                                    largeSize: 23,
+                                  ),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
                                 ),
@@ -366,7 +370,11 @@ logOutDialog(
                       Text(
                         "Are You sure Want to log out?",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: baseSettingController.fontsStyle(
+                            defaultSize: 18,
+                            mediumSize: 21,
+                            largeSize: 24,
+                          ),
                           fontWeight: FontWeight.w600,
                           color: LocalStorage.getLightDarkMode()
                               // baseSettingController.isNightMode

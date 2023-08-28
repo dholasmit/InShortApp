@@ -24,21 +24,20 @@ class _DemoState extends State<Demo> {
               setState(() {
                 selectedItem = value.toString();
               });
-              print(value);
               Navigator.pushNamed(context, value.toString());
             }, itemBuilder: (BuildContext bc) {
               return const [
                 PopupMenuItem(
-                  child: Text("Hello"),
                   value: 'hello',
+                  child: Text("Hello"),
                 ),
                 PopupMenuItem(
-                  child: Text("About"),
                   value: 'about',
+                  child: Text("About"),
                 ),
                 PopupMenuItem(
-                  child: Text("Contact"),
                   value: 'contact',
+                  child: Text("Contact"),
                 )
               ];
             })

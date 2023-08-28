@@ -11,7 +11,7 @@ import '../../ui/login_screen/view/splash_screen.dart';
 import '../constant/app_icons.dart';
 
 UserController userController = Get.put(UserController());
-late AppImagePicker appImagePicker =
+AppImagePicker appImagePicker =
     AppImagePicker(); // Initializing the variable
 
 // String initialRoute = NewsScreen.routeName;
@@ -31,7 +31,7 @@ final List<NavigationTabContainModel> navigationTabList = [
   NavigationTabContainModel(icon: AppIcons.settingIcons, name: "Settings"),
 ];
 List<Widget> navigationScreensWithHome = [
-  HomeScreen(),
+  const HomeScreen(),
   const ExploreScreen(),
   const BookmarkScreen(),
   const SettingScreen(),

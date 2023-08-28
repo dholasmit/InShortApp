@@ -119,7 +119,7 @@ class _HomePopularTopicFloatingButtonState
                             padding: const EdgeInsets.only(left: 10, top: 10),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("BookMark Icon");
+                                debugPrint("BookMark Icon");
                                 exploreController.onTapBookMark();
                                 animationController.reverse();
                               },
@@ -144,7 +144,7 @@ class _HomePopularTopicFloatingButtonState
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("Share Icon");
+                                debugPrint("Share Icon");
                                 exploreController.share(
                                     link: exploreController
                                         .getProductsByCategoryModel!
@@ -167,15 +167,15 @@ class _HomePopularTopicFloatingButtonState
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("Web Icon");
-                                print(
+                                debugPrint("Web Icon");
+                                debugPrint(
                                   "PRODUCT URL ============>${exploreController.getProductsByCategoryModel!.data![exploreController.selectedIndex1].productUrl}",
                                 );
-                                launch(exploreController
+                                launchUrl(Uri.parse(exploreController
                                     .getProductsByCategoryModel!
                                     .data![exploreController.selectedIndex1]
                                     .productUrl
-                                    .toString());
+                                    .toString()));
                                 animationController.reverse();
                               },
                               img: options.elementAt(2),

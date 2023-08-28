@@ -36,7 +36,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 image: DecorationImage(
                   image: AssetImage(
                     LocalStorage.getLightDarkMode()
-                        // baseSettingController.isNightMode
                         ? AppNightModeImage.bgWithContainerImageNightMode
                         : AppImages.bgWithContainerImage,
                   ),
@@ -44,6 +43,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
               child: GetBuilder(
+                id: "language",
                 builder: (BaseSettingController baseSettingController) {
                   return Column(
                     children: [
@@ -92,19 +92,15 @@ class _SettingScreenState extends State<SettingScreen> {
                           itemBuilder: (BuildContext context, int index) {
                             return settingCommonSell(
                               onTap: () {
-                                print({
-                                  "DARK NIGHT MODE VALUE ==> ${baseSettingController.setIsNightMode = LocalStorage.getLightDarkMode()}"
-                                });
                                 baseSettingController.selectedIndex = index;
                                 baseSettingController.chooseLanguage =
                                     LocalStorage.getLanguageType();
-
-                                print(
-                                    "${baseSettingController.chooseLanguage}");
                                 baseSettingController.setIsNightMode =
                                     LocalStorage.getLightDarkMode();
                                 baseSettingController.chooseModeList =
                                     LocalStorage.intGetLightDarkMode();
+                                baseSettingController.chooseFontSize =
+                                    LocalStorage.getFontSize();
 
                                 // baseSettingController.chooseLanguage =
                                 //     LocalStorage.getLightDarkMode();
@@ -136,7 +132,16 @@ class _SettingScreenState extends State<SettingScreen> {
                               },
                               index: index,
                               ic: baseSettingController.settingIcon[index],
-                              name: baseSettingController.settingName[index],
+                              name: LocalStorage.getLanguageType() == 1
+                                  ? baseSettingController
+                                      .settingNameEnglish[index]
+                                  : LocalStorage.getLanguageType() == 2
+                                      ? baseSettingController
+                                          .settingNameGujarati[index]
+                                      : LocalStorage.getLanguageType() == 3
+                                          ? baseSettingController
+                                              .settingNameHindi[index]
+                                          : "",
                             );
                           },
                         ),
@@ -160,59 +165,66 @@ class _SettingScreenState extends State<SettingScreen> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-            InkWell(
-              onTap: onTap,
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: index == baseSettingController.selectedIndex
-                        ? AppColors.blueColor
-                        : Colors.transparent,
-                  ),
-                  color: LocalStorage.getLightDarkMode()
-
-                      // baseSettingController.isNightMode
-                      ? AppNightModeColor.exploreTopicListColor
-                      : AppColors.settingContainerColor,
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      ic,
-                      height: 40,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      name,
-                      style: const TextStyle(
-                        color: AppColors.signupBTNColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
+        child: GetBuilder(
+          id: "FontSize",
+          builder: (BaseSettingController baseSettingController) {
+            return Column(
+              children: [
+                const SizedBox(height: 10),
+                InkWell(
+                  onTap: onTap,
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: index == baseSettingController.selectedIndex
+                            ? AppColors.blueColor
+                            : Colors.transparent,
                       ),
+                      color: LocalStorage.getLightDarkMode()
+                          ? AppNightModeColor.exploreTopicListColor
+                          : AppColors.settingContainerColor,
                     ),
-                  ],
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 5),
+                        Image.asset(
+                          ic,
+                          height: 40,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          name,
+                          style: TextStyle(
+                            color: AppColors.signupBTNColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: baseSettingController.fontsStyle(
+                              defaultSize: 15,
+                              mediumSize: 18,
+                              largeSize: 21,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
   termsCondition() {
-    return launch(baseSettingController.termsCondition);
+    return launchUrl(Uri.parse(baseSettingController.termsCondition));
   }
 
   privacyPolicy() {
-    return launch(baseSettingController.privacyPolicy);
+    return launchUrl(Uri.parse(baseSettingController.privacyPolicy));
   }
 
   logOut() {

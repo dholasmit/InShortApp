@@ -21,7 +21,7 @@ class PopularTopicApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print(
+        debugPrint(
             "RESPONSE BODY================================> ${response.body}");
         return allCategoriesModelFromJson(response.body);
       }

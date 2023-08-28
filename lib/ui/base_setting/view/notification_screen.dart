@@ -66,11 +66,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 ),
               ),
               //   const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text(
                       "Show all",
                       style: TextStyle(
@@ -152,11 +152,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                Expanded(
+                                const Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: const [
+                                    children: [
                                       Text(
                                         "For 12 years, Bavo spoke:",
                                         style: TextStyle(

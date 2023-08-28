@@ -22,11 +22,11 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  @override
   TextEditingController emailController = TextEditingController();
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
@@ -121,7 +121,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               textFieldAlignment: MainAxisAlignment.spaceAround,
                               fieldStyle: FieldStyle.box,
                               onCompleted: (pin) {
-                                print("Completed: " + pin);
+                                debugPrint("Completed: $pin");
                               },
                             ),
                             const SizedBox(height: 250),

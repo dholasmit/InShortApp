@@ -106,14 +106,14 @@ class _LanguageOptionScreenState extends State<LanguageOptionScreen> {
                       ),
                       child: materialButton(
                         onTap: () {
-                          print(
+                          debugPrint(
                               "Language Choose :- ${baseSettingController.chooseLanguage}");
                           LocalStorage.setLanguageType(
                               baseSettingController.chooseLanguage);
                           baseSettingController
                               .setLanguage(
-                                  ItemIds: baseSettingController.chooseLanguage,
-                                  CustomerGUID: userController
+                              itemIds: baseSettingController.chooseLanguage,
+                              customerGUID: userController
                                       .userModel!.customerGuid
                                       .toString())
                               .then(

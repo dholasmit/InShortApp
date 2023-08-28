@@ -5,17 +5,17 @@ import '../api_routes.dart';
 
 class ForGotPassWordRepo {
   static Future forgotPassWord({
-    required String emailid,
-    required String OldPassword,
-    required String NewPassword,
+    required String emailId,
+    required String oldPassword,
+    required String newPassword,
   }) async {
     var responseBody = await API.apiHandler(
       url: APIRoutes.forGotPassWord,
       body: jsonEncode(
         {
-          "emailid": emailid,
-          "OldPassword": OldPassword,
-          "NewPassword": NewPassword,
+          "emailid": emailId,
+          "OldPassword": oldPassword,
+          "NewPassword": newPassword,
         },
       ),
     );

@@ -21,6 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
 
+  @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 5), () async {

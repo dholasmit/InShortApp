@@ -12,7 +12,6 @@ class NewsContentScreen extends StatefulWidget {
 }
 
 class _NewsContentScreenState extends State<NewsContentScreen> {
-  @override
   List<String> images = [
     AppImages.images1,
     AppImages.images2,
@@ -37,6 +36,7 @@ class _NewsContentScreenState extends State<NewsContentScreen> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -56,7 +56,6 @@ class _NewsContentScreenState extends State<NewsContentScreen> {
               ),
               IconButton(
                 onPressed: () {
-                  print("Data Share");
                   share();
                 },
                 icon: const Icon(
@@ -109,28 +108,28 @@ class _NewsContentScreenState extends State<NewsContentScreen> {
             GestureDetector(
               onTap: () async {
                 var url = "https://www.google.com/";
-                if (await canLaunch(url)) {
-                  await launch(url);
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
                 } else {
                   throw "Failed to open LinkedIn";
                 }
               },
               child: Container(
                 color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Best News In Would",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      const Text(
+                      SizedBox(height: 10),
+                      Text(
                         "Ratan Naval Tata (born 28 December 1937) is an Indian businessman and former chairman of Tata Sons. He was also the chairman of the Tata Group from 1990 to 2012, serving also as interim chairman from October 2016 through February 2017. He continues to head its charitable trusts.[2][3] In 2008, he received the Padma Vibhushan, the second highest civilian honour in India, after receiving the Padma Bhushan, the third highest civilian honour in 2000.[4]He is the son of Naval Tata, who was adopted by Ratanji Tata, son of Jamsetji Tata, the founder of the Tata Group. He graduated from the Cornell University College of Architecture with a bachelor's degree in architecture.[5] He joined Tata in 1961, where he worked on the shop floor of Tata Steel. He later succeeded J. R. D. Tata's as chairman of Tata Sons upon the latter's retirement in 1991. Under his tenure the Tata Group acquired Tetley, Jaguar Land Rover, and Corus, in an attempt to turn Tata from a largely India-centric group into a global business. Tata is also one of the largest philanthropists in the world, having donated around 60–65% of his income to charity.",
                         maxLines: 15,
                         overflow: TextOverflow.ellipsis,

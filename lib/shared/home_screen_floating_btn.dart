@@ -11,7 +11,7 @@ class FoldableOptions extends StatefulWidget {
   const FoldableOptions({Key? key}) : super(key: key);
 
   @override
-  _FoldableOptionsState createState() => _FoldableOptionsState();
+  State<FoldableOptions> createState() => _FoldableOptionsState();
 }
 
 class _FoldableOptionsState extends State<FoldableOptions>
@@ -124,7 +124,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             padding: const EdgeInsets.only(left: 10, top: 10),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("BookMark Icon");
+                                debugPrint("BookMark Icon");
                                 homeScreenController.onTapBookMark();
                                 animationController.reverse();
                               },
@@ -149,7 +149,7 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("Share Icon");
+                                debugPrint("Share Icon");
                                 homeScreenController.share(
                                     link: homeScreenController
                                         .getHomeRecentlyAddedProductsModel!
@@ -173,15 +173,15 @@ class _FoldableOptionsState extends State<FoldableOptions>
                             ),
                             child: floatingActionTypeButtonItem(
                               onTap: () {
-                                print("Web Icon");
-                                print(
+                                debugPrint("Web Icon");
+                                debugPrint(
                                   "PRODUCT URL ============>${homeScreenController.getHomeRecentlyAddedProductsModel!.data![homeScreenController.selectedIndex].prouductUrl!}",
                                 );
-                                launch(homeScreenController
+                                launchUrl(Uri.parse(homeScreenController
                                     .getHomeRecentlyAddedProductsModel!
                                     .data![homeScreenController.selectedIndex]
                                     .prouductUrl!
-                                    .toString());
+                                    .toString()));
                                 animationController.reverse();
                               },
                               img: options.elementAt(2),

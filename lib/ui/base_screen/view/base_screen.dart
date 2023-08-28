@@ -19,7 +19,7 @@ class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
 
   @override
-  _BaseScreenState createState() => _BaseScreenState();
+  State<BaseScreen> createState() => _BaseScreenState();
 }
 
 class _BaseScreenState extends State<BaseScreen> {
@@ -73,7 +73,7 @@ class _BaseScreenState extends State<BaseScreen> {
               id: "DarkLightMode",
               builder: (baseSettingController) {
                 return Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       // boxShadow: [
                       //   BoxShadow(
                       //     color: Colors.grey,
@@ -102,6 +102,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         1) {
+                                      exploreController.exploreLoader = true;
                                       exploreController.selectedIndex = 0;
                                       exploreController
                                           .getProductsByCategoryList(
@@ -111,6 +112,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                                   .id!);
                                       exploreController.exploreTopicListData();
                                       popularTopicController.popularData();
+                                      exploreController.exploreLoader = false;
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         2) {
@@ -193,7 +195,7 @@ class _BaseScreenState extends State<BaseScreen> {
               id: "DarkLightMode",
               builder: (baseSettingController) {
                 return Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       // boxShadow: [
                       //   BoxShadow(
                       //     color: Colors.grey,

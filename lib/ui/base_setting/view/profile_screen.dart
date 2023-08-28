@@ -10,7 +10,7 @@ import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/image_picker_controller.dart';
 import '../../base_screen/controller/base_screen_controller.dart';
-import '../controller/profile _controller.dart';
+import '../controller/profile_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String routeName = "/ProfileScreen";

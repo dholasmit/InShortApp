@@ -5,7 +5,7 @@ import '../../shared/image_picker_controller.dart';
 import '../../ui/base_screen/controller/base_screen_controller.dart';
 import '../../ui/base_setting/controller/base_setting_controller.dart';
 import '../../ui/base_setting/controller/edit_profile_controller.dart';
-import '../../ui/base_setting/controller/profile _controller.dart';
+import '../../ui/base_setting/controller/profile_controller.dart';
 import '../../ui/bookmark/controller/book_mark_controller.dart';
 import '../../ui/explore/controller/explore_controller.dart';
 import '../../ui/explore/controller/popular_topic_controller.dart';

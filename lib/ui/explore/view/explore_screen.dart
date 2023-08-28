@@ -39,7 +39,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
               image: DecorationImage(
                 image: AssetImage(
                   LocalStorage.getLightDarkMode()
-                      // baseSettingController.isNightMode
                       ? AppNightModeImage.bgWithContainerImageNightMode
                       : AppImages.bgWithContainerImage,
                 ),
@@ -86,11 +85,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
+                              Text(
                                 "Popular Category",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 16,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 16,
+                                    mediumSize: 19,
+                                    largeSize: 21,
+                                  ),
                                   color: AppColors.blueColor,
                                 ),
                               ),
@@ -102,7 +105,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   "See all",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14,
+                                    fontSize: baseSettingController.fontsStyle(
+                                      defaultSize: 14,
+                                      mediumSize: 17,
+                                      largeSize: 19,
+                                    ),
                                     color: LocalStorage.getLightDarkMode()
                                         // baseSettingController.isNightMode
                                         ? AppNightModeColor.white
@@ -136,7 +143,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                             ),
                                             child: InkWell(
                                               onTap: () {
-                                                print("index======>$index");
+                                                debugPrint("index======>$index");
                                                 exploreController
                                                     .getProductsByCategoryList(
                                                         id: popularTopicController
@@ -210,12 +217,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                               .ellipsis,
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style:
-                                                              const TextStyle(
+                                                          style: TextStyle(
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            fontSize: 12,
+                                                            // fontSize: 12,
+                                                            fontSize:
+                                                                baseSettingController
+                                                                    .fontsStyle(
+                                                              defaultSize: 12,
+                                                              mediumSize: 15,
+                                                              largeSize: 18,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -236,11 +249,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
+                              Text(
                                 "Category",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 16,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 16,
+                                    mediumSize: 19,
+                                    largeSize: 21,
+                                  ),
                                   color: AppColors.blueColor,
                                 ),
                               ),
@@ -248,10 +265,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 "See all",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 14,
+                                    mediumSize: 17,
+                                    largeSize: 19,
+                                  ),
                                   color: LocalStorage.getLightDarkMode()
-                                      // baseSettingController.isNightMode
-
                                       ? AppNightModeColor.white
                                       : AppColors.black,
                                 ),
@@ -283,13 +302,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                       (BuildContext context, int index) {
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                        horizontal: 10,
+                                      ),
                                       child: InkWell(
                                         onTap: () {
                                           setState(() {
                                             exploreController.selectedIndex =
                                                 index;
-                                            print(
+                                            debugPrint(
                                               exploreController
                                                   .getExploreTopicListModel!
                                                   .data![index]
@@ -340,8 +360,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                     .data![index]
                                                     .name
                                                     .toString(),
-                                                style: const TextStyle(
-                                                  fontSize: 12,
+                                                style: TextStyle(
+                                                  // fontSize: 12,
+                                                  fontSize:
+                                                      baseSettingController
+                                                          .fontsStyle(
+                                                    defaultSize: 12,
+                                                    mediumSize: 15,
+                                                    largeSize: 18,
+                                                  ),
                                                   fontWeight: FontWeight.w700,
                                                   color: AppColors.blueColor,
                                                 ),
@@ -454,9 +481,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           title,
                           maxLines: 2,
                           overflow: TextOverflow.clip,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 14,
+                            fontSize: baseSettingController.fontsStyle(
+                              defaultSize: 14,
+                              mediumSize: 17,
+                              largeSize: 19,
+                            ),
                             color: AppColors.blueColor,
                           ),
                         ),
@@ -465,9 +496,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           maxLines: 2,
                           overflow: TextOverflow.clip,
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: baseSettingController.fontsStyle(
+                              defaultSize: 11,
+                              mediumSize: 14,
+                              largeSize: 17,
+                            ),
                             color: LocalStorage.getLightDarkMode()
-                                // baseSettingController.isNightMode
                                 ? AppNightModeColor.white
                                 : AppColors.black,
                           ),

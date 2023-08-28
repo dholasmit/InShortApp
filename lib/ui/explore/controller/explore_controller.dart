@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/ui/explore/controller/popular_topic_controller.dart';
 
@@ -73,7 +74,7 @@ class ExploreController extends GetxController {
     prevIndex = selectedIndex1;
     selectedIndex1 = index;
     flotClose = false;
-    print("Index==> $selectedIndex1");
+    debugPrint("Index==> $selectedIndex1");
     update(["flotPopular", "productPopular"]);
   }
 
@@ -133,8 +134,8 @@ class ExploreController extends GetxController {
     required int productId,
   }) async {
     AddBookMarkModel? addBookMarkModel = await BookmarkApi.addBookmarkRepo(
-      CustomerGUID: userController.userModel!.customerGuid.toString(),
-      ProductId: productId,
+      customerGUID: userController.userModel!.customerGuid.toString(),
+      productId: productId,
     );
 
     if (addBookMarkModel != null) {
@@ -162,8 +163,8 @@ class ExploreController extends GetxController {
 
   removeBookMarkData() {
     return bookMarkController.removeBookMark(
-      CustomerGUID: bookMarkController.bookMarkModel?.data?.customerGuid ?? "",
-      ItemIds: getProductsByCategoryModel!.data![selectedIndex1].id!,
+      customerGUID: bookMarkController.bookMarkModel?.data?.customerGuid ?? "",
+      itemIds: getProductsByCategoryModel!.data![selectedIndex1].id!,
     );
   }
 

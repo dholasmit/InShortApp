@@ -39,7 +39,7 @@ class ExploreApi {
       int languageId = LocalStorage.getLanguageType();
       String url1 =
           "https://panchat.in/api/client/GetProductsByCategoryId?id=$id&languageId=$languageId&pageNumber=$page";
-      String url = APIRoutes.getProductsByCategory;
+     // String url = APIRoutes.getProductsByCategory;
 
       http.Response? response = await HttpService.getApi(
         url: url1,
@@ -49,7 +49,7 @@ class ExploreApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print(
+        debugPrint(
             "RESPONSE BODY================================>$url1 ==> ${response.body}");
         return getProductsByCategoryModelFromJson(response.body);
       }
@@ -74,7 +74,7 @@ class ExploreApi {
         },
       );
       if (response != null && response.statusCode == 200) {
-        print(
+        debugPrint(
             "RESPONSE BODY=============================== $url=====> ${response.body}");
         return exploreTopicListModelFromJson(response.body);
       }

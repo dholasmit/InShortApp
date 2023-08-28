@@ -9,12 +9,18 @@ import '../../../custem_class/utils/local_storage.dart';
 import '../../../shared/material_button.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 
-class WelComeScreen extends StatelessWidget {
+class WelComeScreen extends StatefulWidget {
   static const String routeName = "/WelComeScreen";
+
+  const WelComeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WelComeScreen> createState() => _WelComeScreenState();
+}
+
+class _WelComeScreenState extends State<WelComeScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
-
-  WelComeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

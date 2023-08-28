@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,11 +13,17 @@ import '../../explore/controller/explore_controller.dart';
 import '../controller/home_screen_controller.dart';
 import 'home_images.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
+
   ExploreController exploreController = Get.find<ExploreController>();
 
   @override
@@ -65,11 +71,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                             child: GestureDetector(
                               onVerticalDragStart: (details) {
-                                launch(controller
+                                launchUrl(Uri.parse(controller
                                     .getHomeRecentlyAddedProductsModel!
                                     .data![index]
                                     .prouductUrl!
-                                    .toString());
+                                    .toString()));
                               },
                               child: Container(
                                 height: 100,
@@ -131,10 +137,15 @@ class HomeScreen extends StatelessWidget {
                                                   .data![index]
                                                   .name
                                                   .toString(),
-                                              // "Modi ji Newj",
                                               style: const TextStyle(
                                                 color: AppColors.blueColor,
-                                                fontSize: 16,
+                                                fontSize: 18,
+                                                // fontSize: baseSettingController
+                                                //     .fontsStyle(
+                                                //   defaultSize: 15,
+                                                //   mediumSize: 18,
+                                                //   largeSize: 20,
+                                                // ),
                                               ),
                                             ),
                                             Html(
@@ -149,24 +160,30 @@ class HomeScreen extends StatelessWidget {
                                                           .getLightDarkMode()
                                                       ? AppNightModeColor.white
                                                       : AppColors.black,
+                                                  // fontSize: FontSize.small,
                                                 ),
                                               },
                                             ),
                                             const Spacer(),
                                             InkWell(
                                               onTap: () {
-                                                print("More News");
-                                                launch(controller
+                                                launchUrl(Uri.parse(controller
                                                     .getHomeRecentlyAddedProductsModel!
                                                     .data![index]
                                                     .prouductUrl!
-                                                    .toString());
+                                                    .toString()));
                                               },
                                               child: Text(
                                                 "onTap for More Details/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
-                                                style: const TextStyle(
-                                                  fontSize: 13,
-                                                  color: Color(0XFFADADAD),
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      baseSettingController
+                                                          .fontsStyle(
+                                                    defaultSize: 13,
+                                                    mediumSize: 16,
+                                                    largeSize: 19,
+                                                  ),
+                                                  color: const Color(0XFFADADAD),
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),

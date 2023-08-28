@@ -35,12 +35,12 @@ class RequestFormTextfield extends StatefulWidget {
   final bool isPreffixIcon;
   final bool autoFocus;
   final bool? obscureText;
-  FocusNode? focusNode;
-  ValueSetter? onChanged;
-  GestureTapCallback? onTap;
-  VoidCallback? onClear;
-  ValueSetter? onFieldSubmitted;
-  TextCapitalization? textCapitalization;
+  final FocusNode? focusNode;
+  final ValueSetter? onChanged;
+  final GestureTapCallback? onTap;
+  final VoidCallback? onClear;
+  final ValueSetter? onFieldSubmitted;
+  final TextCapitalization? textCapitalization;
 
   final String? Function(String?)? validator;
 
@@ -226,6 +226,18 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
           return prefixIcon(ic: AppImages.emailIcon);
         case RequestFormFieldType.profilePhoneNumber:
           return prefixIcon(ic: AppImages.phoneIcon);
+        case RequestFormFieldType.emailIdForgotPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.newPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.confirmNewPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.search:
+          // TODO: Handle this case.
+          break;
       }
     }
     return null;
@@ -236,6 +248,45 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
       switch (widget.formFieldType) {
         // case RequestFormFieldType.email:
         //   return const Icon(Icons.email);
+        case RequestFormFieldType.email:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.password:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.firstName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.lastName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.confirmPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.emailIdForgotPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.newPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.confirmNewPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.search:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileUserName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileFullName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileEmail:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profilePhoneNumber:
+          // TODO: Handle this case.
+          break;
       }
     }
     return null;
@@ -268,8 +319,45 @@ class _RequestFormTextfieldState extends State<RequestFormTextfield> {
       switch (widget.formFieldType) {
         case RequestFormFieldType.password:
           return "Enter Your password";
+        case RequestFormFieldType.email:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.firstName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.lastName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.confirmPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.emailIdForgotPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.newPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.confirmNewPassword:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.search:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileUserName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileFullName:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profileEmail:
+          // TODO: Handle this case.
+          break;
+        case RequestFormFieldType.profilePhoneNumber:
+          // TODO: Handle this case.
+          break;
       }
     }
+    return null;
   }
 }
 

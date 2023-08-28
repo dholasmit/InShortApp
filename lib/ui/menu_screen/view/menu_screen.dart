@@ -8,7 +8,7 @@ import 'package:inshorts_newj/services/api_routes.dart';
 
 import '../../../models/menu_screen_model'
     '/proudctcategories_model.dart';
-import '../../setting_screen/view/setting_Screen.dart';
+import '../../setting_screen/view/setting_screen.dart';
 import '../controller/menuscreen_controller.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -36,7 +36,7 @@ class _MenuScreenState extends State<MenuScreen> {
           ProductCategoriesModel.fromJson(jsonDecode(response.body));
 
       setState(() {});
-      print("RESPONSE ==========>  ${response.body}");
+      debugPrint("RESPONSE ==========>  ${response.body}");
     } else {
       throw Exception('Failed to load album');
     }
@@ -190,7 +190,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       itemBuilder: (BuildContext context, index) {
                         return GestureDetector(
                           onTap: () {
-                            print("Demo");
                           },
                           child: Container(
                             decoration: BoxDecoration(

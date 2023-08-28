@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../shared/laguage_option _screen.dart';
+import '../../shared/laguage_option_screen.dart';
 import '../../ui/base_screen/view/base_screen.dart';
 import '../../ui/base_setting/view/edit_profile_screen.dart';
 import '../../ui/base_setting/view/notification_screen.dart';
@@ -19,7 +19,7 @@ import '../../ui/login_screen/view/splash_screen.dart';
 import '../../ui/login_screen/view/welcome_screen.dart';
 import '../../ui/menu_screen/view/menu_screen.dart';
 import '../../ui/news_screen/view/news_screen.dart';
-import '../../ui/setting_screen/view/setting_Screen.dart';
+import '../../ui/setting_screen/view/setting_screen.dart';
 
 final List<GetPage<dynamic>> routes = [
   GetPage(name: NewsScreen.routeName, page: () => const NewsScreen()),
@@ -31,7 +31,7 @@ final List<GetPage<dynamic>> routes = [
   GetPage(
       name: ForGotPasswordScreen.routeName,
       page: () => const ForGotPasswordScreen()),
-  GetPage(name: WelComeScreen.routeName, page: () => WelComeScreen()),
+  GetPage(name: WelComeScreen.routeName, page: () => const WelComeScreen()),
   GetPage(name: OtpScreen.routeName, page: () => const OtpScreen()),
   GetPage(name: CongressScreen.routeName, page: () => const CongressScreen()),
   GetPage(
@@ -47,9 +47,9 @@ final List<GetPage<dynamic>> routes = [
   GetPage(
       name: EditProfileScreen.routeName, page: () => const EditProfileScreen()),
   GetPage(name: PopularScreen.routeName, page: () => const PopularScreen()),
-  GetPage(name: HomeScreenImages.routeName, page: () => HomeScreenImages()),
+  GetPage(name: HomeScreenImages.routeName, page: () => const HomeScreenImages()),
   GetPage(
-      name: HomePopularTopicData.routeName, page: () => HomePopularTopicData()),
+      name: HomePopularTopicData.routeName, page: () => const HomePopularTopicData()),
   GetPage(
       name: LanguageOptionScreen.routeName,
       page: () => const LanguageOptionScreen()),

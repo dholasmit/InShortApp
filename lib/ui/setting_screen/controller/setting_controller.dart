@@ -52,7 +52,9 @@ class SettingController extends GetxController {
     debugPrint("url=========>$url");
     if (response.statusCode == 200) {
       languageModel = languageModelFromJson(response.body);
-      print("RESPONSE ==========>  ${response.body}");
+      if (kDebugMode) {
+        print("RESPONSE ==========>  ${response.body}");
+      }
       chosenValue = languageModel!.languages.first.name;
       update(["Languages"]);
     } else {

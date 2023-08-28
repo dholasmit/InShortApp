@@ -8,14 +8,15 @@ import '../../../custem_class/utils/local_storage.dart';
 class HomeScreenImages extends StatefulWidget {
   static const String routeName = "/HomeScreenImages";
 
-  HomeScreenImages({Key? key}) : super(key: key);
-  var img = Get.arguments;
+  const HomeScreenImages({Key? key}) : super(key: key);
 
   @override
   State<HomeScreenImages> createState() => _HomeScreenImagesState();
 }
 
 class _HomeScreenImagesState extends State<HomeScreenImages> {
+  var img = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +55,7 @@ class _HomeScreenImagesState extends State<HomeScreenImages> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                        widget.img,
+                        img,
                       ),
                       fit: BoxFit.fill,
                     ),
