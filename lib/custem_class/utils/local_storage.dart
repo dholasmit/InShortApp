@@ -136,4 +136,15 @@ class LocalStorage {
   static int intGetLightDarkMode() {
     return prefs.read("IntSetLightDarkMode") ?? 0;
   }
+
+////////////////////////////////////////////////////////////////////////////
+  /// FontSize Default & Medium & Large ///
+////////////////////////////////////////////////////////////////////////////
+  static setFontSize(int value) {
+    prefs.write("SetFontSize", value);
+  }
+
+  static int getFontSize() {
+    return prefs.read("SetFontSize") ?? 0;
+  }
 }

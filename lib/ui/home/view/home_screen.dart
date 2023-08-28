@@ -131,10 +131,15 @@ class HomeScreen extends StatelessWidget {
                                                   .data![index]
                                                   .name
                                                   .toString(),
-                                              // "Modi ji Newj",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: AppColors.blueColor,
-                                                fontSize: 16,
+                                                fontSize: 18,
+                                                // fontSize: baseSettingController
+                                                //     .fontsStyle(
+                                                //   defaultSize: 15,
+                                                //   mediumSize: 18,
+                                                //   largeSize: 20,
+                                                // ),
                                               ),
                                             ),
                                             Html(
@@ -149,6 +154,7 @@ class HomeScreen extends StatelessWidget {
                                                           .getLightDarkMode()
                                                       ? AppNightModeColor.white
                                                       : AppColors.black,
+                                                  // fontSize: FontSize.small,
                                                 ),
                                               },
                                             ),
@@ -164,8 +170,14 @@ class HomeScreen extends StatelessWidget {
                                               },
                                               child: Text(
                                                 "onTap for More Details/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
-                                                style: const TextStyle(
-                                                  fontSize: 13,
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      baseSettingController
+                                                          .fontsStyle(
+                                                    defaultSize: 13,
+                                                    mediumSize: 16,
+                                                    largeSize: 19,
+                                                  ),
                                                   color: Color(0XFFADADAD),
                                                   fontWeight: FontWeight.w400,
                                                 ),

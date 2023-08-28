@@ -52,10 +52,15 @@ languageDialog(BuildContext context) async {
                                 AppIcons.textSizeIcons,
                                 height: 40,
                               ),
-                              const Text(
+                              Text(
                                 "Language",
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  // fontSize: 17,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 17,
+                                    mediumSize: 20,
+                                    largeSize: 23,
+                                  ),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
                                 ),
@@ -158,9 +163,14 @@ languageDialog(BuildContext context) async {
                                       Text(
                                         baseSettingController.getLanguageModel2!
                                             .data![index].name!,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: AppColors.blueColor,
-                                          fontSize: 15,
+                                          fontSize:
+                                              baseSettingController.fontsStyle(
+                                            defaultSize: 15,
+                                            mediumSize: 18,
+                                            largeSize: 21,
+                                          ),
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -230,10 +240,15 @@ nightModeDialog(BuildContext context) async {
                                 AppIcons.nightMOdeIcons,
                                 height: 40,
                               ),
-                              const Text(
+                              Text(
                                 "Night Mode",
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  // fontSize: 17,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 17,
+                                    mediumSize: 20,
+                                    largeSize: 23,
+                                  ),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
                                 ),
@@ -325,9 +340,14 @@ nightModeDialog(BuildContext context) async {
                                       const SizedBox(width: 15),
                                       Text(
                                         baseSettingController.modeList[index],
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: AppColors.blueColor,
-                                          fontSize: 15,
+                                          fontSize:
+                                              baseSettingController.fontsStyle(
+                                            defaultSize: 15,
+                                            mediumSize: 18,
+                                            largeSize: 21,
+                                          ),
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -397,10 +417,14 @@ textSizeDialog(BuildContext context) async {
                                 AppIcons.textSizeIcons,
                                 height: 40,
                               ),
-                              const Text(
+                              Text(
                                 "Text Size",
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: baseSettingController.fontsStyle(
+                                    defaultSize: 17,
+                                    mediumSize: 20,
+                                    largeSize: 23,
+                                  ),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
                                 ),
@@ -434,6 +458,8 @@ textSizeDialog(BuildContext context) async {
                               child: GestureDetector(
                                 onTap: () {
                                   baseSettingController.chooseFontSize = index;
+                                  LocalStorage.setFontSize(
+                                      baseSettingController.chooseFontSize);
                                   Get.back();
                                 },
                                 child: Container(
@@ -474,9 +500,14 @@ textSizeDialog(BuildContext context) async {
                                       const SizedBox(width: 15),
                                       Text(
                                         baseSettingController.fontSize[index],
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: AppColors.blueColor,
-                                          fontSize: 15,
+                                          fontSize:
+                                              baseSettingController.fontsStyle(
+                                            defaultSize: 15,
+                                            mediumSize: 18,
+                                            largeSize: 21,
+                                          ),
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),

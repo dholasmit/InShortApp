@@ -158,8 +158,15 @@ class _PopularScreenState extends State<PopularScreen> {
                                                     .toString(),
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                  fontSize: 13,
+                                                style: TextStyle(
+                                                  // fontSize: 13,
+                                                  fontSize:
+                                                      baseSettingController
+                                                          .fontsStyle(
+                                                    defaultSize: 13,
+                                                    mediumSize: 16,
+                                                    largeSize: 19,
+                                                  ),
                                                   fontWeight: FontWeight.w700,
                                                   color: AppColors.blueColor,
                                                 ),

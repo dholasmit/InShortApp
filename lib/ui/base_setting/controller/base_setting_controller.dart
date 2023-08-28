@@ -2,6 +2,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:inshorts_newj/custem_class/constant/app_icons.dart';
 
+import '../../../custem_class/utils/local_storage.dart';
 import '../../../models/setting_screen_model/langeuge_model_2.dart';
 import '../../../models/setting_screen_model/set_language_model.dart';
 import '../../../services/setting_screen_repo/language_repo.dart';
@@ -25,7 +26,7 @@ class BaseSettingController extends GetxController {
     "नमस्ते",
   ];
 
-  List<String> settingName = [
+  List<String> settingNameEnglish = [
     "Language",
     "Notification",
     "Night Mode",
@@ -36,6 +37,30 @@ class BaseSettingController extends GetxController {
     "Terms & Conditions",
     "Privacy Policy",
     "Logout",
+  ];
+  List<String> settingNameGujarati = [
+    "ભાષા",
+    "સૂચના",
+    "નાઇટ મોડ",
+    "ટેક્સ્ટનું કદ",
+    "આ એપ્લિકેશન શેર કરો",
+    "રેટ કરો",
+    "પ્રતિસાદ",
+    "શરતોની સ્થિતિ",
+    "ગોપનીયતા નીતિ",
+    "લૉગ આઉટ",
+  ];
+  List<String> settingNameHindi = [
+    "भाषा",
+    "अधिसूचना",
+    "रात का मोड",
+    "टेक्स्ट का साइज़",
+    "इस एप को शेयर कीजिए",
+    "रूप में दर",
+    "प्रतिक्रिया",
+    "नियम व शर्त",
+    "गोपनीयता नीति",
+    "लॉग आउट",
   ];
 
   int _selectedIndex = -1;
@@ -96,7 +121,7 @@ class BaseSettingController extends GetxController {
 
   set chooseFontSize(int value) {
     _chooseFontSize = value;
-    update();
+    update(["FontSize"]);
   }
 
   List<String> fontSize = [
@@ -104,6 +129,20 @@ class BaseSettingController extends GetxController {
     "Medium",
     "Large",
   ];
+
+  fontsStyle({
+    required double defaultSize,
+    required double mediumSize,
+    required double largeSize,
+  }) {
+    return LocalStorage.getFontSize() == 0
+        ? defaultSize
+        : LocalStorage.getFontSize() == 1
+            ? mediumSize
+            : LocalStorage.getFontSize() == 2
+                ? largeSize
+                : null;
+  }
 
   /// App share
   Future<void> share() async {

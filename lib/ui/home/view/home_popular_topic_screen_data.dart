@@ -8,8 +8,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../custem_class/constant/app_colors.dart';
 import '../../../custem_class/constant/app_images.dart';
 import '../../../custem_class/utils/local_storage.dart';
-import '../../base_screen/controller/base_screen_controller.dart';
-import '../../base_screen/view/base_screen.dart';
 import '../../base_setting/controller/base_setting_controller.dart';
 import '../../explore/controller/explore_controller.dart';
 import 'home_images.dart';
@@ -58,9 +56,10 @@ class HomePopularTopicData extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.find<BaseScreenController>().selectedTab = 0;
-                          Get.toNamed(BaseScreen.routeName);
-                          homeScreenController.homeRecentlyAddedProductsData();
+                          Get.back();
+                          // Get.find<BaseScreenController>().selectedTab = 0;
+                          // Get.toNamed(BaseScreen.routeName);
+                          // homeScreenController.homeRecentlyAddedProductsData();
                         },
                         child: Icon(
                           Icons.arrow_back_ios_new_outlined,
@@ -76,7 +75,12 @@ class HomePopularTopicData extends StatelessWidget {
                           color: LocalStorage.getLightDarkMode()
                               ? AppNightModeColor.white
                               : AppColors.black,
-                          fontSize: 18,
+                          // fontSize: 18,
+                          fontSize: baseSettingController.fontsStyle(
+                            defaultSize: 15,
+                            mediumSize: 18,
+                            largeSize: 20,
+                          ),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -183,10 +187,16 @@ class HomePopularTopicData extends StatelessWidget {
                                                         .productName
                                                         .toString(),
                                                     // "Modi ji Newj",
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       color:
                                                           AppColors.blueColor,
-                                                      fontSize: 16,
+                                                      fontSize:
+                                                          baseSettingController
+                                                              .fontsStyle(
+                                                        defaultSize: 15,
+                                                        mediumSize: 18,
+                                                        largeSize: 20,
+                                                      ),
                                                     ),
                                                   ),
                                                   Html(
@@ -217,8 +227,14 @@ class HomePopularTopicData extends StatelessWidget {
                                                     },
                                                     child: Text(
                                                       "onTap for More Details/${exploreController.getProductsByCategoryModel!.data![index].createdXTimeAgo} ago",
-                                                      style: const TextStyle(
-                                                        fontSize: 13,
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            baseSettingController
+                                                                .fontsStyle(
+                                                          defaultSize: 13,
+                                                          mediumSize: 16,
+                                                          largeSize: 19,
+                                                        ),
                                                         color:
                                                             Color(0XFFADADAD),
                                                         fontWeight:

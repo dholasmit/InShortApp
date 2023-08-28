@@ -102,6 +102,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         1) {
+                                      exploreController.exploreLoader = true;
                                       exploreController.selectedIndex = 0;
                                       exploreController
                                           .getProductsByCategoryList(
@@ -111,6 +112,7 @@ class _BaseScreenState extends State<BaseScreen> {
                                                   .id!);
                                       exploreController.exploreTopicListData();
                                       popularTopicController.popularData();
+                                      exploreController.exploreLoader = false;
                                     } else if (Get.find<BaseScreenController>()
                                             .selectedTab ==
                                         2) {
