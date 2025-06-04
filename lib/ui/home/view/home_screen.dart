@@ -13,17 +13,11 @@ import '../../explore/controller/explore_controller.dart';
 import '../controller/home_screen_controller.dart';
 import 'home_images.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   BaseSettingController baseSettingController =
       Get.find<BaseSettingController>();
-
   ExploreController exploreController = Get.find<ExploreController>();
 
   @override
@@ -71,11 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: GestureDetector(
                               onVerticalDragStart: (details) {
-                                launchUrl(Uri.parse(controller
+                                launch(controller
                                     .getHomeRecentlyAddedProductsModel!
                                     .data![index]
                                     .prouductUrl!
-                                    .toString()));
+                                    .toString());
                               },
                               child: Container(
                                 height: 100,
@@ -137,15 +131,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .data![index]
                                                   .name
                                                   .toString(),
+                                              // "Modi ji Newj",
                                               style: const TextStyle(
                                                 color: AppColors.blueColor,
-                                                fontSize: 18,
-                                                // fontSize: baseSettingController
-                                                //     .fontsStyle(
-                                                //   defaultSize: 15,
-                                                //   mediumSize: 18,
-                                                //   largeSize: 20,
-                                                // ),
+                                                fontSize: 16,
                                               ),
                                             ),
                                             Html(
@@ -167,23 +156,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                             const Spacer(),
                                             InkWell(
                                               onTap: () {
-                                                launchUrl(Uri.parse(controller
+                                                print("More News");
+                                                launch(controller
                                                     .getHomeRecentlyAddedProductsModel!
                                                     .data![index]
                                                     .prouductUrl!
-                                                    .toString()));
+                                                    .toString());
                                               },
                                               child: Text(
                                                 "onTap for More Details/${controller.getHomeRecentlyAddedProductsModel!.data![index].createdXTimeAgo} ago",
-                                                style: TextStyle(
-                                                  fontSize:
-                                                      baseSettingController
-                                                          .fontsStyle(
-                                                    defaultSize: 13,
-                                                    mediumSize: 16,
-                                                    largeSize: 19,
-                                                  ),
-                                                  color: const Color(0XFFADADAD),
+                                                style: const TextStyle(
+                                                  fontSize: 13,
+                                                  color: Color(0XFFADADAD),
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
